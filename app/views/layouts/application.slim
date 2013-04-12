@@ -1,0 +1,12 @@
+doctype 5
+html lang='zh_CN'
+  head
+    meta charset="utf-8"
+    meta content="width=device-width, initial-scale=1.0" name="viewport"
+    = csrf_meta_tags
+    = stylesheet_link_tag 'application', :media => 'all'
+    = javascript_include_tag 'application'
+    = yield(:header)
+    = display_meta_tags site: 'Cabbeen', reverse: true
+  body
+    = (out = yield :main).blank? ? yield : out

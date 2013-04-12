@@ -1,0 +1,9 @@
+= simple_form_for current_admin, :url => edit_pwd_admin_admins_path, :method => :put, :html => {class: 'form-horizontal'} do |f|
+  fieldset
+    legend= title '修改密码'
+    = f.input :email, required: true
+    = f.input :password, required: true
+    = f.input :password_confirmation, required: true
+    = f.input :current_password, required: true
+    .form-actions
+      = f.submit '确认', class: 'btn btn-primary'

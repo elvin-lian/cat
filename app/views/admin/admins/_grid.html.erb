@@ -1,0 +1,17 @@
+<%= grid(@admins, :show_filters => :when_filtered, :allow_showing_all_records => false) do |g|
+  %w(id name email sign_in_count last_sign_in_at last_sign_in_ip).each do |attr|
+    g.column :name => Admin.human_attribute_name(attr.to_sym), :attribute => attr do |user|
+      if attr == 'last_sign_in_at'
+        t2l(user.send(attr.to_sym))
+      else
+        user.send(attr.to_sym)
+      end
+    end
+  end
+  g.column :name => '角色', :attribute => 'role' do |user|
+    user.role
+  end
+  g.column do |user|
+    actions_links user, 6
+  end
+end -%>
