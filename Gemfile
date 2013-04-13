@@ -54,6 +54,11 @@ group :test do
   gem 'spork'
 end
 
+group :development do
+  # disabled assets log
+  gem 'quiet_assets'
+end
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
@@ -64,7 +69,8 @@ end
 # gem 'unicorn'
 
 # Deploy with Capistrano
-# gem 'capistrano'
+gem 'capistrano'
+gem 'rvm-capistrano'
 
 # To use debugger
 # gem 'debugger'
