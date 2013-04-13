@@ -1,12 +1,12 @@
 - admin_left_menu :admin
-h2= title '添加管理员'
-hr
-= simple_form_for @admin, :url => admin_admins_path, :html => {class: 'form-horizontal'} do |f|
+.page-header
+  h4= title '添加管理员'
+= simple_form_for @admin, :url => admin_admins_path, :html => {class: 'form-horizontal', autocomplete: 'off'} do |f|
   fieldset
     = f.input :name
     = f.input :email
     = f.input :password
     = f.input :password_confirmation
-    = f.input :role, collection: Admin.roles, as: :radio
+    = f.input :role, collection: Admin.roles_human, as: :radio
     .form-actions
       = f.submit '添加' , class: 'btn btn-primary'

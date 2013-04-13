@@ -8,6 +8,7 @@ class Admin::AdminsController < Admin::BaseController
 
   def new
     @admin = Admin.new
+    @admin.role = 'manager'
   end
 
   def create

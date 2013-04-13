@@ -16,7 +16,7 @@ html lang='zh_CN'
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          = link_to 'Cabben', admin_dashboard_index_path, class: 'brand'
+          = link_to 'Cabbeen', admin_dashboard_index_path, class: 'brand'
           .btn-group.pull-right
             a.btn.dropdown-toggle data-toggle="dropdown"
               i.icon-user
@@ -37,13 +37,10 @@ html lang='zh_CN'
             = (out = yield :main).blank? ? yield : out
         - else
           .span2
-            .well.menu-well
+            .well.menu-well.sidebar-nav
               .ul.nav.nav-list
                 = @admin_left_menu
           .span10
             = render 'shared/flash_message'
             = yield
-      hr#footer
-      footer
-        p &copy Cabbeen
     = yield(:footer)

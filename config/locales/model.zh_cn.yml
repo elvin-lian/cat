@@ -1,0 +1,24 @@
+zh_cn:
+  attributes:
+    created_at: 创建时间
+    updated_at: 修改时间
+    name: 用户名
+    email: 邮箱
+    password: 密码
+    status: 状态
+    remember_me: 记住登录状态
+    id: ID
+  activerecord:
+    models:
+      admin:
+        one: 管理员
+        other: 管理员
+    attributes:
+      admin:
+        remember_me: 记住登录状态
+        password_confirmation: 确认密码
+        current_password: 当前密码
+        role: 角色
+        sign_in_count: 登录次数
+        last_sign_in_at: 最近登录时间
+        last_sign_in_ip: 最近登录IP

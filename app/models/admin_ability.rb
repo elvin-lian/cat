@@ -28,6 +28,23 @@ class AdminAbility
     #
     # See the wiki for details:
     # https://github.com/ryanb/cancan/wiki/Defining-Abilities
+    send admin.role if admin.role and Admin.roles.include?(admin.role)
+  end
+
+  private
+
+  def super_admin
     can :manage, :all
   end
+
+  def manager
+    can_not :manage, Admin
+    default
+  end
+
+  def default
+    can :edit_pwd, Admin
+    can :update_pwd, Admin
+  end
+
 end

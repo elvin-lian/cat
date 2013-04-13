@@ -1,8 +1,8 @@
 - admin_left_menu :admin
-h2= title "修改管理员 #{@admin.name}"
-hr
-.action-buttons
-  = actions_buttons(@admin, 4)
+.page-header
+  h4= title "修改管理员 #{@admin.name}"
+  .action-buttons
+    = actions_buttons(@admin, 4)
 = simple_form_for @admin, :url => admin_admin_path(@admin), :html => {class: 'form-horizontal'} do |f|
   fieldset
     = f.input :name
