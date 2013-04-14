@@ -1,0 +1,49 @@
+/*
+ *= require admin/jquery-ui-1.10.2.custom
+ *= require admin/wice_grid
+ *= require admin/bootstrap.min
+ *= require admin/bootstrap-responsive-fix
+ *= require admin/bootstrap-responsive.min
+ */
+
+.menu-well {
+    border: 0;
+    border-top: 2px solid #999;
+    border-radius: 0;
+}
+
+.action-buttons {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.action-buttons a {
+    margin-left: 6px;
+}
+
+/*---------------------------------------*/
+/*---------rewrite bootstrap.css --------*/
+/*---------------------------------------*/
+
+.nav .nav-header {
+    font-size: 14px;
+    color: #999;
+    font-weight: normal;
+    padding-bottom: 8px;
+}
+
+.page-header{
+    position: relative;
+    margin: 0 0 20px;
+    padding-bottom: 5px;
+}
+
+
+/* wice-grid */
+.wice-grid .wg-show-filter.clickable,
+.wice-grid .wg-hide-filter.clickable {
+  background: transparent image-url("glyphicons-halflings.png") no-repeat -48px 0;
+  width: 14px;
+  height: 14px;
+}

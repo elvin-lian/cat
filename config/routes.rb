@@ -22,7 +22,9 @@ Cabbeen::Application.routes.draw do
       end
 
 
-      resources :dashboard, :only => 'index'
+      resources :dashboard, :only => :index
+
+      resources :shop_infos
 
     end
   end

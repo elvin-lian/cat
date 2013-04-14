@@ -3,8 +3,12 @@ html lang='zh_CN'
   head
     meta charset="utf-8"
     meta content="width=device-width, initial-scale=1.0" name="viewport"
-    = stylesheet_link_tag 'application', :media => 'all'
-    = javascript_include_tag 'application'
+    = stylesheet_link_tag 'admin', :media => 'all'
+    = yield(:head_css)
+    = javascript_include_tag 'admin'
+    /[if lt IE 9]
+      | <script src="/js/html5.js"></script>
+    = yield(:head_js)
     = yield(:header)
     = csrf_meta_tags
     = display_meta_tags site: 'Cabbeen', reverse: true

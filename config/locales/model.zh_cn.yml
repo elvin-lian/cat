@@ -8,6 +8,7 @@ zh_cn:
     status: 状态
     remember_me: 记住登录状态
     id: ID
+    pic: 图片
   activerecord:
     models:
       admin:
@@ -22,3 +23,5 @@ zh_cn:
         sign_in_count: 登录次数
         last_sign_in_at: 最近登录时间
         last_sign_in_ip: 最近登录IP
+      shop_info:
+

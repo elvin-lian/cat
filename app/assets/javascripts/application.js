@@ -12,6 +12,3 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require wice_grid
-//= require jquery-ui-1.10.2.custom.min
-//= require bootstrap.min

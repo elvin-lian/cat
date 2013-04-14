@@ -28,6 +28,7 @@ class AdminAbility
     #
     # See the wiki for details:
     # https://github.com/ryanb/cancan/wiki/Defining-Abilities
+    Rails.logger.debug("admin.role #{admin.role}")
     send admin.role if admin.role and Admin.roles.include?(admin.role)
   end
 

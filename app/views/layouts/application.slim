@@ -8,5 +8,7 @@ html lang='zh_CN'
     = javascript_include_tag 'application'
     = yield(:header)
     = display_meta_tags site: 'Cabbeen', reverse: true
+    /[if lt IE 9]
+      | <script src="/js/html5.js"></script>
   body
     = (out = yield :main).blank? ? yield : out
