@@ -3,7 +3,10 @@ Cabbeen::Application.routes.draw do
   root :to => "home#index"
 
   def api_v1_routes
-
+    namespace :v1 do
+      resources :launch, :only => :create
+      resources :shop_info, :only => :index
+    end
   end
 
   def admin_routes
