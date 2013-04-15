@@ -1,10 +1,10 @@
 # encoding: utf-8
 module AdminBreadcrumbHelper
 
-  #def column_breadcrumb column
-  #  output_breadcrumb [['所有专栏', admin_columns_path, cc: [:read, Column]],
-  #                     [column.id, admin_column_path(column), cc: [:read, Column]]]
-  #end
+  def ad_breadcrumb ad
+    output_breadcrumb [['所有广告', admin_ads_path, cc: [:read, Ad]],
+                       [ad.id, admin_ad_path(ad), cc: [:read, Ad]]]
+  end
 
 
   private

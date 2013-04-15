@@ -8,6 +8,11 @@ module AdminMenuHelper
             ['所有', admin_admins_path, {path: 'admins#index', cc: [:read, Admin]}],
             ['添加', new_admin_admin_path, {path: 'admins#new', cc: [:create, Admin]}]
         ],
+        ad: [
+            ['首页广告', nil],
+            ['所有广告', admin_ads_path, {path: 'ads#index', cc: [:read, Ad]}],
+            ['添加', new_admin_ad_path, {path: 'ads#new', cc: [:read, Ad]}]
+        ]
     }
 
     menus[model.to_sym] ? output_menu(menus[model.to_sym]) : ''

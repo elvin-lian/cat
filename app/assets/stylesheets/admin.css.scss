@@ -7,19 +7,32 @@
  */
 
 .menu-well {
-    border: 0;
-    border-top: 2px solid #999;
-    border-radius: 0;
+  border: 0;
+  border-top: 2px solid #999;
+  border-radius: 0;
 }
 
 .action-buttons {
-    position: absolute;
-    right: 0;
-    top: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 
 .action-buttons a {
-    margin-left: 6px;
+  margin-left: 6px;
+}
+
+.table-img td {
+  line-height: 40px;
+}
+
+.table-img td img {
+  max-width: 40px;
+  max-height: 40px;
+}
+
+table a i {
+  margin-right: 8px;
 }
 
 /*---------------------------------------*/
@@ -27,18 +40,17 @@
 /*---------------------------------------*/
 
 .nav .nav-header {
-    font-size: 14px;
-    color: #999;
-    font-weight: normal;
-    padding-bottom: 8px;
+  font-size: 14px;
+  color: #999;
+  font-weight: normal;
+  padding-bottom: 8px;
 }
 
-.page-header{
-    position: relative;
-    margin: 0 0 20px;
-    padding-bottom: 5px;
+.page-header {
+  position: relative;
+  margin: 0 0 20px;
+  padding-bottom: 5px;
 }
-
 
 /* wice-grid */
 .wice-grid .wg-show-filter.clickable,

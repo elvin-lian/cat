@@ -24,4 +24,6 @@ zh_cn:
     #     username: 'User name to sign in.'
     #     password: 'No special characters, please.'
     hints:
+      defaults:
+        status: '选中状态，表示审核通过'
 

@@ -3,6 +3,7 @@ module AdminNavigationHelper
   def admin_nav
     navigation = [
         ['控制面板', admin_dashboard_index_path, nil],
+        ['首页广告', admin_ads_path, Ad],
         ['店铺信息', admin_shop_infos_path, ShopInfo],
         ['管理员', admin_admins_path, Admin]
     ]

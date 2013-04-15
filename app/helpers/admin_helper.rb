@@ -1,9 +1,9 @@
 # coding: utf-8
 module AdminHelper
 
-  def true_or_false_icon(boolean)
+  def status_icon(boolean)
     icon = '<i '
-    icon << (boolean ? 'class="icon-ok" title="已经审核"' : 'class="icon-remove" title="未审核"')
+    icon << (boolean ? 'class="icon-ok" title="审核通过"' : 'class="icon-remove" title="不通过审核"')
     icon << '></i>'
     icon.html_safe
   end

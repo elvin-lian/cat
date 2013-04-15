@@ -1,0 +1,14 @@
+- title "首页广告-#{@ad.id}"
+- admin_left_menu :ad
+= ad_breadcrumb @ad
+.action-buttons
+  = actions_buttons(@ad, 6)
+table class="table table-striped"
+  - Ad.attribute_names.each do |attr_name|
+    tr
+      th= Ad.human_attribute_name(attr_name)
+      td
+        - if 'pic' == attr_name
+          = @ad.pic.url.blank? ? '' : link_to(image_tag(@ad.pic.thumb.url), @ad.pic.url, target: '_blank')
+        - else
+          = @ad.send(attr_name.to_sym)

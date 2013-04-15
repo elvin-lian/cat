@@ -24,6 +24,7 @@ Cabbeen::Application.routes.draw do
         end
       end
 
+      resources :ads
 
       resources :dashboard, :only => :index
 

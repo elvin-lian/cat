@@ -1,0 +1,15 @@
+- admin_left_menu :ad
+.page-header
+  h4= title @ad.new_record? ? '添加首页广告' : "修改广告 #{@ad.id}"
+.action-buttons
+  = actions_buttons(@ad, 5) if @ad.id
+
+= simple_form_for @ad, :url => (@ad.new_record? ? admin_ads_path : admin_ad_path(@ad)), :html => {class: 'form-horizontal'} do |f|
+  fieldset
+    = f.input :pic
+    = f.input :status
+    .form-actions
+      = f.submit (@ad.new_record? ? '保存' : '修改') , class: 'btn btn-primary', disable_with: '上传中，请稍等...'
+- unless @ad.new_record?
+  h5 广告预览:
+  p= image_tag(@ad.pic.url)

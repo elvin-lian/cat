@@ -24,4 +24,6 @@ zh_cn:
         last_sign_in_at: 最近登录时间
         last_sign_in_ip: 最近登录IP
       shop_info:
+      ad:
+        pic: 广告图片
 
