@@ -1,0 +1,17 @@
+- admin_left_menu :new_product
+.page-header
+  h4= title @new_product.new_record? ? '添加新品分类' : "修改新品分类 #{@new_product.name}"
+.action-buttons
+  = actions_buttons(@new_product, 5) if @new_product.id
+
+= simple_form_for @new_product, :url => (@new_product.new_record? ? admin_new_products_path : admin_new_product_path(@new_product)), :html => {class: 'form-horizontal'} do |f|
+  fieldset
+    = f.input :name
+    = f.input :pic
+    = f.input :rank, input_html: {class: 'input-small'}
+    = f.input :status
+    .form-actions
+      = f.submit (@new_product.new_record? ? '保存' : '修改') , class: 'btn btn-primary', disable_with: '上传中，请稍等...'
+- unless @new_product.new_record?
+  h5 新品分类图标预览:
+  p= image_tag(@new_product.pic.url)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130415144945) do
+ActiveRecord::Schema.define(:version => 20130416135317) do
 
   create_table "admins", :force => true do |t|
     t.string   "name",                :default => "", :null => false
@@ -38,6 +38,15 @@ ActiveRecord::Schema.define(:version => 20130415144945) do
     t.datetime "updated_at",                    :null => false
   end
 
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.string   "pic"
+    t.integer  "rank",       :default => 0
+    t.boolean  "status",     :default => true
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+  end
+
   create_table "devices", :force => true do |t|
     t.string   "uid"
     t.datetime "created_at", :null => false
@@ -45,6 +54,15 @@ ActiveRecord::Schema.define(:version => 20130415144945) do
   end
 
   add_index "devices", ["uid"], :name => "index_devices_on_uid", :length => {"uid"=>16}
+
+  create_table "new_products", :force => true do |t|
+    t.string   "name"
+    t.string   "pic"
+    t.integer  "rank",       :default => 0
+    t.boolean  "status",     :default => true
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+  end
 
   create_table "shop_infos", :force => true do |t|
     t.string   "pic"

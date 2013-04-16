@@ -1,0 +1,14 @@
+- title "品类-#{@category.name}"
+- admin_left_menu :new_product
+= category_breadcrumb @category
+.action-buttons
+  = actions_buttons(@category, 6)
+table class="table table-striped"
+  - Category.attribute_names.each do |attr_name|
+    tr
+      th= Category.human_attribute_name(attr_name)
+      td
+        - if 'pic' == attr_name
+          = @category.pic.url.blank? ? '' : link_to(image_tag(@category.pic.thumb.url), @category.pic.url, target: '_blank')
+        - else
+          = @category.send(attr_name.to_sym)

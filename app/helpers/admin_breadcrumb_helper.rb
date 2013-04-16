@@ -6,6 +6,16 @@ module AdminBreadcrumbHelper
                        [ad.id, admin_ad_path(ad), cc: [:read, Ad]]]
   end
 
+  def category_breadcrumb category
+    output_breadcrumb [['所有品类', admin_categories_path, cc: [:read, Category]],
+                       [category.name, admin_category_path(category), cc: [:read, Category]]]
+  end
+
+  def new_product_breadcrumb product
+    output_breadcrumb [['所有分类', admin_new_products_path, cc: [:read, NewProduct]],
+                       [product.name, admin_new_product_path(product), cc: [:read, NewProduct]]]
+  end
+
 
   private
 

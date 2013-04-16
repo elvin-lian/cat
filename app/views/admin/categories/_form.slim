@@ -1,0 +1,17 @@
+- admin_left_menu :category
+.page-header
+  h4= title @category.new_record? ? '添加品类' : "修改品类 #{@category.name}"
+.action-buttons
+  = actions_buttons(@category, 5) if @category.id
+
+= simple_form_for @category, :url => (@category.new_record? ? admin_categories_path : admin_category_path(@category)), :html => {class: 'form-horizontal'} do |f|
+  fieldset
+    = f.input :name
+    = f.input :pic
+    = f.input :rank, input_html: {class: 'input-small'}
+    = f.input :status
+    .form-actions
+      = f.submit (@category.new_record? ? '保存' : '修改') , class: 'btn btn-primary', disable_with: '上传中，请稍等...'
+- unless @category.new_record?
+  h5 品类图标预览:
+  p= image_tag(@category.pic.url)

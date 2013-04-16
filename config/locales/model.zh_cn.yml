@@ -23,7 +23,14 @@ zh_cn:
         sign_in_count: 登录次数
         last_sign_in_at: 最近登录时间
         last_sign_in_ip: 最近登录IP
-      shop_info:
       ad:
         pic: 广告图片
-
+      category:
+        name: 品类名称
+        pic: 按钮图标
+        rank: 排序
+      new_product:
+        name: 新品分类名称
+        pic: 按钮图标
+        rank: 排序
+      shop_info:

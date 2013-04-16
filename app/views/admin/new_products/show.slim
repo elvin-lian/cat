@@ -1,0 +1,14 @@
+- title "新品分类-#{@new_product.name}"
+- admin_left_menu :new_product
+= new_product_breadcrumb @new_product
+.action-buttons
+  = actions_buttons(@new_product, 6)
+table class="table table-striped"
+  - NewProduct.attribute_names.each do |attr_name|
+    tr
+      th= NewProduct.human_attribute_name(attr_name)
+      td
+        - if 'pic' == attr_name
+          = @new_product.pic.url.blank? ? '' : link_to(image_tag(@new_product.pic.thumb.url), @new_product.pic.url, target: '_blank')
+        - else
+          = @new_product.send(attr_name.to_sym)

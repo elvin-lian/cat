@@ -12,7 +12,19 @@ module AdminMenuHelper
             ['首页广告', nil],
             ['所有广告', admin_ads_path, {path: 'ads#index', cc: [:read, Ad]}],
             ['添加', new_admin_ad_path, {path: 'ads#new', cc: [:read, Ad]}]
-        ]
+        ],
+
+        category: [
+            ['商品品类', nil],
+            ['所有品类', admin_categories_path, {path: 'categories#index', cc: [:read, Category]}],
+            ['添加品类', new_admin_category_path, {path: 'categories#new', cc: [:create, Category]}]
+        ],
+
+        new_product: [
+            ['新品分类', nil],
+            ['所有分类', admin_new_products_path, {path: 'new_products#index', cc: [:read, NewProduct]}],
+            ['添加分类', new_admin_new_product_path, {path: 'new_products#new', cc: [:create, NewProduct]}]
+        ],
     }
 
     menus[model.to_sym] ? output_menu(menus[model.to_sym]) : ''

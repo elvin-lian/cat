@@ -36,7 +36,7 @@ html lang='zh_CN'
     .container-fluid
       .row-fluid
         - if @admin_left_menu.nil?
-          .span12
+          .span12.relation
             = render 'shared/flash_message'
             = (out = yield :main).blank? ? yield : out
         - else
@@ -44,7 +44,7 @@ html lang='zh_CN'
             .well.menu-well.sidebar-nav
               .ul.nav.nav-list
                 = @admin_left_menu
-          .span10
+          .span10.relation
             = render 'shared/flash_message'
             = yield
     = yield(:footer)

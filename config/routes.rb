@@ -26,7 +26,11 @@ Cabbeen::Application.routes.draw do
 
       resources :ads
 
+      resources :categories
+
       resources :dashboard, :only => :index
+
+      resources :new_products
 
       resources :shop_infos
 
