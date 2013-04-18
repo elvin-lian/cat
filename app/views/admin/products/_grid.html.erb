@@ -1,0 +1,20 @@
+<%= grid(@products, :show_filters => :when_filtered, :allow_showing_all_records => false, class: 'table-img') do |g|
+
+  %w(id serial_number title status trend_courier_id created_at updated_at).each do |attr|
+    g.column :name => Product.human_attribute_name(attr.to_sym), :attribute => attr do |obj|
+      if attr.in? %w(created_at updated_at)
+        t2l(obj.send(attr.to_sym))
+      elsif attr == 'status'
+        status_icon(obj.status)
+      elsif attr == 'trend_courier_id'
+        obj.trend_courier.title if obj.trend_courier
+      else
+        obj.send(attr.to_sym)
+      end
+    end
+  end
+
+  g.column do |obj|
+    actions_links(obj, 7)
+  end
+end -%>

@@ -25,6 +25,24 @@ module AdminMenuHelper
             ['所有分类', admin_new_products_path, {path: 'new_products#index', cc: [:read, NewProduct]}],
             ['添加分类', new_admin_new_product_path, {path: 'new_products#new', cc: [:create, NewProduct]}]
         ],
+
+        product: [
+            ['单品', nil],
+            ['所有单品', admin_products_path, {path: 'products#index', cc: [:read, Product]}],
+            ['添加单品', new_admin_product_path, {path: 'products#new', cc: [:create, Product]}]
+        ],
+
+        suit: [
+            ['单品', nil],
+            ['所有套装', admin_suits_path, {path: 'suits#index', cc: [:read, Suit]}],
+            ['添加套装', new_admin_suit_path, {path: 'suits#new', cc: [:create, Suit]}]
+        ],
+
+        trend_courier: [
+            ['单品', nil],
+            ['潮流速递', admin_trend_couriers_path, {path: 'suits#index', cc: [:read, TrendCourier]}],
+            ['添加潮流速递', new_admin_trend_courier_path, {path: 'suits#new', cc: [:create, TrendCourier]}]
+        ],
     }
 
     menus[model.to_sym] ? output_menu(menus[model.to_sym]) : ''

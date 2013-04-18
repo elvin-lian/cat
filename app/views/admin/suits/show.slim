@@ -1,0 +1,14 @@
+- title "套装-#{@suit.serial_number}"
+- admin_left_menu :suit
+= suit_breadcrumb @suit
+.action-buttons
+  = actions_buttons(@suit, 6)
+table class="table table-striped"
+  - Suit.attribute_names.each do |attr_name|
+    tr
+      th= Suit.human_attribute_name(attr_name)
+      td
+        - if 'pic' == attr_name
+          = @suit.pic.url.blank? ? '' : link_to(image_tag(@suit.pic.thumb.url), @suit.pic.url, target: '_blank')
+        - else
+          = @suit.send(attr_name.to_sym)

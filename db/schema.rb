@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130416135317) do
+ActiveRecord::Schema.define(:version => 20130418155131) do
 
   create_table "admins", :force => true do |t|
     t.string   "name",                :default => "", :null => false
@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(:version => 20130416135317) do
     t.datetime "updated_at",                    :null => false
   end
 
+  add_index "ads", ["status"], :name => "index_ads_on_status"
+
   create_table "categories", :force => true do |t|
     t.string   "name"
     t.string   "pic"
@@ -46,6 +48,17 @@ ActiveRecord::Schema.define(:version => 20130416135317) do
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
   end
+
+  add_index "categories", ["rank"], :name => "index_categories_on_rank"
+  add_index "categories", ["status"], :name => "index_categories_on_status"
+
+  create_table "categories_products", :force => true do |t|
+    t.integer "category_id"
+    t.integer "product_id"
+  end
+
+  add_index "categories_products", ["category_id"], :name => "index_categories_products_on_category_id"
+  add_index "categories_products", ["product_id"], :name => "index_categories_products_on_product_id"
 
   create_table "devices", :force => true do |t|
     t.string   "uid"
@@ -64,10 +77,63 @@ ActiveRecord::Schema.define(:version => 20130416135317) do
     t.datetime "updated_at",                   :null => false
   end
 
+  add_index "new_products", ["rank"], :name => "index_new_products_on_rank"
+  add_index "new_products", ["status"], :name => "index_new_products_on_status"
+
+  create_table "product_pictures", :force => true do |t|
+    t.string   "pic"
+    t.integer  "product_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "products", :force => true do |t|
+    t.string   "serial_number",    :limit => 100
+    t.string   "title",            :limit => 100
+    t.text     "description"
+    t.string   "color_name",       :limit => 32
+    t.string   "color_rgb",        :limit => 32
+    t.boolean  "status",                          :default => true
+    t.integer  "trend_courier_id"
+    t.datetime "created_at",                                        :null => false
+    t.datetime "updated_at",                                        :null => false
+  end
+
+  add_index "products", ["status"], :name => "index_products_on_status"
+
+  create_table "products_suits", :force => true do |t|
+    t.integer "product_id"
+    t.integer "suit_id"
+  end
+
+  add_index "products_suits", ["product_id"], :name => "index_products_suits_on_product_id"
+  add_index "products_suits", ["suit_id"], :name => "index_products_suits_on_suit_id"
+
   create_table "shop_infos", :force => true do |t|
     t.string   "pic"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "suits", :force => true do |t|
+    t.string   "title",         :limit => 64
+    t.string   "serial_number", :limit => 100
+    t.string   "pic"
+    t.boolean  "status",                       :default => true
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
+  end
+
+  add_index "suits", ["status"], :name => "index_suits_on_status"
+
+  create_table "trend_couriers", :force => true do |t|
+    t.string   "title",      :limit => 64
+    t.string   "pic"
+    t.boolean  "status"
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
+
+  add_index "trend_couriers", ["status"], :name => "index_trend_couriers_on_status"
 
 end

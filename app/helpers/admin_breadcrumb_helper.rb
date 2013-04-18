@@ -16,6 +16,22 @@ module AdminBreadcrumbHelper
                        [product.name, admin_new_product_path(product), cc: [:read, NewProduct]]]
   end
 
+  def product_breadcrumb product
+    output_breadcrumb [['所有单品', admin_products_path, cc: [:read, Product]],
+                       [product.title, admin_product_path(product), cc: [:read, Product]]]
+  end
+
+
+  def suit_breadcrumb suit
+    output_breadcrumb [['所有套装', admin_suits_path, cc: [:read, Suit]],
+                       [suit.serial_number, admin_suit_path(suit), cc: [:read, Suit]]]
+  end
+
+  def trend_courier_breadcrumb trend_courier
+    output_breadcrumb [['所有潮流速递', admin_trend_couriers_path, cc: [:read, TrendCourier]],
+                       [trend_courier.id, admin_trend_courier_path(trend_courier), cc: [:read, TrendCourier]]]
+  end
+
 
   private
 

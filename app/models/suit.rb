@@ -1,8 +1,8 @@
-class Category < ActiveRecord::Base
-  attr_accessible :name, :pic, :rank, :status
+class Suit < ActiveRecord::Base
+  attr_accessible :pic, :serial_number, :status, :title
 
-  validates_presence_of :name
-  validates_uniqueness_of :name
+  validates_presence_of :serial_number, :pic
+  validates_uniqueness_of :serial_number
 
   has_and_belongs_to_many :products
 

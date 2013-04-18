@@ -1,0 +1,14 @@
+- title "潮流速递-#{@trend_courier.title}"
+- admin_left_menu :trend_courier
+= trend_courier_breadcrumb @trend_courier
+.action-buttons
+  = actions_buttons(@trend_courier, 6)
+table class="table table-striped"
+  - TrendCourier.attribute_names.each do |attr_name|
+    tr
+      th= TrendCourier.human_attribute_name(attr_name)
+      td
+        - if 'pic' == attr_name
+          = @trend_courier.pic.url.blank? ? '' : link_to(image_tag(@trend_courier.pic.thumb.url), @trend_courier.pic.url, target: '_blank')
+        - else
+          = @trend_courier.send(attr_name.to_sym)

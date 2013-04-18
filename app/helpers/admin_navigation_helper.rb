@@ -5,6 +5,9 @@ module AdminNavigationHelper
         ['控制面板', admin_dashboard_index_path, nil],
         ['品类', admin_categories_path, Category],
         ['新品分类', admin_new_products_path, NewProduct],
+        ['套装', admin_suits_path, Suit],
+        ['潮流速递', admin_trend_couriers_path, TrendCourier],
+        ['单品', admin_products_path, Product],
         ['首页广告', admin_ads_path, Ad],
         ['店铺信息', admin_shop_infos_path, ShopInfo],
         ['管理员', admin_admins_path, Admin]

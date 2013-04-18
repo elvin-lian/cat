@@ -32,7 +32,15 @@ Cabbeen::Application.routes.draw do
 
       resources :new_products
 
+      resources :products do
+        resources :pictures, :controller => 'ProductPicture'
+      end
+
       resources :shop_infos
+
+      resources :suits
+
+      resources :trend_couriers
 
     end
   end

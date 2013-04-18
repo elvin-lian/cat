@@ -1,0 +1,16 @@
+- admin_left_menu :trend_courier
+.page-header
+  h4= title @trend_courier.new_record? ? '添加潮流速递' : "修改潮流速递 #{@trend_courier.title}"
+.action-buttons
+  = actions_buttons(@trend_courier, 5) if @trend_courier.id
+
+= simple_form_for @trend_courier, :url => (@trend_courier.new_record? ? admin_trend_couriers_path : admin_trend_courier_path(@trend_courier)), :html => {class: 'form-horizontal'} do |f|
+  fieldset
+    = f.input :title
+    = f.input :pic
+    = f.input :status
+    .form-actions
+      = f.submit (@trend_courier.new_record? ? '保存' : '修改') , class: 'btn btn-primary', disable_with: '上传中，请稍等...'
+- unless @trend_courier.new_record?
+  h5 潮流速递图标预览:
+  p= image_tag(@trend_courier.pic.url)

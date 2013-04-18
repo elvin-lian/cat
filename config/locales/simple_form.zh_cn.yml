@@ -27,4 +27,5 @@ zh_cn:
       defaults:
         status: '选中状态，表示审核通过'
         rank: '请输入整数，数字大的在前面'
+      product:
 

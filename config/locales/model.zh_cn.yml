@@ -33,4 +33,19 @@ zh_cn:
         name: 新品分类名称
         pic: 按钮图标
         rank: 排序
+      product:
+        serial_number: 编号
+        title: 名称
+        color_name: 颜色名称
+        color_rgb: 颜色RGB值
+        description: 产品描述
+        trend_courier: 潮流速递
+        trend_courier_id: 潮流速递
+        categories: 品类
+        suits: 套装
       shop_info:
+      suit:
+        title: 名称
+        serial_number: 编号
+      trend_courier:
+        title: 标题

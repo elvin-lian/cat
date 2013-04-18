@@ -1,0 +1,22 @@
+<%= grid(@suits, :show_filters => :when_filtered, :allow_showing_all_records => false, class: 'table-img') do |g|
+
+  g.column do |obj|
+    link_to(image_tag(obj.pic.thumb.url), obj.pic.url, target: '_blank') if obj.pic.url
+  end
+
+  %w(id serial_number title status created_at updated_at).each do |attr|
+    g.column :name => Suit.human_attribute_name(attr.to_sym), :attribute => attr do |obj|
+      if attr.in? %w(created_at updated_at)
+        t2l(obj.send(attr.to_sym))
+      elsif attr == 'status'
+        status_icon(obj.status)
+      else
+        obj.send(attr.to_sym)
+      end
+    end
+  end
+
+  g.column do |obj|
+    actions_links(obj, 7)
+  end
+end -%>

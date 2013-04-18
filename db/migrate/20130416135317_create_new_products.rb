@@ -8,5 +8,9 @@ class CreateNewProducts < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :new_products, :status
+    add_index :new_products, :rank
   end
 end
+
