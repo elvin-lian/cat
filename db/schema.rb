@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130418155131) do
+ActiveRecord::Schema.define(:version => 20130419131754) do
 
   create_table "admins", :force => true do |t|
     t.string   "name",                :default => "", :null => false
@@ -79,6 +79,14 @@ ActiveRecord::Schema.define(:version => 20130418155131) do
 
   add_index "new_products", ["rank"], :name => "index_new_products_on_rank"
   add_index "new_products", ["status"], :name => "index_new_products_on_status"
+
+  create_table "new_products_suits", :force => true do |t|
+    t.integer "suit_id"
+    t.integer "new_product_id"
+  end
+
+  add_index "new_products_suits", ["new_product_id"], :name => "index_new_products_suits_on_new_product_id"
+  add_index "new_products_suits", ["suit_id"], :name => "index_new_products_suits_on_suit_id"
 
   create_table "product_pictures", :force => true do |t|
     t.string   "pic"

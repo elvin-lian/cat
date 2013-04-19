@@ -8,6 +8,7 @@
   fieldset
     = f.input :title
     = f.input :serial_number
+    = f.association :new_products, as: :check_boxes, item_wrapper_class: 'inline span2'
     = f.input :pic
     = f.input :status
     .form-actions

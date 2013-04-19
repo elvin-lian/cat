@@ -47,5 +47,6 @@ zh_cn:
       suit:
         title: 名称
         serial_number: 编号
+        new_products: 新品
       trend_courier:
         title: 标题

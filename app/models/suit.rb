@@ -5,6 +5,7 @@ class Suit < ActiveRecord::Base
   validates_uniqueness_of :serial_number
 
   has_and_belongs_to_many :products
+  has_and_belongs_to_many :new_products
 
   mount_uploader :pic, PictureUploader
 
