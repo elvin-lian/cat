@@ -5,6 +5,18 @@ Feature: Launch API
   response ad infos, etc.
 
   Scenario: create a new device successfully
+    Given there is a category
+      | name         | status |
+      | foo category | 1      |
+    And there is a new product
+      | name            | status |
+      | foo new product | 1      |
+    And there is a skin
+      | name     | status |
+      | foo skin | 1      |
+    And there is home ad
+      | status |
+      | 1      |
     When I send a POST request to "/v1/launch.json" with following data
       | userID              |
       | foo-example-user-id |
@@ -13,7 +25,30 @@ Feature: Launch API
     """
       {
         "statusCode": 1,
-        "response": {}
+        "response": {
+          "skinModelID": "#{@skin.id}",
+          "skinModelUpdateTime": "#{@skin.updated_at.to_s}",
+          "appHomeAdsArray":[
+            {
+              "appHomeAdsImageURL":"",
+              "updateTime": "#{@ad.updated_at.to_s}"
+            }
+          ],
+          "lastestProductList": [
+            {
+              "lastestProductID": "#{@new_product.id}",
+              "lastestProductName":"foo new product",
+              "lastestProductURL": ""
+            }
+          ],
+          "categoryProductList": [
+            {
+              "categoryProductID": "#{@category.id}",
+              "categoryProductName": "foo category",
+              "categoryProductURL":""
+            }
+          ]
+        }
       }
     """
 

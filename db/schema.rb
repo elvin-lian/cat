@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130419131754) do
+ActiveRecord::Schema.define(:version => 20130419133637) do
 
   create_table "admins", :force => true do |t|
     t.string   "name",                :default => "", :null => false
@@ -121,6 +121,27 @@ ActiveRecord::Schema.define(:version => 20130419131754) do
     t.string   "pic"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "skins", :force => true do |t|
+    t.string   "bg_img"
+    t.string   "brand_info_img"
+    t.string   "product_show_img"
+    t.string   "city_week_img"
+    t.string   "latest_see_img"
+    t.string   "shop_info_img"
+    t.string   "hide_show_btn_img"
+    t.string   "back_img"
+    t.string   "close_img"
+    t.string   "search_img"
+    t.string   "trend_courier_img"
+    t.string   "pro_to_suit_img"
+    t.string   "pro_evaluate_img"
+    t.string   "pro_evaluate_commit_img"
+    t.string   "status"
+    t.string   "name"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
   end
 
   create_table "suits", :force => true do |t|
