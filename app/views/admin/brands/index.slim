@@ -1,0 +1,15 @@
+.page-header
+  h4 品牌信息
+  - if @brand.new_record?
+    .well 品牌信息是在一张图片里，请上传图片。
+noscript
+= simple_form_for @brand, :url => @brand.new_record? ? admin_brands_path : admin_brand_path(@brand),:html => {class: 'form-horizontal', enctype: 'multipart/form-data'} do |f|
+  fieldset
+    = f.input :pdf
+    - unless @brand.full_pdf_url.empty?
+      .control-group
+        label.control-label
+        .controls
+          = link_to '点击下载', @brand.full_pdf_url, target: '_blank'
+    .form-actions
+      = f.submit @brand.new_record? ? '上传': '保存' , class: 'btn btn-primary', disable_with: '上传中，请稍等...'

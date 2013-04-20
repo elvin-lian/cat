@@ -26,23 +26,17 @@ Cabbeen::Application.routes.draw do
       end
 
       resources :ads
-
+      resources :brands
       resources :categories
-
       resources :dashboard, :only => :index
-
       resources :new_products
-
       resources :products do
         resources :pictures, :controller => 'ProductPicture'
       end
 
       resources :shop_infos
-
       resources :suits
-
       resources :trend_couriers
-
     end
   end
 

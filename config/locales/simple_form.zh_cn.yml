@@ -27,5 +27,6 @@ zh_cn:
       defaults:
         status: '选中状态，表示审核通过'
         rank: '请输入整数，数字大的在前面'
-      product:
+      brand:
+        pdf: 请上传一个不大于2M的pdf文件
 
