@@ -7,6 +7,7 @@ Cabbeen::Application.routes.draw do
       resources :brand_info, :only => :index
       resources :launch, :only => :create
       resources :shop_info, :only => :index
+      resources :suits, :only => :index
     end
   end
 
