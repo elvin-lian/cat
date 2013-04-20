@@ -9,5 +9,6 @@ class Product < ActiveRecord::Base
   has_and_belongs_to_many :categories
   has_and_belongs_to_many :suits
   has_many :product_pictures, :dependent => :destroy
+  has_many :product_comments, :dependent => :destroy
 
 end

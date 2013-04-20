@@ -6,6 +6,7 @@ Cabbeen::Application.routes.draw do
     namespace :v1 do
       resources :brand_info, :only => :index
       resources :launch, :only => :create
+      resources :product_comments, :only => :create
       resources :shop_info, :only => :index
       resources :suits, :only => :index
     end

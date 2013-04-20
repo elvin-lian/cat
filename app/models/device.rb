@@ -4,4 +4,5 @@ class Device < ActiveRecord::Base
   validates_presence_of :uid
   validates_uniqueness_of :uid
 
+  has_many :product_comments, :dependent => :destroy
 end
