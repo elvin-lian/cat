@@ -52,7 +52,7 @@ class V1::SuitsController < V1::BaseController
 
       suits_arr = []
       @suits.each do |suit|
-        suits_arr << suit.simple_as_json
+        suits_arr << suit.simple_json
       end
 
       res = {

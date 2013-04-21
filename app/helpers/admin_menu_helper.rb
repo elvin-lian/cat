@@ -20,10 +20,16 @@ module AdminMenuHelper
             ['添加品类', new_admin_category_path, {path: 'categories#new', cc: [:create, Category]}]
         ],
 
+        city_weekly: [
+            ['都市周报', nil],
+            ['所有周报', admin_city_weeklies_path, {path: 'city_weeklies#index', cc: [:read, CityWeekly]}],
+            ['添加周报', new_admin_city_weekly_path, {path: 'city_weeklies#new', cc: [:create, CityWeekly]}]
+        ],
+
         new_product: [
-            ['新品分类', nil],
-            ['所有分类', admin_new_products_path, {path: 'new_products#index', cc: [:read, NewProduct]}],
-            ['添加分类', new_admin_new_product_path, {path: 'new_products#new', cc: [:create, NewProduct]}]
+            ['新品', nil],
+            ['所有新品', admin_new_products_path, {path: 'new_products#index', cc: [:read, NewProduct]}],
+            ['添加新品', new_admin_new_product_path, {path: 'new_products#new', cc: [:create, NewProduct]}]
         ],
 
         product: [

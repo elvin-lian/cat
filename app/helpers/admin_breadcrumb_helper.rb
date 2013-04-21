@@ -11,8 +11,13 @@ module AdminBreadcrumbHelper
                        [category.name, admin_category_path(category), cc: [:read, Category]]]
   end
 
+  def city_weekly_breadcrumb city_weekly
+    output_breadcrumb [['都市周报', admin_city_weeklies_path, cc: [:read, CityWeekly]],
+                           [city_weekly.title, admin_city_weekly_path(city_weekly), cc: [:read, CityWeekly]]]
+  end
+
   def new_product_breadcrumb product
-    output_breadcrumb [['所有分类', admin_new_products_path, cc: [:read, NewProduct]],
+    output_breadcrumb [['所有新品', admin_new_products_path, cc: [:read, NewProduct]],
                        [product.name, admin_new_product_path(product), cc: [:read, NewProduct]]]
   end
 

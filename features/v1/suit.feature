@@ -19,7 +19,6 @@ Feature: Suit list API
     And this product belongs to this category
     And this product belongs to this suit
 
-  @working
   Scenario: get suits successfully by new product id
     When I send a GET request to "/v1/suits.json" with following data
       | userID              | lastestProductID   | orderStyle | startPos | length |

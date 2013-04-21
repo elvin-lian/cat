@@ -9,6 +9,8 @@ zh_cn:
     remember_me: 记住登录状态
     id: ID
     pic: 图片
+    description: 描述
+    title: 标题
   activerecord:
     models:
       admin:

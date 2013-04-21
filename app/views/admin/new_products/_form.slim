@@ -1,6 +1,6 @@
 - admin_left_menu :new_product
 .page-header
-  h4= title @new_product.new_record? ? '添加新品分类' : "修改新品分类 #{@new_product.name}"
+  h4= title @new_product.new_record? ? '添加新品' : "修改新品 #{@new_product.name}"
 .action-buttons
   = actions_buttons(@new_product, 5) if @new_product.id
 
@@ -13,5 +13,5 @@
     .form-actions
       = f.submit (@new_product.new_record? ? '保存' : '修改') , class: 'btn btn-primary', disable_with: '上传中，请稍等...'
 - unless @new_product.new_record?
-  h5 新品分类图标预览:
+  h5 新品图标预览:
   p= image_tag(@new_product.pic.url)

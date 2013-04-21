@@ -5,6 +5,7 @@ Cabbeen::Application.routes.draw do
   def api_v1_routes
     namespace :v1 do
       resources :brand_info, :only => :index
+      resources :city_weeklies, :only => :index
       resources :launch, :only => :create
       resources :product_comments, :only => :create
       resources :shop_info, :only => :index
@@ -30,6 +31,7 @@ Cabbeen::Application.routes.draw do
       resources :ads
       resources :brands
       resources :categories
+      resources :city_weeklies
       resources :dashboard, :only => :index
       resources :new_products
 

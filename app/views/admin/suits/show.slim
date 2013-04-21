@@ -10,5 +10,7 @@ table class="table table-striped"
       td
         - if 'pic' == attr_name
           = @suit.pic.url.blank? ? '' : link_to(image_tag(@suit.pic.thumb.url), @suit.pic.url, target: '_blank')
+        - elsif attr_name.in?(%w(created_at updated_at))
+          = t2l(@suit.send(attr_name.to_sym))
         - else
           = @suit.send(attr_name.to_sym)

@@ -1,0 +1,17 @@
+- admin_left_menu :city_weekly
+.page-header
+  h4= title @city_weekly.new_record? ? '添加周报' : "修改周报 #{@city_weekly.title}"
+.action-buttons
+  = actions_buttons(@city_weekly, 5) if @city_weekly.id
+
+= simple_form_for @city_weekly, :url => (@city_weekly.new_record? ? admin_city_weeklies_path : admin_city_weekly_path(@city_weekly)), :html => {class: 'form-horizontal'} do |f|
+  fieldset
+    = f.input :title
+    = f.input :pic
+    = f.input :description, input_html: {class: 'input-xxlarge', style: 'height: 160px'}
+    = f.input :status
+    .form-actions
+      = f.submit (@city_weekly.new_record? ? '保存' : '修改') , class: 'btn btn-primary', disable_with: '上传中，请稍等...'
+- unless @city_weekly.new_record?
+  h5 预览:
+  p= image_tag(@city_weekly.pic.url)

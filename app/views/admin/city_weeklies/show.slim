@@ -1,0 +1,16 @@
+- title "都市周报-#{@city_weekly.title}"
+- admin_left_menu :new_product
+= city_weekly_breadcrumb @city_weekly
+.action-buttons
+  = actions_buttons(@city_weekly, 6)
+table class="table table-striped"
+  - CityWeekly.attribute_names.each do |attr_name|
+    tr
+      th= CityWeekly.human_attribute_name(attr_name)
+      td
+        - if 'pic' == attr_name
+          = @city_weekly.pic.url.blank? ? '' : link_to(image_tag(@city_weekly.pic.thumb.url), @city_weekly.pic.url, target: '_blank')
+        - elsif attr_name.in?(%w(created_at updated_at))
+          = t2l(@city_weekly.send(attr_name.to_sym))
+        - else
+          = @city_weekly.send(attr_name.to_sym)

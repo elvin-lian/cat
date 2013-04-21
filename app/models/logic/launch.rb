@@ -41,7 +41,7 @@ module Logic
         ads = Ad.where('status = 1').order('id DESC').limit(10)
         res = []
         unless ads.empty?
-          ads.each { |ad| res << ad.simple_as_json }
+          ads.each { |ad| res << ad.simple_json }
         end
         {appHomeAdsArray: res}
       end
@@ -50,7 +50,7 @@ module Logic
         res = []
         new_products = NewProduct.where('status = 1').order('rank DESC, id DESC').limit(20)
         unless new_products.empty?
-          new_products.each { |product| res << product.simple_as_json }
+          new_products.each { |product| res << product.simple_json }
         end
         {lastestProductList: res}
       end
@@ -59,7 +59,7 @@ module Logic
         res = []
         categories = Category.where('status = 1').order('rank DESC, id DESC').limit(20)
         unless categories.empty?
-          categories.each { |cat| res << cat.simple_as_json }
+          categories.each { |cat| res << cat.simple_json }
         end
         {categoryProductList: res}
       end
