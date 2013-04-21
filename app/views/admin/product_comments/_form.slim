@@ -1,0 +1,11 @@
+- admin_left_menu :product
+.page-header
+  h4= title @product_comment.new_record? ? '添加评论' : "修改评论 #{@product_comment.id}"
+.action-buttons
+  = actions_buttons(@product_comment, 5) if @product_comment.id
+
+= simple_form_for @product_comment, :url => (@product_comment.new_record? ? admin_product_comments_path(@product) : admin_product_comment_path(@product, @product_comment)), :html => {class: 'form-horizontal'} do |f|
+  fieldset
+    = f.input :status
+    .form-actions
+      = f.submit (@product_comment.new_record? ? '保存' : '修改') , class: 'btn btn-primary', disable_with: '保存中，请稍等...'

@@ -29,7 +29,9 @@ module AdminMenuHelper
         product: [
             ['单品', nil],
             ['所有单品', admin_products_path, {path: 'products#index', cc: [:read, Product]}],
-            ['添加单品', new_admin_product_path, {path: 'products#new', cc: [:create, Product]}]
+            ['添加单品', new_admin_product_path, {path: 'products#new', cc: [:create, Product]}],
+            ['评价', nil],
+            ['所有评价', admin_products_comments_path, {path: 'product_comments#index', cc: [:read, ProductComment]}]
         ],
 
         suit: [

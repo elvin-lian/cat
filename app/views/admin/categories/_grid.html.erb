@@ -4,7 +4,7 @@
     link_to(image_tag(obj.pic.thumb.url), obj.pic.url, target: '_blank') if obj.pic.url
   end
 
-  %w(id rank status created_at updated_at).each do |attr|
+  %w(id name rank status created_at updated_at).each do |attr|
     g.column :name => Category.human_attribute_name(attr.to_sym), :attribute => attr do |obj|
       if attr.in? %w(created_at updated_at)
         t2l(obj.send(attr.to_sym))

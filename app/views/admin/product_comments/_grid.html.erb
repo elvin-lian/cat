@@ -1,0 +1,25 @@
+<%= grid(@product_comments, :show_filters => :when_filtered, :allow_showing_all_records => false, class: 'table-img') do |g|
+
+  %w(id product_id design_score fabric_score price_score status created_at).each do |attr|
+    g.column :name => ProductComment.human_attribute_name(attr.to_sym), :attribute => attr do |obj|
+      if attr.in? %w(created_at updated_at)
+        t2l(obj.send(attr.to_sym))
+      elsif attr == 'status'
+        status_icon(obj.status)
+      elsif attr == 'product_id'
+        link_to(obj.product.title, admin_product_path(obj.product)) if obj.product
+      else
+        obj.send(attr.to_sym)
+      end
+    end
+  end
+
+  g.column do |obj|
+    html = ''
+    if obj.product
+        html << actions_links(obj, 2, edit_admin_product_comment_path(obj.product_id, obj.id))
+        html << actions_links(obj, 4, admin_product_comment_path(obj.product_id, obj.id))
+    end
+    html.html_safe
+  end
+end -%>

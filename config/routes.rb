@@ -32,9 +32,12 @@ Cabbeen::Application.routes.draw do
       resources :categories
       resources :dashboard, :only => :index
       resources :new_products
+
       resources :products do
-        resources :pictures, :controller => 'ProductPicture'
+        resources :pictures, :controller => :product_pictures
+        resources :comments, :controller => :product_comments
       end
+      get 'products_comments' => 'product_comments#index'
 
       resources :shop_infos
       resources :suits

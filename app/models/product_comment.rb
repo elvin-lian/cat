@@ -3,4 +3,6 @@ class ProductComment < ActiveRecord::Base
 
   belongs_to :product
   belongs_to :device
+
+  validates_presence_of :product_id
 end

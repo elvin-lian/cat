@@ -21,6 +21,10 @@ module AdminBreadcrumbHelper
                        [product.title, admin_product_path(product), cc: [:read, Product]]]
   end
 
+  def product_comment_breadcrumb product, comment
+    output_breadcrumb [['所有评论', admin_product_comments_path(product), cc: [:read, ProductComment]],
+                           [comment.id, nil]]
+  end
 
   def suit_breadcrumb suit
     output_breadcrumb [['所有套装', admin_suits_path, cc: [:read, Suit]],

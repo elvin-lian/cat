@@ -1,6 +1,6 @@
 class Product < ActiveRecord::Base
   attr_accessible :color_name, :color_rgb, :description, :serial_number, :trend_courier_id, :status, :title,
-                  :category_ids
+                  :category_ids, :suit_ids
 
   validates_presence_of :serial_number
   validates_uniqueness_of :serial_number
