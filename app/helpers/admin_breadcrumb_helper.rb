@@ -13,7 +13,17 @@ module AdminBreadcrumbHelper
 
   def city_weekly_breadcrumb city_weekly
     output_breadcrumb [['都市周报', admin_city_weeklies_path, cc: [:read, CityWeekly]],
-                           [city_weekly.title, admin_city_weekly_path(city_weekly), cc: [:read, CityWeekly]]]
+                       [city_weekly.title, admin_city_weekly_path(city_weekly), cc: [:read, CityWeekly]]]
+  end
+
+  def latest_see_breadcrumb see
+    output_breadcrumb [['所有宾视', admin_latest_sees_path, cc: [:read, LatestSee]],
+                       [see.title, admin_latest_see_path(see), cc: [:read, LatestSee]]]
+  end
+
+  def latest_see_picture_breadcrumb see, picture
+    output_breadcrumb [["宾视: #{see.title}", admin_latest_see_path(see), cc: [:read, LatestSee]],
+                       ['所有图片', admin_latest_see_pictures_path(see), cc: [:read, LatestSeePicture]]]
   end
 
   def new_product_breadcrumb product
@@ -28,7 +38,7 @@ module AdminBreadcrumbHelper
 
   def product_comment_breadcrumb product, comment
     output_breadcrumb [['所有评论', admin_product_comments_path(product), cc: [:read, ProductComment]],
-                           [comment.id, nil]]
+                       [comment.id, nil]]
   end
 
   def suit_breadcrumb suit

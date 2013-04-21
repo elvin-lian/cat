@@ -10,6 +10,7 @@ module AdminNavigationHelper
         ['单品', admin_products_path, Product],
         ['首页广告', admin_ads_path, Ad],
         ['都市周报', admin_city_weeklies_path, Brand],
+        ['最新宾视', admin_latest_sees_path, LatestSee],
         ['品牌', admin_brands_path, Brand],
         ['店铺信息', admin_shop_infos_path, ShopInfo],
         ['管理员', admin_admins_path, Admin]

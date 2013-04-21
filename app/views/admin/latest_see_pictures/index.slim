@@ -1,0 +1,11 @@
+- admin_left_menu :latest_see
+= latest_see_breadcrumb @latest_see
+.page-header
+  h4= title "最新宾视#{@latest_see.title}的图片"
+.action-buttons
+  = link_to '上传图片', new_admin_latest_see_picture_path(@latest_see), class: 'btn btn-primary'
+= render :partial => 'grid'
+- if @latest_see_pictures.empty?
+  p
+    | 还没有图片，
+    = link_to '请上传图片', new_admin_latest_see_picture_path(@latest_see)

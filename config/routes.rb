@@ -10,6 +10,7 @@ Cabbeen::Application.routes.draw do
       resources :product_comments, :only => :create
       resources :shop_info, :only => :index
       resources :suits, :only => :index
+      resources :lastest_see, :only => :index
     end
   end
 
@@ -33,8 +34,10 @@ Cabbeen::Application.routes.draw do
       resources :categories
       resources :city_weeklies
       resources :dashboard, :only => :index
+      resources :latest_sees do
+        resources :pictures, :controller => :latest_see_pictures
+      end
       resources :new_products
-
       resources :products do
         resources :pictures, :controller => :product_pictures
         resources :comments, :controller => :product_comments

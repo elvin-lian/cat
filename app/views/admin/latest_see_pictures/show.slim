@@ -1,0 +1,7 @@
+- title "最新宾视-#{@latest_see.title}"
+- admin_left_menu :latest_see
+= latest_see_picture_breadcrumb @latest_see, @latest_see_picture
+.action-buttons
+  = actions_links(@latest_see_picture, 2, edit_admin_latest_see_picture_path(@latest_see_picture.latest_see_id, @latest_see_picture.id), true)
+  = actions_links(@latest_see_picture, 4, admin_latest_see_picture_path(@latest_see_picture.latest_see_id, @latest_see_picture.id), true)
+= image_tag @latest_see_picture.full_pic_url

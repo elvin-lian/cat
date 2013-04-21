@@ -1,9 +1,7 @@
-class ProductPicture < ActiveRecord::Base
-  attr_accessible :pic, :product_id
+class LatestSeePicture < ActiveRecord::Base
+  attr_accessible :latest_see_id, :pic, :title
 
-  validates_presence_of :pic, :product_id
-
-  belongs_to :product
+  belongs_to :latest_see
 
   mount_uploader :pic, PictureUploader
 

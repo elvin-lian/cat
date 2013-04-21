@@ -1,0 +1,15 @@
+- admin_left_menu :latest_see
+.page-header
+  h4= title @latest_see_picture.new_record? ? '上传图片' : "修改图片"
+- if @latest_see_picture.id
+  .action-buttons
+    = actions_links(@latest_see_picture, 1, admin_latest_see_picture_path(@latest_see_picture.latest_see_id, @latest_see_picture.id), true)
+    = actions_links(@latest_see_picture, 4, admin_latest_see_picture_path(@latest_see_picture.latest_see_id, @latest_see_picture.id), true)
+= simple_form_for @latest_see_picture, :url => (@latest_see_picture.new_record? ? admin_latest_see_pictures_path(@latest_see) : admin_latest_see_picture_path(@latest_see, @latest_see_picture)), :html => {class: 'form-horizontal'} do |f|
+  fieldset
+    = f.input :pic
+    .form-actions
+      = f.submit (@latest_see_picture.new_record? ? '上传' : '修改') , class: 'btn btn-primary', disable_with: '上传中，请稍等...'
+- if @latest_see_picture.id
+  p
+    = image_tag(@latest_see_picture.full_pic_url)

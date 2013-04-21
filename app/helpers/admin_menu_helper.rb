@@ -26,6 +26,12 @@ module AdminMenuHelper
             ['添加周报', new_admin_city_weekly_path, {path: 'city_weeklies#new', cc: [:create, CityWeekly]}]
         ],
 
+        latest_see: [
+            ['最新宾视', nil],
+            ['所有', admin_latest_sees_path, {path: 'latest_sees#index', cc: [:read, LatestSee]}],
+            ['发布新一期', new_admin_latest_see_path, {path: 'latest_sees#new', cc: [:create, LatestSee]}]
+        ],
+
         new_product: [
             ['新品', nil],
             ['所有新品', admin_new_products_path, {path: 'new_products#index', cc: [:read, NewProduct]}],

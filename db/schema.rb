@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130421082338) do
+ActiveRecord::Schema.define(:version => 20130421153350) do
 
   create_table "admins", :force => true do |t|
     t.string   "name",                :default => "", :null => false
@@ -82,6 +82,23 @@ ActiveRecord::Schema.define(:version => 20130421082338) do
   end
 
   add_index "devices", ["uid"], :name => "index_devices_on_uid", :length => {"uid"=>16}
+
+  create_table "latest_see_pictures", :force => true do |t|
+    t.integer  "latest_see_id"
+    t.string   "title"
+    t.string   "pic"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "latest_see_pictures", ["latest_see_id"], :name => "index_latest_see_pictures_on_latest_see_id"
+
+  create_table "latest_sees", :force => true do |t|
+    t.string   "title"
+    t.boolean  "status",     :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
 
   create_table "new_products", :force => true do |t|
     t.string   "name"

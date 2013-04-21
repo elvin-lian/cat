@@ -1,0 +1,13 @@
+- admin_left_menu :latest_see
+.page-header
+  h4= title @latest_see.new_record? ? '发布宾视信息' : "修改宾视信息 #{@latest_see.title}"
+.action-buttons
+  -if @latest_see.id
+    = cc_link_to '<i class="icon-picture icon-white"></i>'.html_safe, admin_latest_see_pictures_path(@latest_see), title: '图片', class: 'btn btn-primary', cc: [:read, LatestSeePicture, display: false]
+    = actions_buttons(@latest_see, 5)
+= simple_form_for @latest_see, :url => (@latest_see.new_record? ? admin_latest_sees_path : admin_latest_see_path(@latest_see)), :html => {class: 'form-horizontal'} do |f|
+  fieldset
+    = f.input :title
+    = f.input :status
+    .form-actions
+      = f.submit (@latest_see.new_record? ? '下一步' : '修改') , class: 'btn btn-primary', disable_with: '上传中，请稍等...'

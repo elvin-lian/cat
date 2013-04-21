@@ -1,0 +1,15 @@
+- title "最新宾视-#{@latest_see.title}"
+- admin_left_menu :latest_see
+= latest_see_breadcrumb @latest_see
+.action-buttons
+  = cc_link_to '<i class="icon-picture icon-white"></i>'.html_safe, admin_latest_see_pictures_path(@latest_see), title: '图片', class: 'btn btn-primary', cc: [:read, LatestSeePicture, display: false]
+  = actions_buttons(@latest_see, 6)
+table class="table table-striped"
+  - LatestSee.attribute_names.each do |attr_name|
+    tr
+      th= LatestSee.human_attribute_name(attr_name)
+      td
+        - if attr_name.in?(%w(created_at updated_at))
+          = t2l(@latest_see.send(attr_name.to_sym))
+        - else
+          = @latest_see.send(attr_name.to_sym)
