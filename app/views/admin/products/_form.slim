@@ -2,8 +2,10 @@
 .page-header
   h4= title @product.new_record? ? '添加单品' : "修改单品 #{@product.title}"
 .action-buttons
-  = actions_buttons(@product, 5) if @product.id
-
+  -if @product.id
+    = cc_link_to '<i class="icon-picture icon-white"></i>'.html_safe, admin_product_pictures_path(@product), title: '图片', class: 'btn btn-primary', cc: [:read, ProductPicture, display: false]
+    = cc_link_to '<i class="icon-comment icon-white"></i>'.html_safe, admin_product_comments_path(@product), title: '评价', class: 'btn btn-primary', cc: [:read, ProductComment, display: false]
+    = actions_buttons(@product, 5)
 = simple_form_for @product, :url => (@product.new_record? ? admin_products_path : admin_product_path(@product)), :html => {class: 'form-horizontal'} do |f|
   fieldset
     = f.input :serial_number
@@ -16,6 +18,6 @@
     = f.association :categories, as: :check_boxes, item_wrapper_class: 'inline span2'
     = f.association :suits, as: :check_boxes, item_wrapper_class: 'inline span2'
     .form-actions
-      = f.submit (@product.new_record? ? '保存' : '修改') , class: 'btn btn-primary', disable_with: '上传中，请稍等...'
+      = f.submit (@product.new_record? ? '下一步' : '修改') , class: 'btn btn-primary', disable_with: '上传中，请稍等...'
 - unless @product.new_record?
   h5 图片预览:

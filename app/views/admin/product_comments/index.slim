@@ -1,4 +1,4 @@
 - admin_left_menu :product
 .page-header
-  h4= title '单品评价管理'
+  h4= title( @product ? @product.title + '的评价' : '单品评价管理')
 = render :partial => 'grid'

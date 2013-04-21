@@ -18,8 +18,8 @@
     html = ''
     if obj.product
         html << actions_links(obj, 2, edit_admin_product_comment_path(obj.product_id, obj.id))
-        html << actions_links(obj, 4, admin_product_comment_path(obj.product_id, obj.id))
     end
+    html << actions_links(obj, 4, admin_product_comment_path(obj.product_id, obj.id))
     html.html_safe
   end
 end -%>

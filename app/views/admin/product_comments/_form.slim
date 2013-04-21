@@ -1,8 +1,8 @@
 - admin_left_menu :product
 .page-header
-  h4= title @product_comment.new_record? ? '添加评论' : "修改评论 #{@product_comment.id}"
+  h4= title @product_comment.new_record? ? '添加评价' : "修改评价 #{@product_comment.id}"
 .action-buttons
-  = actions_buttons(@product_comment, 5) if @product_comment.id
+  = actions_buttons(@product_comment, 4) if @product_comment.id
 
 = simple_form_for @product_comment, :url => (@product_comment.new_record? ? admin_product_comments_path(@product) : admin_product_comment_path(@product, @product_comment)), :html => {class: 'form-horizontal'} do |f|
   fieldset

@@ -2,7 +2,7 @@ class Admin::ProductCommentsController < Admin::BaseController
 
   load_and_authorize_resource
 
-  before_filter :set_product, :except => :index
+  before_filter :set_product, :except => [:index, :destroy]
 
   def index
     if params[:product_id] and (@product = Product.find_by_id(params[:product_id]))
@@ -13,7 +13,7 @@ class Admin::ProductCommentsController < Admin::BaseController
   end
 
   def update
-    @product_comment = ProductComment.find_by_id(params[:id])
+    @product_comment = @product.product_comments.find_by_id(params[:id])
     if @product_comment.update_attributes(params[:product_comment])
       update_successfully
       redirect_to action: :edit

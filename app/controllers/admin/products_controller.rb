@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Admin::ProductsController < Admin::BaseController
   load_and_authorize_resource
 
@@ -8,8 +9,8 @@ class Admin::ProductsController < Admin::BaseController
   def create
     @product = Product.new(params[:product])
     if @product.save
-      create_successfully
-      redirect_to action: :index
+      flash[:success] = '请继续上传单品图片'
+      redirect_to admin_product_pictures_path(@product)
     else
       fail_to_create
       render action: :new

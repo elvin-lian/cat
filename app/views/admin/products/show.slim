@@ -2,6 +2,8 @@
 - admin_left_menu :product
 = product_breadcrumb @product
 .action-buttons
+  = cc_link_to '<i class="icon-picture icon-white"></i>'.html_safe, admin_product_pictures_path(@product), title: '图片', class: 'btn btn-primary', cc: [:read, ProductPicture, display: false]
+  = cc_link_to '<i class="icon-comment icon-white"></i>'.html_safe, admin_product_comments_path(@product), title: '评价', class: 'btn btn-primary', cc: [:read, ProductComment, display: false]
   = actions_buttons(@product, 6)
 table class="table table-striped"
   - Product.attribute_names.each do |attr_name|

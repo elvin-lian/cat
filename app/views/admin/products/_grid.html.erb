@@ -14,12 +14,9 @@
     end
   end
 
-  g.column name: '图片' do |obj|
-    link_to '图片', admin_product_pictures_path(obj.id)
-  end
-
   g.column do |obj|
-    link = link_to('<i class="icon-comment" title="评价"></i>'.html_safe, admin_product_comments_path(obj.id))
+    link = link_to('<i class="icon-picture" title="图片"></i>'.html_safe, admin_product_pictures_path(obj.id))
+    link << link_to('<i class="icon-comment" title="评价"></i>'.html_safe, admin_product_comments_path(obj.id))
     link << actions_links(obj, 7)
     link.html_safe
   end
