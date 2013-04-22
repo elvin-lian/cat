@@ -11,4 +11,13 @@ class Product < ActiveRecord::Base
   has_many :product_pictures, :dependent => :destroy
   has_many :product_comments, :dependent => :destroy
 
+  has_many :product_same_sections, :dependent => :destroy
+
+  before_destroy :clean_same_section
+
+  private
+
+  def clean_same_section
+    ProductSameSection.destroy_all(p_id: self.id)
+  end
 end

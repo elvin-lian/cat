@@ -37,4 +37,21 @@ class Admin::ProductsController < Admin::BaseController
     end
     redirect_to action: :index
   end
+
+  def batch_unlisted
+    render json: Logic::ProductTool.batch_listed(params, 0), status: :ok
+  end
+
+  def batch_listed
+    render json: Logic::ProductTool.batch_listed(params, 1), status: :ok
+  end
+
+  def batch_destroy
+    render json: Logic::ProductTool.batch_destroy(params), status: :ok
+  end
+
+  def batch_same_section
+    render json: Logic::ProductTool.batch_set_same_section(params), status: :ok
+  end
+
 end

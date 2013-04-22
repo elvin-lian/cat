@@ -20,6 +20,6 @@
     = f.association :categories, as: :check_boxes, item_wrapper_class: 'inline span2'
     = f.association :suits, as: :check_boxes, item_wrapper_class: 'inline span2'
     .form-actions
-      = f.submit (@product.new_record? ? '下一步' : '修改') , class: 'btn btn-primary', disable_with: '上传中，请稍等...'
+      = f.submit (@product.new_record? ? '下一步，上传图片' : '修改') , class: 'btn btn-primary', disable_with: '保存中，请稍等...'
 - unless @product.new_record?
   h5 图片预览:

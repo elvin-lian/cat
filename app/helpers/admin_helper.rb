@@ -3,9 +3,10 @@ module AdminHelper
 
   def status_icon(boolean)
     icon = '<i '
-    icon << (boolean ? 'class="icon-ok" title="审核通过"' : 'class="icon-remove" title="不通过审核"')
+    icon << (boolean ? 'class="icon-ok-circle" title="已审核通过"' : 'class="icon-remove-sign" title="未通过审核"')
     icon << '></i>'
     icon.html_safe
+    #boolean ? 'Y' : 'N'
   end
 
 
@@ -77,12 +78,4 @@ module AdminHelper
     end
   end
 
-  def format_app_price price, currency
-    res = Twihoo::ExchangeRate.usd2rmb(price, currency)
-    res == '' ? '免费' : res
-  end
-
-  def currencies
-    {'人民币' => 'CNY', '美元' => 'USD'}
-  end
 end

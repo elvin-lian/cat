@@ -41,6 +41,13 @@ Cabbeen::Application.routes.draw do
       resources :products do
         resources :pictures, :controller => :product_pictures
         resources :comments, :controller => :product_comments
+        resources :same_sections, :controller => :product_same_sections
+        collection do
+          post 'batch_listed'
+          post 'batch_unlisted'
+          post 'batch_destroy'
+          post 'batch_same_section'
+        end
       end
       get 'products_comments' => 'product_comments#index'
 
