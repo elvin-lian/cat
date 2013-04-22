@@ -45,6 +45,8 @@ zh_cn:
         trend_courier_id: 潮流速递
         categories: 品类
         suits: 套装
+        sub_title: 英文标题
+        is_top: 推荐
       product_comment:
         price_score: 价钱评价
         design_score: 设计评价

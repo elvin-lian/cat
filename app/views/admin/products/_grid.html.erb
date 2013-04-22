@@ -1,11 +1,16 @@
 <%= grid(@products, :show_filters => :when_filtered, :allow_showing_all_records => false, class: 'table-img') do |g|
 
-  %w(id serial_number title status trend_courier_id created_at updated_at).each do |attr|
+  %w(id serial_number title status is_top trend_courier_id created_at updated_at).each do |attr|
     g.column :name => Product.human_attribute_name(attr.to_sym), :attribute => attr do |obj|
       if attr.in? %w(created_at updated_at)
         t2l(obj.send(attr.to_sym))
       elsif attr == 'status'
         status_icon(obj.status)
+      elsif attr == 'is_top'
+        str = '<a href="javascript:;" title="'+ (obj.is_top ? '取消推荐' : '推荐') + '">'
+        str += (obj.is_top ? '是' : '否')
+        str += '<a>'
+        str.html_safe
       elsif attr == 'trend_courier_id'
         obj.trend_courier.title if obj.trend_courier
       else

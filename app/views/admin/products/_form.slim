@@ -10,8 +10,10 @@
   fieldset
     = f.input :serial_number
     = f.input :title
+    = f.input :sub_title
     = f.input :color_name
     = f.input :color_rgb, input_html: {class: 'input-small', placeholder: '#FFFFFF'}
+    = f.input :is_top
     = f.input :status
     = f.input :description, input_html:{class: 'input-xxlarge', style: "height: 100px"}
     = f.association :trend_courier

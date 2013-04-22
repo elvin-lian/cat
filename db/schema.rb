@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130421153350) do
+ActiveRecord::Schema.define(:version => 20130422122621) do
 
   create_table "admins", :force => true do |t|
     t.string   "name",                :default => "", :null => false
@@ -151,8 +151,11 @@ ActiveRecord::Schema.define(:version => 20130421153350) do
     t.integer  "trend_courier_id"
     t.datetime "created_at",                                        :null => false
     t.datetime "updated_at",                                        :null => false
+    t.string   "sub_title"
+    t.boolean  "is_top"
   end
 
+  add_index "products", ["is_top"], :name => "index_products_on_is_top"
   add_index "products", ["status"], :name => "index_products_on_status"
 
   create_table "products_suits", :force => true do |t|
