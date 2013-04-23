@@ -4,13 +4,14 @@
 .action-buttons
   -if @product.id
     = cc_link_to '<i class="icon-picture icon-white"></i>'.html_safe, admin_product_pictures_path(@product), title: '图片', class: 'btn btn-primary', cc: [:read, ProductPicture, display: false]
+    = cc_link_to '<i class="icon-list-alt icon-white"></i>'.html_safe, admin_product_same_sections_path(@product), title: '同款', class: 'btn btn-primary', cc: [:read, ProductSameSection, display: false]
     = cc_link_to '<i class="icon-comment icon-white"></i>'.html_safe, admin_product_comments_path(@product), title: '评价', class: 'btn btn-primary', cc: [:read, ProductComment, display: false]
     = actions_buttons(@product, 5)
 = simple_form_for @product, :url => (@product.new_record? ? admin_products_path : admin_product_path(@product)), :html => {class: 'form-horizontal'} do |f|
   fieldset
-    = f.input :serial_number
-    = f.input :title
-    = f.input :sub_title
+    = f.input :serial_number, input_html: {class: 'input-xlarge'}
+    = f.input :title, input_html: {class: 'input-xlarge'}
+    = f.input :sub_title, input_html: {class: 'input-xlarge'}
     = f.input :color_name
     = f.input :color_rgb, input_html: {class: 'input-small', placeholder: '#FFFFFF'}
     = f.input :is_top

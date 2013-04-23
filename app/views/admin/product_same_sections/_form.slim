@@ -1,0 +1,12 @@
+- admin_left_menu :product
+= product_same_section_breadcrumb @product
+.page-header
+  h4= title '添加同款商品'
+.action-buttons
+  = actions_buttons(@product_same_section, 4) if @product_same_section.id
+
+= simple_form_for @product_same_section, :url => admin_product_same_sections_path(@product), :html => {class: 'form-horizontal'} do |f|
+  fieldset
+    = f.input :p_id, as: :string
+    .form-actions
+      = f.submit '保存' , class: 'btn btn-primary', disable_with: '保存中，请稍等...'

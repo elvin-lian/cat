@@ -22,6 +22,8 @@ module Logic
       end
 
       def batch_set_same_section params
+        Rails.logger.debug("==================")
+        Rails.logger.debug(params)
         ids = Cat::Tool.ids_to_arr(params['ids'])
         if ids
           ids.each do |id|

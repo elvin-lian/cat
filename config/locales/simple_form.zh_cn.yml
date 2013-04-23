@@ -31,4 +31,6 @@ zh_cn:
         pdf: 请上传一个不大于2M的pdf文件
       product:
         is_top: 推荐的会排在前面
+      product_same_section:
+        p_id: 请输入单品的ID，多个ID之间，以英文逗号(,)分隔。如 11,12
 

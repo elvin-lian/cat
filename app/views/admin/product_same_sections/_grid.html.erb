@@ -1,0 +1,14 @@
+<%= grid(@product_same_sections, :show_filters => :when_filtered, :allow_showing_all_records => false, class: 'table-img') do |g|
+
+  g.column name: '单品ID', attribute: 'product_id' do |obj|
+    obj.product_id
+  end
+
+  g.column name: '名称' do |obj|
+    link_to(obj.product.title, admin_product_path(obj.product)) if obj.product
+  end
+
+  g.column do |obj|
+    actions_links(obj, 4, admin_product_same_section_path(@product.id, obj.id))
+  end
+end -%>

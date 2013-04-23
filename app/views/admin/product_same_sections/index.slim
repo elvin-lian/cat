@@ -1,0 +1,7 @@
+- admin_left_menu :product
+= product_breadcrumb @product
+.page-header
+  h4= '与“ ' + @product.title + ' ”同款的商品'
+  .action-buttons
+    = link_to '<i class="icon-plus icon-white"></i>添加同款'.html_safe, new_admin_product_same_section_path(@product), class: 'btn btn-primary'
+= render :partial => 'grid'

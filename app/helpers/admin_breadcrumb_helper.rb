@@ -41,6 +41,13 @@ module AdminBreadcrumbHelper
                        [comment.id, nil]]
   end
 
+  def product_same_section_breadcrumb product
+    output_breadcrumb [['所有单品', admin_products_path, cc: [:read, Product]],
+                       [product.title, admin_product_path(product), cc: [:read, Product]],
+                       ['同款单品', admin_product_same_sections_path(@product), cc: [:read, ProductSameSection]],
+                      ]
+  end
+
   def suit_breadcrumb suit
     output_breadcrumb [['所有套装', admin_suits_path, cc: [:read, Suit]],
                        [suit.serial_number, admin_suit_path(suit), cc: [:read, Suit]]]
