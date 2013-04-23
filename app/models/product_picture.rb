@@ -15,4 +15,16 @@ class ProductPicture < ActiveRecord::Base
     end
   end
 
+  def to_jq_upload
+    {
+        name: read_attribute(:pic),
+        size: self.pic.size,
+        url: self.pic.url,
+        thumbnail_url: self.pic.thumb.url,
+        delete_url: "/admin/products/#{self.product_id}/pictures/#{self.id}",
+        picture_id: self.id,
+        delete_type: "DELETE"
+    }
+  end
+
 end

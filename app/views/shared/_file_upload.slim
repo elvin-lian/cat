@@ -30,7 +30,7 @@
             <td>{% if (!o.options.autoUpload) { %}
                 <button class="btn btn-primary start">
                     <i class="icon-upload icon-white"></i>
-                    <span>Start</span>
+                    <span>开始上传</span>
                 </button>
                 {% } %}
             </td>
@@ -40,7 +40,7 @@
             <td>{% if (!i) { %}
                 <button class="btn btn-warning cancel">
                     <i class="icon-ban-circle icon-white"></i>
-                    <span>Cancel</span>
+                    <span>取消</span>
                 </button>
                 {% } %}
             </td>
@@ -55,17 +55,13 @@
             <td></td>
             <td class="name"><span>{%=file.name%}</span></td>
             <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
-            <td class="error" colspan="2"><span class="label label-important">Error</span> {%=file.error%}</td>
+            <td class="error" colspan="2"><span class="label label-important">上传出错</span> {%=file.error%}</td>
             {% } else { %}
             <td class="preview">{% if (file.thumbnail_url) { %}
-                <a href="{%=file.url%}" title="{%=file.name%}" data-gallery="gallery" download="{%=file.name%}"><img
-                        src="{%=file.thumbnail_url%}"></a>
+                <a href="{%=file.url%}" data-gallery="gallery" target="_blank"><img src="{%=file.thumbnail_url%}" alt="{%=file.name%}"></a>
                 {% } %}
             </td>
-            <td class="name">
-                <a href="{%=file.url%}" title="{%=file.name%}" data-gallery="{%=file.thumbnail_url&&'gallery'%}"
-                   download="{%=file.name%}">{%=file.name%}</a>
-            </td>
+            <td><a href="{%=file.url%}" data-gallery="gallery" target="_blank">{%=file.name%}</a></td>
             <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
             <td colspan="2"></td>
             {% } %}
@@ -73,7 +69,7 @@
                 <button class="btn btn-danger delete" data-type="{%=file.delete_type%}" data-url="{%=file.delete_url%}"
                 {% if (file.delete_with_credentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
                 <i class="icon-trash icon-white"></i>
-                <span>Delete</span>
+                <span>删除</span>
                 </button>
                 <input type="checkbox" name="delete" value="1" class="toggle">
             </td>

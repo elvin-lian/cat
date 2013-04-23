@@ -3,7 +3,6 @@
   - if @shop_info.new_record?
     .well 店铺信息是在一张图片里，请上传图片。
 noscript
-  | alert("您已禁用了Javascript，不能上传图片。请换浏览器或者开启 Javascript");
 = simple_form_for @shop_info, :url => @shop_info.new_record? ? admin_shop_infos_path : admin_shop_info_path(@shop_info),:html => {class: 'form-horizontal', enctype: 'multipart/form-data'} do |f|
   fieldset
     = f.input :pic

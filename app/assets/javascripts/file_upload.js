@@ -6,4 +6,3 @@
 //= require file_upload/jquery.fileupload
 //= require file_upload/jquery.fileupload-fp
 //= require file_upload/jquery.fileupload-ui
-//= require file_upload/main

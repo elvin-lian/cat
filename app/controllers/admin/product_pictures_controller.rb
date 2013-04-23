@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Admin::ProductPicturesController < Admin::BaseController
 
   load_and_authorize_resource
@@ -8,13 +9,31 @@ class Admin::ProductPicturesController < Admin::BaseController
   end
 
   def create
-    @product_picture = @product.product_pictures.new(params[:product_picture])
+    p_attr = {}
+    p_attr[:pic] = params[:files].first if params[:files].class == Array
+
+    @product_picture = @product.product_pictures.new(p_attr)
+
     if @product_picture.save
-      create_successfully
-      redirect_to action: :index
+      respond_to do |format|
+        format.html {
+          render :json => {files: [@product_picture.to_jq_upload]}.as_json, :content_type => 'text/html', :layout => false
+          redirect_to action: :index
+        }
+        format.json {
+          render :json => {files: [@product_picture.to_jq_upload]}.as_json, status: :ok
+        }
+      end
     else
-      fail_to_create
-      render action: :new
+      respond_to do |format|
+        format.html {
+          flash[:error] = '上传失败'
+          redirect_to action: :index
+        }
+        format.json {
+          render :json => [], :status => :ok
+        }
+      end
     end
   end
 
@@ -31,12 +50,16 @@ class Admin::ProductPicturesController < Admin::BaseController
 
   def destroy
     @product_picture = @product.product_pictures.find_by_id(params[:id])
-    if @product_picture.destroy
-      destroy_successfully
-    else
-      fail_to_destroy
+    @product_picture.destroy
+
+    respond_to do |format|
+      format.html {
+        render :json => [], :status => :ok, :content_type => 'text/html', :layout => false
+      }
+      format.json {
+        render :json => [], :status => :ok
+      }
     end
-    redirect_to action: :index
   end
 
   private

@@ -455,22 +455,26 @@
             // maxNumberOfFiles before validation, so we check if
             // maxNumberOfFiles is below 0 (instead of below 1):
             if (this.options.maxNumberOfFiles < 0) {
-                return 'Maximum number of files exceeded';
+                //return 'Maximum number of files exceeded';
+                return '最大文件数超过';
             }
             // Files are accepted if either the file type or the file name
             // matches against the acceptFileTypes regular expression, as
             // only browsers with support for the File API report the type:
             if (!(this.options.acceptFileTypes.test(file.type) ||
                     this.options.acceptFileTypes.test(file.name))) {
-                return 'Filetype not allowed';
+                //return 'Filetype not allowed';
+                return '文件格式不允许';
             }
             if (this.options.maxFileSize &&
                     file.size > this.options.maxFileSize) {
-                return 'File is too big';
+                //return 'File is too big';
+                return '文件太大';
             }
             if (typeof file.size === 'number' &&
                     file.size < this.options.minFileSize) {
-                return 'File is too small';
+                //return 'File is too small';
+                return '文件太小';
             }
             return null;
         },
