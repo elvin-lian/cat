@@ -5,10 +5,21 @@
 div
   form id="fileupload" action="#{admin_product_pictures_path(@product)}" method="POST" enctype="multipart/form-data"
     table role="presentation" class="table table-striped"
-      tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"
+      thead
+        tr
+          th
+            input type="checkbox" class="toggle select_all_or_cancel"
+          th 图片
+          th 名称
+          th 大小
+          th colspan=2
+          th 操作
+      tbody class="files table-img-large" data-toggle="modal-gallery" data-target="#modal-gallery"
         - @product_pictures.each do |picture|
           - pic = picture.to_jq_upload
           tr.template-download
+            td.chk
+              input type="checkbox" name="ids[]" value="1" class="toggle"
             td.preview
               = link_to image_tag(pic[:thumbnail_url], alt: pic[:name]), pic[:url], 'data-gallery' => 'gallery', target: '_blank'
             td.name
@@ -16,28 +27,31 @@ div
             td.size= (pic[:size].to_f / 1024).round(2).to_s + 'KB'
             td colspan="2"
             td
-              button class="btn btn-danger delete" data-type="#{pic[:delete_type]}" data-url="#{pic[:delete_url]}"
+              button class="btn btn-danger btn-mini delete" data-type="#{pic[:delete_type]}" data-url="#{pic[:delete_url]}"
                 i.icon-trash.icon-white
                 spann 删除
-              input type="checkbox" name="delete" value="1" class="toggle"
+
     noscript
       | alert('您当前浏览器关闭了Javascript，请开启才能上传图片');
     .fileupload-buttonbar
       .span7
+        span
+          label style="display:inline-block; width: 34px; margin-left: 8px;"
+            input type="checkbox" class="toggle select_all_or_cancel"
         span.btn.btn-success.fileinput-button
           i class="icon-plus icon-white"
           span 添加图片
           |  <input type="file" name="files[]" multiple>
-        button type="submit" class="btn btn-primary start"
-          i.icon-upload.icon-white
-          span 上传全部
-        button type="reset" class="btn btn-warning cancel"
-          i.icon-ban-circle.icon-white
-          span 取消全部
-        button type="button" class="btn btn-danger delete"
-          i.icon-trash.icon-white
-          span 删除选中的
-        input type="checkbox" class="toggle"
+        .btn-group
+          button type="submit" class="btn btn-primary start"
+            i.icon-upload.icon-white
+            span 上传全部
+          button type="reset" class="btn btn-warning cancel"
+            i.icon-ban-circle.icon-white
+            span 取消全部
+          button type="button" class="btn btn-danger delete"
+            i.icon-trash.icon-white
+            span 删除选中的
       .span5.fileupload-progress.fade
         .progress.progress-success.progress-striped.active role="progressbar" aria-valuemin="0" aria-valuemax="100"
           .bar style="width:0%;"
@@ -60,7 +74,7 @@ div
       };
       $('#fileupload').fileupload();
       $('#fileupload').fileupload('option', {
-          maxFileSize:1000000, // 10M
+          maxFileSize:1000000, // 1M
           acceptFileTypes:/(\.|\/)(jpe?g|png)$/i
       });
 
@@ -76,4 +90,6 @@ div
               $(this).fileupload('option', 'done').call(this, null, {result:result});
           });
       }
+
+      el.Tool.bindSelectAllOrCancel();
     });

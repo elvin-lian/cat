@@ -15,11 +15,12 @@
     <script id="template-upload" type="text/x-tmpl">
         {% for (var i=0, file; file=o.files[i]; i++) { %}
         <tr class="template-upload fade">
+            <td class="chk">&nbsp;</td>
             <td class="preview"><span class="fade"></span></td>
             <td class="name"><span>{%=file.name%}</span></td>
             <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
             {% if (file.error) { %}
-            <td class="error" colspan="2"><span class="label label-important">Error</span> {%=file.error%}</td>
+            <td class="error" colspan="2"><span class="label label-important">错误：</span> {%=file.error%}</td>
             {% } else if (o.files.valid && !i) { %}
             <td>
                 <div class="progress progress-success progress-striped active" role="progressbar" aria-valuemin="0"
@@ -38,7 +39,7 @@
             <td colspan="2"></td>
             {% } %}
             <td>{% if (!i) { %}
-                <button class="btn btn-warning cancel">
+                <button class="btn btn-warning btn-mini cancel">
                     <i class="icon-ban-circle icon-white"></i>
                     <span>取消</span>
                 </button>
@@ -55,8 +56,9 @@
             <td></td>
             <td class="name"><span>{%=file.name%}</span></td>
             <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
-            <td class="error" colspan="2"><span class="label label-important">上传出错</span> {%=file.error%}</td>
+            <td class="error" colspan="3"><span class="label label-important">上传出错</span> {%=file.error%}</td>
             {% } else { %}
+            <td><input type="checkbox" name="ids[]" value="1" class="toggle"></td>
             <td class="preview">{% if (file.thumbnail_url) { %}
                 <a href="{%=file.url%}" data-gallery="gallery" target="_blank"><img src="{%=file.thumbnail_url%}" alt="{%=file.name%}"></a>
                 {% } %}
@@ -66,12 +68,11 @@
             <td colspan="2"></td>
             {% } %}
             <td>
-                <button class="btn btn-danger delete" data-type="{%=file.delete_type%}" data-url="{%=file.delete_url%}"
+                <button class="btn btn-danger btn-mini delete" data-type="{%=file.delete_type%}" data-url="{%=file.delete_url%}"
                 {% if (file.delete_with_credentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
                 <i class="icon-trash icon-white"></i>
                 <span>删除</span>
                 </button>
-                <input type="checkbox" name="delete" value="1" class="toggle">
             </td>
         </tr>
         {% } %}

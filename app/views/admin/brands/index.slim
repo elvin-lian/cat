@@ -5,11 +5,14 @@
 noscript
 = simple_form_for @brand, :url => @brand.new_record? ? admin_brands_path : admin_brand_path(@brand),:html => {class: 'form-horizontal', enctype: 'multipart/form-data'} do |f|
   fieldset
-    = f.input :pdf
     - unless @brand.full_pdf_url.empty?
       .control-group
         label.control-label
         .controls
-          = link_to '点击下载', @brand.full_pdf_url, target: '_blank'
+          span.label.label-warning
+            | 已经上传，可
+            = link_to '点击下载', @brand.full_pdf_url, target: '_blank'
+            | , 或重新上传:
+    = f.input :pdf
     .form-actions
       = f.submit @brand.new_record? ? '上传': '保存' , class: 'btn btn-primary', disable_with: '上传中，请稍等...'

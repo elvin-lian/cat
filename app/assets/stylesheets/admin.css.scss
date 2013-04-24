@@ -43,6 +43,12 @@ table a i {
   margin: -56px 0 0 8px;
 }
 
+.table-img-large td{
+  vertical-align: middle;
+}
+.table-img-large td.chk{
+  width: 20px;
+}
 /*---------------------------------------*/
 /*---------rewrite bootstrap.css --------*/
 /*---------------------------------------*/
