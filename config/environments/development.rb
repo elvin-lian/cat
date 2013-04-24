@@ -36,4 +36,5 @@ Cabbeen::Application.configure do
   config.assets.debug = true
 
   config.action_controller.asset_host = "http://127.0.0.1:3000"
+  config.api_url_prefix = "http://127.0.0.1:3000/v1"
 end

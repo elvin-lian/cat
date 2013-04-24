@@ -16,7 +16,7 @@ class NewProduct < ActiveRecord::Base
     end
   end
 
-  def simple_as_json
+  def simple_json
     {
         lastestProductID: self.id.to_s,
         lastestProductName: self.name,

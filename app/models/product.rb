@@ -15,6 +15,40 @@ class Product < ActiveRecord::Base
 
   before_destroy :clean_same_section
 
+  def simple_json
+    {
+        proID: self.id.to_s,
+        proSerialNumber: self.serial_number,
+        proTitle: Cat::Tool.nil2n(self.title),
+        proSubTitle: Cat::Tool.nil2n(self.sub_title),
+        proIsTop: self.is_top? ? 1: 0,
+        createTime: self.created_at.to_s,
+        updateTime: self.updated_at.to_s,
+        proExplainText: Cat::Tool.nil2n(self.description),
+        proColorName: Cat::Tool.nil2n(self.color_name),
+        proColorRGB: Cat::Tool.nil2n(self.color_rgb),
+        proTrendCourierID: self.trend_courier_id.to_s,
+        proTrendCourierUrl: self.trend_courier ? self.trend_courier.full_pic_url : '',
+        proImageURLArray: picture_urls
+    }
+  end
+
+  def picture_urls
+    res = []
+    self.product_pictures.order('id ASC').each do |pic|
+      res << pic.full_pic_url
+    end
+    res
+  end
+
+  def same_sections
+    res = []
+    ProductSameSection.where(p_id: self.id).order('id ASC').each do |section|
+      res << section.product.simple_json
+    end
+    res
+  end
+
   private
 
   def clean_same_section

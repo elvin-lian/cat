@@ -34,4 +34,6 @@ Cabbeen::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+
+  config.api_url_prefix = "http://127.0.0.1:3000/v1"
 end

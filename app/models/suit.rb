@@ -18,9 +18,8 @@ class Suit < ActiveRecord::Base
   end
 
 
-  def simple_as_json
+  def simple_json
     {
-
         suitID: self.id.to_s,
         suitTitle: self.title.nil? ? '' : self.title,
         suitSerialNumber: self.serial_number,

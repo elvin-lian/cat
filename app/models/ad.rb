@@ -13,7 +13,7 @@ class Ad < ActiveRecord::Base
     end
   end
 
-  def simple_as_json
+  def simple_json
     {
         appHomeAdsImageURL: self.full_pic_url,
         updateTime: self.updated_at.to_s

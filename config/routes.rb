@@ -7,10 +7,12 @@ Cabbeen::Application.routes.draw do
       resources :brand_info, :only => :index
       resources :city_weeklies, :only => :index
       resources :launch, :only => :create
+      resources :lastest_see, :only => :index
+      resources :products, :only => [:index, :show]
       resources :product_comments, :only => :create
       resources :shop_info, :only => :index
       resources :suits, :only => :index
-      resources :lastest_see, :only => :index
+      resources :trend_couriers, :only => [:index, :show]
     end
   end
 

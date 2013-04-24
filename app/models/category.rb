@@ -16,7 +16,7 @@ class Category < ActiveRecord::Base
     end
   end
 
-  def simple_as_json
+  def simple_json
     {
         categoryProductID: self.id.to_s,
         categoryProductName: self.name,
