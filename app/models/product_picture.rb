@@ -1,5 +1,5 @@
 class ProductPicture < ActiveRecord::Base
-  attr_accessible :pic, :product_id
+  attr_accessible :pic, :product_id, :rank
 
   validates_presence_of :pic, :product_id
 
@@ -17,6 +17,8 @@ class ProductPicture < ActiveRecord::Base
 
   def to_jq_upload
     {
+        id: self.id,
+        rank: self.rank,
         name: read_attribute(:pic),
         created_at: self.created_at.localtime.strftime('%Y-%m-%d %H:%M'),
         size: self.pic.size,

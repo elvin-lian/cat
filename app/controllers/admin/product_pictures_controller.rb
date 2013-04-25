@@ -37,16 +37,16 @@ class Admin::ProductPicturesController < Admin::BaseController
     end
   end
 
-  def update
-    @product_picture = @product.product_pictures.find_by_id(params[:id])
-    if @product_picture.update_attributes(params[:product_picture])
-      update_successfully
-      redirect_to action: :edit
-    else
-      fail_to_update
-      render action: :edit
-    end
-  end
+  #def update
+  #  @product_picture = @product.product_pictures.find_by_id(params[:id])
+  #  if @product_picture.update_attributes(params[:product_picture])
+  #    update_successfully
+  #    redirect_to action: :edit
+  #  else
+  #    fail_to_update
+  #    render action: :edit
+  #  end
+  #end
 
   def destroy
     @product_picture = @product.product_pictures.find_by_id(params[:id])
@@ -59,6 +59,19 @@ class Admin::ProductPicturesController < Admin::BaseController
       format.json {
         render :json => [], :status => :ok
       }
+    end
+  end
+
+  def modify
+    authorize! :update, ProductPicture
+    if request.xml_http_request?
+      res = false
+      if (picture = ProductPicture.find_by_id(params[:id])) and picture.respond_to?(params[:name])
+        res = picture.update_column(params[:name], params[:value])
+      end
+      render json: {res: res, message: res ? t('admin.mess.update_successfully') : t('admin.mess.fail_to_update')}
+    else
+      raise ActionController::RoutingError.new('Not Found')
     end
   end
 

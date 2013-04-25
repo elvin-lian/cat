@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130422125446) do
+ActiveRecord::Schema.define(:version => 20130425154900) do
 
   create_table "admins", :force => true do |t|
     t.string   "name",                :default => "", :null => false
@@ -87,11 +87,13 @@ ActiveRecord::Schema.define(:version => 20130422125446) do
     t.integer  "latest_see_id"
     t.string   "title"
     t.string   "pic"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.integer  "rank",          :default => 20
   end
 
   add_index "latest_see_pictures", ["latest_see_id"], :name => "index_latest_see_pictures_on_latest_see_id"
+  add_index "latest_see_pictures", ["rank"], :name => "index_latest_see_pictures_on_rank"
 
   create_table "latest_sees", :force => true do |t|
     t.string   "title"
@@ -137,9 +139,12 @@ ActiveRecord::Schema.define(:version => 20130422125446) do
   create_table "product_pictures", :force => true do |t|
     t.string   "pic"
     t.integer  "product_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.integer  "rank",       :default => 10
   end
+
+  add_index "product_pictures", ["rank"], :name => "index_product_pictures_on_rank"
 
   create_table "product_same_sections", :force => true do |t|
     t.integer "product_id"

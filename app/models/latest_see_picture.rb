@@ -1,5 +1,5 @@
 class LatestSeePicture < ActiveRecord::Base
-  attr_accessible :latest_see_id, :pic, :title
+  attr_accessible :latest_see_id, :pic, :title, :rank
 
   belongs_to :latest_see
 
@@ -16,6 +16,8 @@ class LatestSeePicture < ActiveRecord::Base
 
   def to_jq_upload
     {
+        id: self.id,
+        rank: self.rank,
         name: read_attribute(:pic),
         created_at: self.created_at.localtime.strftime('%Y-%m-%d %H:%M'),
         size: self.pic.size,

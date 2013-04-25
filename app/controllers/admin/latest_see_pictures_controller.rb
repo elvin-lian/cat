@@ -44,14 +44,27 @@ class Admin::LatestSeePicturesController < Admin::BaseController
     end
   end
 
-  def update
-    @latest_see_picture = @latest_see.latest_see_pictures.find_by_id(params[:id])
-    if @latest_see_picture.update_attributes(params[:latest_see_picture])
-      update_successfully
-      redirect_to action: :edit
+  #def update
+  #  @latest_see_picture = @latest_see.latest_see_pictures.find_by_id(params[:id])
+  #  if @latest_see_picture.update_attributes(params[:latest_see_picture])
+  #    update_successfully
+  #    redirect_to action: :edit
+  #  else
+  #    fail_to_update
+  #    render action: :edit
+  #  end
+  #end
+
+  def modify
+    authorize! :update, LatestSeePicture
+    if request.xml_http_request?
+      res = false
+      if (picture = LatestSeePicture.find_by_id(params[:id])) and picture.respond_to?(params[:name])
+        res = picture.update_column(params[:name], params[:value])
+      end
+      render json: {res: res, message: res ? t('admin.mess.update_successfully') : t('admin.mess.fail_to_update')}
     else
-      fail_to_update
-      render action: :edit
+      raise ActionController::RoutingError.new('Not Found')
     end
   end
 

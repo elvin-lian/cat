@@ -37,19 +37,32 @@ Cabbeen::Application.routes.draw do
       resources :city_weeklies
       resources :dashboard, :only => :index
       resources :latest_sees do
-        resources :pictures, :controller => :latest_see_pictures
+        resources :pictures, :controller => :latest_see_pictures do
+          collection do
+            post 'modify/:id' => 'latest_see_pictures#modify'
+          end
+        end
       end
       resources :new_products
       resources :products do
-        resources :pictures, :controller => :product_pictures
+
         resources :comments, :controller => :product_comments
+
+        resources :pictures, :controller => :product_pictures do
+          collection do
+            post 'modify/:id' => 'product_pictures#modify'
+          end
+        end
+
         resources :same_sections, :controller => :product_same_sections
+
         collection do
           post 'batch_listed'
           post 'batch_unlisted'
           post 'batch_destroy'
           post 'batch_same_section'
         end
+
       end
       get 'products_comments' => 'product_comments#index'
 

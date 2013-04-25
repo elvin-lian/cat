@@ -5,3 +5,4 @@
 //= require admin/bootstrap.min
 //= require admin/el.tool
 //= require admin/el.product
+//= require admin/el.editableTable

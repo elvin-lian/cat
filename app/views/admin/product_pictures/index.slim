@@ -10,6 +10,7 @@ div
           th
             input type="checkbox" class="toggle select_all_or_cancel"
           th 图片
+          th 顺序
           th 上传时间
           th 大小
           th colspan=2
@@ -22,6 +23,10 @@ div
               input type="checkbox" name="ids[]" value="1" class="toggle"
             td.preview
               = link_to image_tag(pic[:thumbnail_url], alt: pic[:name]), pic[:url], 'data-gallery' => 'gallery', target: '_blank'
+            td.edit_td iid="#{pic[:id]}"
+              span class="edit_span"
+                = pic[:rank]
+              input type="text" name="rank" class="edit_input input-mini" value="#{pic[:rank]}"
             td.name= pic[:created_at]
             td.size= (pic[:size].to_f / 1024).round(2).to_s + 'KB'
             td colspan="2"
@@ -57,6 +62,8 @@ div
       /  .progress-extended &nbsp;
     .fileupload-loading
 
+  .help-block style="text-align: right"
+    | ps: 顺序小的显示在前面
 
 = render :partial => 'shared/file_upload'
 
@@ -84,4 +91,5 @@ div
       }
 
       el.Tool.bindSelectAllOrCancel();
+      el.EditableTable.init("/admin/products/#{@product.id}/pictures/modify/")
     });
