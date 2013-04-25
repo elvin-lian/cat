@@ -1,5 +1,5 @@
 class Suit < ActiveRecord::Base
-  attr_accessible :pic, :serial_number, :status, :title
+  attr_accessible :pic, :serial_number, :status, :title, :new_product_ids
 
   validates_presence_of :serial_number
   validates_uniqueness_of :serial_number
@@ -17,7 +17,6 @@ class Suit < ActiveRecord::Base
     end
   end
 
-
   def simple_json
     {
         suitID: self.id.to_s,
@@ -31,7 +30,7 @@ class Suit < ActiveRecord::Base
   end
 
   def sub_products
-    products = self.products.where('status = 1').order('id DESC').includes(:categories)
+    products = self.products.where('status = 1').order('is_top DESC, id DESC').includes(:categories)
     res = []
     products.each do |product|
       cat_id = ''

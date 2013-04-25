@@ -4,7 +4,12 @@ class Admin::LatestSeesController < Admin::BaseController
   load_and_authorize_resource
 
     def index
-      @latest_sees = initialize_grid(LatestSee, order: 'id', order_direction: 'desc')
+      #@latest_sees = initialize_grid(LatestSee, order: 'id', order_direction: 'desc')
+      @latest_see = LatestSee.last
+      if @latest_see.nil?
+        @latest_see = LatestSee.create(title: 'default', status: 0)
+      end
+      redirect_to admin_latest_see_pictures_path(@latest_see)
     end
 
     def create

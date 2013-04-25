@@ -5,6 +5,8 @@
 noscript
 = simple_form_for @shop_info, :url => @shop_info.new_record? ? admin_shop_infos_path : admin_shop_info_path(@shop_info),:html => {class: 'form-horizontal', enctype: 'multipart/form-data'} do |f|
   fieldset
+    - unless @shop_info.new_record?
+      = f.input :updated_at, input_html: {disabled: 'disabled'}, as: :string
     = f.input :pic
     .form-actions
       = f.submit @shop_info.new_record? ? '上传': '保存' , class: 'btn btn-primary', disable_with: '上传中，请稍等...'

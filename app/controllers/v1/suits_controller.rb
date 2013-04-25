@@ -9,9 +9,9 @@ class V1::SuitsController < V1::BaseController
     length = params[:length].to_i
     length = 10 if length < 1
 
+    @suits = []
     new_product_id = params[:lastestProductID]
     product_id = params[:productID]
-
     if new_product_id
       new_product = NewProduct.find_by_id(new_product_id)
       if new_product and new_product.suits
@@ -22,16 +22,11 @@ class V1::SuitsController < V1::BaseController
       if product and product.suits
         @suits = product.suits
       end
-    else
-      @suits = []
     end
 
-    if @suits.empty?
-      res = {
-          statusCode: 0,
-          errorMessage: "非法操作"
-      }
-    else
+    suits_arr = []
+
+    unless @suits.nil? or @suits.empty?
 
       case params[:orderStyle].to_i
         when 2
@@ -50,19 +45,17 @@ class V1::SuitsController < V1::BaseController
 
       @suits = @suits.where('suits.status = 1').order(order).limit(length).offset(start_pos)
 
-      suits_arr = []
       @suits.each do |suit|
         suits_arr << suit.simple_json
       end
-
-      res = {
-          statusCode: 1,
-          response: {
-              suitArray: suits_arr
-          }
-      }
-
     end
+
+    res = {
+              statusCode: 1,
+              response: {
+                  suitArray: suits_arr
+              }
+          }
 
     render json: res, :status => :ok
 

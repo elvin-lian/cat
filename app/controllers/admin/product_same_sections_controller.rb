@@ -17,6 +17,7 @@ class Admin::ProductSameSectionsController < Admin::BaseController
   def destroy
     @product_same_section = ProductSameSection.find_by_id(params[:id])
     if @product_same_section.destroy
+      @product_same_section.clean_same_section
       destroy_successfully
     else
       fail_to_destroy

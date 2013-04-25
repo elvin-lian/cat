@@ -27,6 +27,9 @@ zh_cn:
         last_sign_in_ip: 最近登录IP
       ad:
         pic: 广告图片
+        updated_at: 更新时间
+      brand:
+        updated_at: 上传时间
       category:
         name: 品类名称
         pic: 按钮图标
@@ -47,6 +50,7 @@ zh_cn:
         suits: 套装
         sub_title: 英文名称
         is_top: 推荐
+        status: 上架？
       product_comment:
         price_score: 价钱评价
         design_score: 设计评价
@@ -54,8 +58,8 @@ zh_cn:
       product_same_section:
         p_id: 单品ID
         product_id: 单品ID
-
       shop_info:
+        updated_at: 上传时间
       suit:
         title: 名称
         serial_number: 编号

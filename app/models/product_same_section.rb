@@ -8,4 +8,8 @@ class ProductSameSection < ActiveRecord::Base
 
   belongs_to :product
 
+  def clean_same_section
+    ProductSameSection.destroy_all(p_id: self.product_id, product_id: self.p_id)
+  end
+
 end

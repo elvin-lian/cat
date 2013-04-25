@@ -1,4 +1,4 @@
-<%= grid(@products, show_filters: :when_filtered, allow_showing_all_records: false,  class: 'table-img') do |g|
+<%= grid(@products, show_filters: :when_filtered, allow_showing_all_records: false, class: 'table-img') do |g|
 
   g.column name: '<input type="checkbox" class="select_all_or_cancel"/>'.html_safe do |obj|
     "<input type='checkbox' name='ids[]' value='#{obj.id}'/>".html_safe
@@ -25,7 +25,11 @@
   end
 
   g.column do |obj|
-    link = link_to('<i class="icon-picture" title="图片"></i>'.html_safe, admin_product_pictures_path(obj.id))
+    if obj.product_pictures.count == 0
+      link = link_to('<i class="icon-picture" title="图片"></i>'.html_safe, admin_product_pictures_path(obj.id, t: Time.now.to_i))
+    else
+      link = link_to('<i class="icon-picture" title="图片"></i>'.html_safe, admin_product_pictures_path(obj.id))
+    end
     link << link_to('<i class="icon-list-alt" title="同款"></i>'.html_safe, admin_product_same_sections_path(obj.id))
     link << link_to('<i class="icon-comment" title="评价"></i>'.html_safe, admin_product_comments_path(obj.id))
     link << actions_links(obj, 7)

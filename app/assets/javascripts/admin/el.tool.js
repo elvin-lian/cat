@@ -36,5 +36,15 @@ el.Tool = {
             }
         });
         return ids;
+    },
+
+    hideFlashMessage:function () {
+        $('#flash-message').hide('slow');
     }
 };
+
+$(document).ready(function () {
+    if ($('#flash-message').length > 0) {
+        setTimeout(el.Tool.hideFlashMessage, '5000');
+    }
+});

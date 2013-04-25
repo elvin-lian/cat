@@ -1,5 +1,6 @@
 - if flash
-  - flash.each do |k,value|
-    div class="alert alert-#{k}"
-      button.close type="button" data-dismiss="alert" ×
-      p= value
+  #flash-message
+    - flash.each do |k,value|
+      div class="alert alert-#{k}"
+        button.close type="button" data-dismiss="alert" ×
+        p= value

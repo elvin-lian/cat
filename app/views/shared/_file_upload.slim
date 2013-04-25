@@ -63,7 +63,7 @@
                 <a href="{%=file.url%}" data-gallery="gallery" target="_blank"><img src="{%=file.thumbnail_url%}" alt="{%=file.name%}"></a>
                 {% } %}
             </td>
-            <td><a href="{%=file.url%}" data-gallery="gallery" target="_blank">{%=file.name%}</a></td>
+            <td>{%=file.created_at%}</td>
             <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
             <td colspan="2"></td>
             {% } %}

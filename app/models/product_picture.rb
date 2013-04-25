@@ -18,6 +18,7 @@ class ProductPicture < ActiveRecord::Base
   def to_jq_upload
     {
         name: read_attribute(:pic),
+        created_at: self.created_at.localtime.strftime('%Y-%m-%d %H:%M'),
         size: self.pic.size,
         url: self.pic.url,
         thumbnail_url: self.pic.thumb.url,

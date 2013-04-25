@@ -8,6 +8,8 @@
   fieldset
     = f.input :pic
     = f.input :status
+    - unless @ad.new_record?
+      = f.input :updated_at, input_html: {disabled: 'disabled'}, as: :string
     .form-actions
       = f.submit (@ad.new_record? ? '保存' : '修改') , class: 'btn btn-primary', disable_with: '上传中，请稍等...'
 - unless @ad.new_record?

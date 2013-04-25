@@ -1,11 +1,96 @@
-- admin_left_menu :latest_see
-= latest_see_breadcrumb @latest_see
+/- admin_left_menu :latest_see
+/= latest_see_breadcrumb @latest_see
 .page-header
-  h4= title "最新宾视#{@latest_see.title}的图片"
-.action-buttons
-  = link_to '上传图片', new_admin_latest_see_picture_path(@latest_see), class: 'btn btn-primary'
-= render :partial => 'grid'
-- if @latest_see_pictures.empty?
-  p
-    | 还没有图片，
-    = link_to '请上传图片', new_admin_latest_see_picture_path(@latest_see)
+  /h4= title "最新宾视#{@latest_see.title}的图片"
+  h4= title "最新宾视"
+/.action-buttons
+/  = link_to '上传图片', new_admin_latest_see_picture_path(@latest_see), class: 'btn btn-primary'
+/= render :partial => 'grid'
+/- if @latest_see_pictures.empty?
+/  p
+/    | 还没有图片，
+/    = link_to '请上传图片', new_admin_latest_see_picture_path(@latest_see)
+div
+  form id="fileupload" action="#{admin_latest_see_pictures_path(@latest_see)}" method="POST" enctype="multipart/form-data"
+    table role="presentation" class="table table-striped"
+      thead
+        tr
+          th
+            input type="checkbox" class="toggle select_all_or_cancel"
+          th 图片
+          th 上传时间
+          th 大小
+          th colspan=2
+          th 操作
+      tbody class="files table-img-large" data-toggle="modal-gallery" data-target="#modal-gallery"
+        - @latest_see_pictures.each do |picture|
+          - pic = picture.to_jq_upload
+          tr.template-download
+            td.chk
+              input type="checkbox" name="ids[]" value="1" class="toggle"
+            td.preview
+              = link_to image_tag(pic[:thumbnail_url], alt: pic[:name]), pic[:url], 'data-gallery' => 'gallery', target: '_blank'
+            td.name
+              = pic[:created_at]
+            td.size= (pic[:size].to_f / 1024).round(2).to_s + 'KB'
+            td colspan="2"
+            td
+              button class="btn btn-danger btn-mini delete" data-type="#{pic[:delete_type]}" data-url="#{pic[:delete_url]}"
+                i.icon-trash.icon-white
+                spann 删除
+
+    noscript
+      | alert('您当前浏览器关闭了Javascript，请开启才能上传图片');
+    .fileupload-buttonbar
+      .span7
+        span
+          label style="display:inline-block; width: 34px; margin-left: 8px;"
+            input type="checkbox" class="toggle select_all_or_cancel"
+        span.btn.btn-primary.fileinput-button
+          i class="icon-plus icon-white"
+          span 上传图片
+          |  <input type="file" name="files[]" multiple>
+        /.btn-group
+        /  button type="submit" class="btn btn-primary start"
+        /    i.icon-upload.icon-white
+        /    span 上传全部
+        /  button type="reset" class="btn btn-warning cancel"
+        /    i.icon-ban-circle.icon-white
+        /    span 取消全部
+        button type="button" class="btn btn-danger delete"
+          i.icon-trash.icon-white
+          span 删除选中的
+      /.span5.fileupload-progress.fade
+      /  .progress.progress-success.progress-striped.active role="progressbar" aria-valuemin="0" aria-valuemax="100"
+      /    .bar style="width:0%;"
+      /  .progress-extended &nbsp;
+    .fileupload-loading
+
+
+= render :partial => 'shared/file_upload'
+
+- content_for :footer do
+  javascript:
+    $(document).ready(function(){
+      $('#fileupload').fileupload();
+      $('#fileupload').fileupload('option', {
+          maxFileSize:1000000, // 1M
+          acceptFileTypes:/(\.|\/)(jpe?g|png)$/i,
+          autoUpload: true
+      });
+
+      if ($.support.cors) {
+          $.ajax({
+              maxChunkSize:1000000, // 10 MB
+              url:$('#fileupload').fileupload('option', 'url'),
+              dataType:'json',
+              context:$('#fileupload')[0]
+          }).always(function (result) {
+              $(this).removeClass('fileupload-processing');
+          }).done(function (result) {
+              $(this).fileupload('option', 'done').call(this, null, {result:result});
+          });
+      }
+
+      el.Tool.bindSelectAllOrCancel();
+    });

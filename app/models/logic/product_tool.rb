@@ -23,8 +23,6 @@ module Logic
       end
 
       def batch_set_same_section params
-        Rails.logger.debug("==================")
-        Rails.logger.debug(params)
         ids = Cat::Tool.ids_to_arr(params['ids'])
         if ids
           ids.each do |id|
@@ -48,7 +46,10 @@ module Logic
         end
 
 
-        offset = params['startPos'] ? params['startPos'].to_i : 0
+        offset = params['startPos'] ? params['startPos'].to_i : 1
+        offset = offset - 1
+        offset = 0 if offset < 0
+
         limit = params['length'] ? params['length'].to_i : 10
         products = category.products.where(status: 1)
 

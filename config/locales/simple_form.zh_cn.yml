@@ -28,7 +28,7 @@ zh_cn:
         status: '选中状态，表示审核通过'
         rank: '请输入整数，数字大的在前面'
       brand:
-        pdf: 请上传一个不大于2M的pdf文件
+        pdf: 请上传一个pdf格式的文件
       product:
         is_top: 推荐的会排在前面
       product_same_section:

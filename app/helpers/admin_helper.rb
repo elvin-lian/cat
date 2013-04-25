@@ -72,7 +72,7 @@ module AdminHelper
 
   def link_to_delete(link, model, button = false)
     if button
-      cc_link_to '<button class="btn"><i class="icon-trash icon-white"></i>'.html_safe, link, method: :delete, class: 'btn btn-danger', data: {confirm: '你确定要删除？'}, title: '删除', cc: [:destroy, model, display: false]
+      cc_link_to '<i class="icon-trash icon-white"></i>'.html_safe, link, method: :delete, class: 'btn btn-danger', data: {confirm: '你确定要删除？'}, title: '删除', cc: [:destroy, model, display: false]
     else
       cc_link_to '<i class="icon-trash"></i>'.html_safe, link, method: :delete, data: {confirm: '你确定要删除？'}, title: '删除', cc: [:destroy, model, display: false]
     end

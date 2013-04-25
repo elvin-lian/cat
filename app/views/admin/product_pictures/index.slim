@@ -10,7 +10,7 @@ div
           th
             input type="checkbox" class="toggle select_all_or_cancel"
           th 图片
-          th 名称
+          th 上传时间
           th 大小
           th colspan=2
           th 操作
@@ -22,8 +22,7 @@ div
               input type="checkbox" name="ids[]" value="1" class="toggle"
             td.preview
               = link_to image_tag(pic[:thumbnail_url], alt: pic[:name]), pic[:url], 'data-gallery' => 'gallery', target: '_blank'
-            td.name
-              = link_to pic[:name], pic[:url], 'data-gallery' => 'gallery', target: '_blank'
+            td.name= pic[:created_at]
             td.size= (pic[:size].to_f / 1024).round(2).to_s + 'KB'
             td colspan="2"
             td
@@ -38,24 +37,24 @@ div
         span
           label style="display:inline-block; width: 34px; margin-left: 8px;"
             input type="checkbox" class="toggle select_all_or_cancel"
-        span.btn.btn-success.fileinput-button
+        span.btn.btn-primary.fileinput-button
           i class="icon-plus icon-white"
-          span 添加图片
+          span 上传图片
           |  <input type="file" name="files[]" multiple>
-        .btn-group
-          button type="submit" class="btn btn-primary start"
-            i.icon-upload.icon-white
-            span 上传全部
-          button type="reset" class="btn btn-warning cancel"
-            i.icon-ban-circle.icon-white
-            span 取消全部
-          button type="button" class="btn btn-danger delete"
-            i.icon-trash.icon-white
-            span 删除选中的
-      .span5.fileupload-progress.fade
-        .progress.progress-success.progress-striped.active role="progressbar" aria-valuemin="0" aria-valuemax="100"
-          .bar style="width:0%;"
-        .progress-extended &nbsp;
+        /.btn-group
+        /  button type="submit" class="btn btn-primary start"
+        /    i.icon-upload.icon-white
+        /    span 上传全部
+        /  button type="reset" class="btn btn-warning cancel"
+        /    i.icon-ban-circle.icon-white
+        /    span 取消全部
+        button type="button" class="btn btn-danger delete"
+          i.icon-trash.icon-white
+          span 删除选中的
+      /.span5.fileupload-progress.fade
+      /  .progress.progress-success.progress-striped.active role="progressbar" aria-valuemin="0" aria-valuemax="100"
+      /    .bar style="width:0%;"
+      /  .progress-extended &nbsp;
     .fileupload-loading
 
 
@@ -64,18 +63,11 @@ div
 - content_for :footer do
   javascript:
     $(document).ready(function(){
-      var fileUploadErrors = {
-          maxFileSize:'文件不能超过10M',
-          minFileSize:'文件太小',
-          acceptFileTypes:'只能允许上传.jpg, .jpeg, .png格式图片',
-          maxNumberOfFiles:'最大同时上传文件数超出',
-          uploadedBytes:'最大同时上传文件超出大小',
-          emptyResult:'上传出错'
-      };
       $('#fileupload').fileupload();
       $('#fileupload').fileupload('option', {
           maxFileSize:1000000, // 1M
-          acceptFileTypes:/(\.|\/)(jpe?g|png)$/i
+          acceptFileTypes:/(\.|\/)(jpe?g|png)$/i,
+          autoUpload: true
       });
 
       if ($.support.cors) {

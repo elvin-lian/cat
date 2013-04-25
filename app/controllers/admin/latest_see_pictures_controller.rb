@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Admin::LatestSeePicturesController < Admin::BaseController
 
   load_and_authorize_resource
@@ -8,13 +9,38 @@ class Admin::LatestSeePicturesController < Admin::BaseController
   end
 
   def create
-    @latest_see_picture = @latest_see.latest_see_pictures.new(params[:latest_see_picture])
+    #@latest_see_picture = @latest_see.latest_see_pictures.new(params[:latest_see_picture])
+    #if @latest_see_picture.save
+    #  create_successfully
+    #  redirect_to action: :index
+    #else
+    #  fail_to_create
+    #  render action: :new
+    #end
+
+    p_attr = {}
+    p_attr[:pic] = params[:files].first if params[:files].class == Array
+    @latest_see_picture = @latest_see.latest_see_pictures.new(p_attr)
     if @latest_see_picture.save
-      create_successfully
-      redirect_to action: :index
+      respond_to do |format|
+        format.html {
+          render :json => {files: [@latest_see_picture.to_jq_upload]}.as_json, :content_type => 'text/html', :layout => false
+          redirect_to action: :index
+        }
+        format.json {
+          render :json => {files: [@latest_see_picture.to_jq_upload]}.as_json, status: :ok
+        }
+      end
     else
-      fail_to_create
-      render action: :new
+      respond_to do |format|
+        format.html {
+          flash[:error] = '上传失败'
+          redirect_to action: :index
+        }
+        format.json {
+          render :json => [], :status => :ok
+        }
+      end
     end
   end
 
@@ -31,12 +57,22 @@ class Admin::LatestSeePicturesController < Admin::BaseController
 
   def destroy
     @latest_see_picture = @latest_see.latest_see_pictures.find_by_id(params[:id])
-    if @latest_see_picture.destroy
-      destroy_successfully
-    else
-      fail_to_destroy
+    #if @latest_see_picture.destroy
+    #  destroy_successfully
+    #else
+    #  fail_to_destroy
+    #end
+    #redirect_to action: :index
+
+    @latest_see_picture.destroy if @latest_see_picture
+    respond_to do |format|
+      format.html {
+        render :json => [], :status => :ok, :content_type => 'text/html', :layout => false
+      }
+      format.json {
+        render :json => [], :status => :ok
+      }
     end
-    redirect_to action: :index
   end
 
   private
