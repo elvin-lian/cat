@@ -7,7 +7,7 @@ class LatestSee < ActiveRecord::Base
 
   def simple_json
     res = []
-    self.latest_see_pictures.each do |pic|
+    self.latest_see_pictures.order('rank ASC, id ASC').each do |pic|
       res << pic.full_pic_url
     end
     res

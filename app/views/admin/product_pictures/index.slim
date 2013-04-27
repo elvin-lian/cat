@@ -23,10 +23,11 @@ div
               input type="checkbox" name="ids[]" value="1" class="toggle"
             td.preview
               = link_to image_tag(pic[:thumbnail_url], alt: pic[:name]), pic[:url], 'data-gallery' => 'gallery', target: '_blank'
-            td.edit_td iid="#{pic[:id]}"
-              span class="edit_span"
+            td.editable-blk iid="#{pic[:id]}"
+              span.edit-text
                 = pic[:rank]
-              input type="text" name="rank" class="edit_input input-mini" value="#{pic[:rank]}"
+              i.icon-pencil
+              input type="text" name="rank" class="edit-input input-mini" value="#{pic[:rank]}"
             td.name= pic[:created_at]
             td.size= (pic[:size].to_f / 1024).round(2).to_s + 'KB'
             td colspan="2"
@@ -79,7 +80,7 @@ div
 
       if ($.support.cors) {
           $.ajax({
-              maxChunkSize:1000000, // 10 MB
+              maxChunkSize:10000000, // 10 MB
               url:$('#fileupload').fileupload('option', 'url'),
               dataType:'json',
               context:$('#fileupload')[0]
@@ -91,5 +92,5 @@ div
       }
 
       el.Tool.bindSelectAllOrCancel();
-      el.EditableTable.init("/admin/products/#{@product.id}/pictures/modify/")
+      el.EditableTable.init("/admin/products/#{@product.id}/pictures/modify/");
     });

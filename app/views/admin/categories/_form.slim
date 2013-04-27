@@ -12,6 +12,6 @@
     = f.input :status
     .form-actions
       = f.submit (@category.new_record? ? '保存' : '修改') , class: 'btn btn-primary', disable_with: '上传中，请稍等...'
-- unless @category.new_record?
+- unless @category.new_record? or @category.full_pic_url.empty?
   h5 品类图标预览:
-  p= image_tag(@category.pic.url)
+  p= image_tag(@category.full_pic_url)

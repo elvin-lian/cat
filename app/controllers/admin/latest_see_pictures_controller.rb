@@ -5,7 +5,7 @@ class Admin::LatestSeePicturesController < Admin::BaseController
   before_filter :set_latest_see
 
   def index
-    @latest_see_pictures = initialize_grid(LatestSeePicture, conditions: {latest_see_id: @latest_see.id})
+    @latest_see_pictures = @latest_see.latest_see_pictures.order('rank ASC, id ASC')
   end
 
   def create

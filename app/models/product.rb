@@ -35,7 +35,7 @@ class Product < ActiveRecord::Base
 
   def picture_urls
     res = []
-    self.product_pictures.order('id ASC').each do |pic|
+    self.product_pictures.order('rank ASC, id ASC').each do |pic|
       res << pic.full_pic_url
     end
     res
@@ -44,7 +44,10 @@ class Product < ActiveRecord::Base
   def same_sections
     res = []
     ProductSameSection.where(p_id: self.id).order('id ASC').each do |section|
-      res << section.product.simple_json
+      _product = section.product
+      if _product and _product.status?
+          res << _product.simple_json
+      end
     end
     res
   end

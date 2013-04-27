@@ -2,11 +2,11 @@
 module AdminHelper
 
   def status_icon(boolean)
-    icon = '<i '
-    icon << (boolean ? 'class="icon-check" title="已审核通过"' : 'class="icon-ban-circle" title="未通过审核"')
-    icon << '></i>'
-    icon.html_safe
-    #boolean ? 'Y' : 'N'
+    #icon = '<i '
+    #icon << (boolean ? 'class="icon-check" title="已审核通过"' : 'class="icon-ban-circle" title="未通过审核"')
+    #icon << '></i>'
+    #icon.html_safe
+    boolean ? '是' : '否'
   end
 
 

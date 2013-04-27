@@ -64,9 +64,10 @@
                 <a href="{%=file.url%}" data-gallery="gallery" target="_blank"><img src="{%=file.thumbnail_url%}" alt="{%=file.name%}"></a>
                 {% } %}
             </td>
-            <td class="edit_td">
-              <span class="edit_span">{%=file.rank%}</span>
-              <input type="text" name="rank" class="edit_input input-mini" value="{%=file.rank%}"/>
+            <td class="editable-blk" iid="{%=file.id%}">
+              <span class="edit-text">{%=file.rank%}</span>
+              <i class="icon-pencil"></i>
+              <input type="text" name="rank" class="edit-input input-mini" value="{%=file.rank%}"/>
             </td>
             <td>{%=file.created_at%}</td>
             <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>

@@ -5,7 +5,7 @@ class Admin::ProductPicturesController < Admin::BaseController
   before_filter :set_product
 
   def index
-    @product_pictures = initialize_grid(ProductPicture, conditions: {product_id: @product.id})
+    @product_pictures = @product.product_pictures.order('rank ASC, id ASC')
   end
 
   def create
