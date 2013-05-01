@@ -46,6 +46,12 @@ module AdminMenuHelper
             ['所有评价', admin_products_comments_path, {path: 'product_comments#index', cc: [:read, ProductComment]}]
         ],
 
+        skin: [
+            ['皮肤', nil],
+            ['所有皮肤', admin_skins_path, {path: 'skins#index', cc: [:read, Skin]}],
+            ['上传皮肤', new_admin_skin_path, {path: 'skins#new', cc: [:create, Skin]}]
+        ],
+
         suit: [
             ['单品', nil],
             ['所有套装', admin_suits_path, {path: 'suits#index', cc: [:read, Suit]}],

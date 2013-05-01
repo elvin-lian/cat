@@ -12,7 +12,7 @@ Feature: Launch API
       | name            | status |
       | foo new product | 1      |
     And there is a skin
-      | name     | status |
+      | title    | status |
       | foo skin | 1      |
     And there is home ad
       | status |
@@ -28,6 +28,12 @@ Feature: Launch API
         "response": {
           "skinModelID": "#{@skin.id}",
           "skinModelUpdateTime": "#{@skin.updated_at.to_s}",
+          "skinModel":{
+            "skinModelID":"#{@skin.id}",
+            "createTime":"#{@skin.created_at.to_s}",
+            "updateTime":"#{@skin.updated_at.to_s}",
+            "skinCategoryProBgURL":"", "skinLCategoryProBgURL":"", "skinSuitsListBgURL":"", "skinLSuitsListBgURL":"", "skinSuitBgURL":"", "skinLSuitBgURL":"", "skinProListBgURL":"", "skinLProListBgURL":"", "skinProBgURL":"", "skinLProBgURL":"", "skinOtherBgURL":"", "skinLOtherBgURL":"", "skinToolShowHideBtnURL":"", "skinLToolShowHideBtnURL":"", "skinToolHomeBtnURL":"", "skinLToolHomeBtnURL":"", "skinSearchBtnURL":"", "skinLSearchBtnURL":"", "skinCloseBtnURL":"", "skinLCloseBtnURL":"", "skinCloseToHomeBtnURL":"", "skinLCloseToHomeBtnURL":"", "skinLeftArrowBtnURL":"", "skinLLeftArrowBtnURL":"", "skinRightArrowBtnURL":"", "skinLRightArrowBtnURL":"", "skinToolBgImageURL":"", "skinLToolBgImageURL":"", "skinBrandInfoBtnURL":"", "skinLBrandInfoBtnURL":"", "skinProShowBtnURL":"", "skinLProShowBtnURL":"", "skinCityWeekBtnURL":"", "skinLCityWeekBtnURL":"", "skinLastestSeeBtnURL":"", "skinLLastestSeeBtnURL":"", "skinShopInfoBtnURL":"", "skinLShopInfoBtnURL":"", "skinBackBtnURL":"", "skinLBackBtnURL":"", "skinTrendCourierBtnURL":"", "skinLTrendCourierBtnURL":"", "skinProToSuitBtnURL":"", "skinLProToSuitBtnURL":"", "skinProEvaluateBtnURL":"", "skinLProEvaluateBtnURL":"", "skinProTextBgURL":"", "skinLProTextBgURL":""
+          },
           "appHomeAdsArray":[
             {
               "appHomeAdsImageURL":"",

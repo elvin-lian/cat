@@ -29,16 +29,16 @@ module Logic
       private
 
       def skin_json
-        skin = Skin.where('status = 1').first
+        skin = Skin.where('status = 1').last
         if skin.nil?
           {skinModelID: '', skinModelUpdateTime: ''}
         else
-          {skinModelID: skin.id.to_s, skinModelUpdateTime: skin.updated_at.to_s}
+          {skinModelID: skin.id.to_s, skinModelUpdateTime: skin.updated_at.to_s, skinModel: skin.simple_json}
         end
       end
 
       def home_ad_json
-        ads = Ad.where('status = 1').order('id DESC').limit(10)
+        ads = Ad.where('status = 1').order('id DESC').limit(100)
         res = []
         unless ads.empty?
           ads.each { |ad| res << ad.simple_json }
@@ -48,7 +48,7 @@ module Logic
 
       def new_product_json
         res = []
-        new_products = NewProduct.where('status = 1').order('rank DESC, id DESC').limit(20)
+        new_products = NewProduct.where('status = 1').order('rank DESC, id DESC').limit(100)
         unless new_products.empty?
           new_products.each { |product| res << product.simple_json }
         end
@@ -57,7 +57,7 @@ module Logic
 
       def category_json
         res = []
-        categories = Category.where('status = 1').order('rank DESC, id DESC').limit(20)
+        categories = Category.where('status = 1').order('rank DESC, id DESC').limit(100)
         unless categories.empty?
           categories.each { |cat| res << cat.simple_json }
         end

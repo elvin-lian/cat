@@ -1,0 +1,20 @@
+- admin_left_menu :skin
+.page-header
+  h4= title @skin.new_record? ? '添加皮肤' : "修改皮肤 #{@skin.title}"
+.action-buttons
+  = actions_buttons(@skin, 5) if @skin.id
+
+= simple_form_for @skin, :url => (@skin.new_record? ? admin_skins_path : admin_skin_path(@skin)), :html => {class: 'form-horizontal skin-form'} do |f|
+  fieldset
+    = f.input :title
+    = f.input :status
+    - Skin.attribute_names.each do |attr_name|
+      - unless attr_name.in?(Skin.non_pic_fields)
+        = f.input attr_name
+        - unless @skin.new_record? or @skin.fill_thumb_pic_url(attr_name).blank?
+          .control-group
+            .control-label &nbsp;
+            .controls
+              = link_to image_tag(@skin.fill_thumb_pic_url(attr_name)), @skin.fill_pic_url(attr_name)
+    .form-actions
+      = f.submit (@skin.new_record? ? '保存' : '修改') , class: 'btn btn-primary', disable_with: '上传中，请稍等...'

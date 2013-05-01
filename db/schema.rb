@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130430140244) do
+ActiveRecord::Schema.define(:version => 20130501082129) do
 
   create_table "admins", :force => true do |t|
     t.string   "name",                :default => "", :null => false
@@ -189,24 +189,58 @@ ActiveRecord::Schema.define(:version => 20130430140244) do
   end
 
   create_table "skins", :force => true do |t|
-    t.string   "bg_img"
-    t.string   "brand_info_img"
-    t.string   "product_show_img"
-    t.string   "city_week_img"
-    t.string   "latest_see_img"
-    t.string   "shop_info_img"
-    t.string   "hide_show_btn_img"
-    t.string   "back_img"
-    t.string   "close_img"
-    t.string   "search_img"
-    t.string   "trend_courier_img"
-    t.string   "pro_to_suit_img"
-    t.string   "pro_evaluate_img"
-    t.string   "pro_evaluate_commit_img"
-    t.string   "status"
-    t.string   "name"
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
+    t.string   "category_pro_bg"
+    t.string   "l_category_pro_bg"
+    t.string   "suits_list_bg"
+    t.string   "l_suits_list_bg"
+    t.string   "suit_bg"
+    t.string   "l_suit_bg"
+    t.string   "pro_list_bg"
+    t.string   "l_pro_list_bg"
+    t.string   "pro_bg"
+    t.string   "l_pro_bg"
+    t.string   "other_bg"
+    t.string   "l_other_bg"
+    t.string   "tool_show_hide_btn"
+    t.string   "l_tool_show_hide_btn"
+    t.string   "tool_home_btn"
+    t.string   "l_tool_home_btn"
+    t.string   "search_btn"
+    t.string   "l_search_btn"
+    t.string   "close_btn"
+    t.string   "l_close_btn"
+    t.string   "close_to_home_btn"
+    t.string   "l_close_to_home_btn"
+    t.string   "left_arrow_btn"
+    t.string   "l_left_arrow_btn"
+    t.string   "right_arrow_btn"
+    t.string   "l_right_arrow_btn"
+    t.string   "tool_bg_image"
+    t.string   "l_tool_bg_image"
+    t.string   "brand_info_btn"
+    t.string   "l_brand_info_btn"
+    t.string   "pro_show_btn"
+    t.string   "l_pro_show_btn"
+    t.string   "city_week_btn"
+    t.string   "l_city_week_btn"
+    t.string   "lastest_see_btn"
+    t.string   "l_lastest_see_btn"
+    t.string   "shop_info_btn"
+    t.string   "l_shop_info_btn"
+    t.string   "back_btn"
+    t.string   "l_back_btn"
+    t.string   "trend_courier_btn"
+    t.string   "l_trend_courier_btn"
+    t.string   "pro_to_suit_btn"
+    t.string   "l_pro_to_suit_btn"
+    t.string   "pro_evaluate_btn"
+    t.string   "l_pro_evaluate_btn"
+    t.string   "pro_text_bg"
+    t.string   "l_pro_text_bg"
+    t.string   "title"
+    t.boolean  "status",               :default => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
   end
 
   create_table "suits", :force => true do |t|

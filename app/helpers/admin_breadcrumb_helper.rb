@@ -53,6 +53,11 @@ module AdminBreadcrumbHelper
                        [suit.serial_number, admin_suit_path(suit), cc: [:read, Suit]]]
   end
 
+  def skin_breadcrumb skin
+    output_breadcrumb [['所有皮肤', admin_skins_path, cc: [:read, Skin]],
+                       [skin.id, admin_skin_path(skin), cc: [:read, Skin]]]
+  end
+
   def trend_courier_breadcrumb trend_courier
     output_breadcrumb [['所有潮流速递', admin_trend_couriers_path, cc: [:read, TrendCourier]],
                        [trend_courier.id, admin_trend_courier_path(trend_courier), cc: [:read, TrendCourier]]]

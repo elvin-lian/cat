@@ -1,0 +1,17 @@
+- title "皮肤-#{@skin.title}"
+- admin_left_menu :skin
+= skin_breadcrumb @skin
+.action-buttons
+  = actions_buttons(@skin, 6)
+table class="table table-striped"
+  - Skin.attribute_names.each do |attr_name|
+    tr
+      th= Skin.human_attribute_name(attr_name)
+      td
+        - if !attr_name.in?(Skin.non_pic_fields)
+          - pic_url = @skin.fill_pic_url(attr_name)
+          = pic_url.blank? ? '无图' : link_to(image_tag(@skin.fill_thumb_pic_url(attr_name)), pic_url, target: '_blank')
+        - elsif attr_name.in?(%w(created_at updated_at))
+          = t2l(@skin.send(attr_name.to_sym))
+        - else
+          = @skin.send(attr_name.to_sym)

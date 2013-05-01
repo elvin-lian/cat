@@ -13,6 +13,7 @@ Cabbeen::Application.routes.draw do
       resources :shop_info, :only => :index
       resources :suits, :only => :index
       resources :trend_couriers, :only => [:index, :show]
+      resources :skins, :only => [:show, :index]
     end
   end
 
@@ -68,6 +69,7 @@ Cabbeen::Application.routes.draw do
 
       resources :shop_infos
       resources :suits
+      resources :skins
       resources :trend_couriers
     end
   end
