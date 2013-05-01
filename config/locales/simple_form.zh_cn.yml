@@ -24,13 +24,25 @@ zh_cn:
     #     username: 'User name to sign in.'
     #     password: 'No special characters, please.'
     hints:
+      ad:
+        pic: '图片大小: 2048x1496px'
+      brand:
+        pdf: 请上传一个pdf格式的文件
+      category:
+        pic: '图片大小：900x100px'
       defaults:
         status: '选中状态，表示审核通过'
         rank: '请输入整数，数字大的在前面'
-      brand:
-        pdf: 请上传一个pdf格式的文件
+      new_product:
+        pic: '图片大小：150x150px'
       product:
         is_top: 推荐的会排在前面
+        status: 选中表示上架
       product_same_section:
         p_id: 请输入单品的ID，多个ID之间，以英文逗号(,)分隔。如 11,12
+      suit:
+        pic: '图片大小: 670x1300px'
+      trend_courier:
+        pic: '图片大小: 2048x1496px'
+
 

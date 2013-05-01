@@ -43,6 +43,7 @@ zh_cn:
         title: 名称
         color_name: 颜色名称
         color_rgb: 颜色RGB值
+        color_pic: 颜色图片地址
         description: 产品描述
         trend_courier: 潮流速递
         trend_courier_id: 潮流速递
@@ -51,6 +52,8 @@ zh_cn:
         sub_title: 英文名称
         is_top: 推荐
         status: 上架？
+        price: 价格
+        design_inspiration: 设计灵感
       product_comment:
         price_score: 价钱评价
         design_score: 设计评价

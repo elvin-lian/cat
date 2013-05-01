@@ -1,6 +1,8 @@
 class Product < ActiveRecord::Base
   attr_accessible :color_name, :color_rgb, :description, :serial_number, :trend_courier_id, :status, :title,
-                  :category_ids, :suit_ids, :sub_title, :is_top
+                  :category_ids, :suit_ids, :sub_title, :is_top, :price, :design_inspiration, :color_pic
+
+  mount_uploader :color_pic, PictureUploader
 
   validates_presence_of :serial_number
   validates_uniqueness_of :serial_number
@@ -22,15 +24,25 @@ class Product < ActiveRecord::Base
         proTitle: Cat::Tool.nil2n(self.title),
         proSubTitle: Cat::Tool.nil2n(self.sub_title),
         proIsTop: self.is_top? ? 1: 0,
+        proPrice: Cat::Tool.nil2n(self.price),
         createTime: self.created_at.to_s,
         updateTime: self.updated_at.to_s,
         proExplainText: Cat::Tool.nil2n(self.description),
+        proDesignInspiration: Cat::Tool.nil2n(self.design_inspiration),
         proColorName: Cat::Tool.nil2n(self.color_name),
-        proColorRGB: Cat::Tool.nil2n(self.color_rgb),
+        proColorImageURL: full_color_pic_url,
         proTrendCourierID: self.trend_courier_id.to_s,
         proTrendCourierUrl: self.trend_courier ? self.trend_courier.full_pic_url : '',
         proImageURLArray: picture_urls
     }
+  end
+
+  def full_color_pic_url
+    if self.color_pic and self.color_pic.url
+      Rails.application.config.action_controller.asset_host + self.color_pic.url
+    else
+      ''
+    end
   end
 
   def picture_urls

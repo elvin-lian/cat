@@ -5,7 +5,7 @@
   end
 
 
-  %w(id serial_number title is_top trend_courier_id status created_at).each do |attr|
+  %w(id serial_number title is_top price status created_at).each do |attr|
     g.column :name => Product.human_attribute_name(attr.to_sym), :attribute => attr do |obj|
       if attr.in? %w(created_at updated_at)
         t2l(obj.send(attr.to_sym))

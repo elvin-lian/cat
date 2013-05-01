@@ -10,13 +10,19 @@
 = simple_form_for @product, :url => (@product.new_record? ? admin_products_path : admin_product_path(@product)), :html => {class: 'form-horizontal'} do |f|
   fieldset
     = f.input :serial_number, input_html: {class: 'input-xlarge'}
-    = f.input :title, input_html: {class: 'input-xlarge'}
-    = f.input :sub_title, input_html: {class: 'input-xlarge'}
+    = f.input :title, input_html: {class: 'input-xxlarge'}
+    = f.input :sub_title, input_html: {class: 'input-xxlarge'}
+    = f.input :price, input_html: {class: 'input-small'}
     = f.input :color_name
-    = f.input :color_rgb, input_html: {class: 'input-small', placeholder: '#FFFFFF'}
+    = f.input :color_pic
+    - unless @product.full_color_pic_url.empty?
+      .control-group
+        .control-label &nbsp;
+        .controls= image_tag(@product.full_color_pic_url, style: 'max-width: 50px')
     = f.input :is_top
     = f.input :status
     = f.input :description, input_html:{class: 'input-xxlarge', style: "height: 100px"}
+    = f.input :design_inspiration, input_html:{class: 'input-xxlarge', style: "height: 100px"}
     = f.association :trend_courier
     = f.association :categories, as: :check_boxes, item_wrapper_class: 'inline span2'
     = f.association :suits, as: :check_boxes, item_wrapper_class: 'inline span2'

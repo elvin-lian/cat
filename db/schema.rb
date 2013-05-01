@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130425154900) do
+ActiveRecord::Schema.define(:version => 20130430140244) do
 
   create_table "admins", :force => true do |t|
     t.string   "name",                :default => "", :null => false
@@ -155,17 +155,20 @@ ActiveRecord::Schema.define(:version => 20130425154900) do
   add_index "product_same_sections", ["product_id"], :name => "index_product_same_sections_on_product_id"
 
   create_table "products", :force => true do |t|
-    t.string   "serial_number",    :limit => 100
-    t.string   "title",            :limit => 100
+    t.string   "serial_number",      :limit => 100
+    t.string   "title",              :limit => 100
     t.text     "description"
-    t.string   "color_name",       :limit => 32
-    t.string   "color_rgb",        :limit => 32
-    t.boolean  "status",                          :default => true
+    t.string   "color_name",         :limit => 32
+    t.string   "color_rgb",          :limit => 32
+    t.boolean  "status",                            :default => true
     t.integer  "trend_courier_id"
-    t.datetime "created_at",                                        :null => false
-    t.datetime "updated_at",                                        :null => false
+    t.datetime "created_at",                                          :null => false
+    t.datetime "updated_at",                                          :null => false
     t.string   "sub_title"
     t.boolean  "is_top"
+    t.string   "price"
+    t.text     "design_inspiration"
+    t.string   "color_pic"
   end
 
   add_index "products", ["is_top"], :name => "index_products_on_is_top"

@@ -1,11 +1,13 @@
 el.EditableTable = (function () {
-
-    var bind = function (url) {
+    var __url = '';
+    var clickEvent = function () {
         $('.editable-blk').click(
             function () {
                 $(this).find('span').hide();
-                $(this).find('.edit-input').show();
                 $(this).find('i').hide();
+                var $input = $(this).find('.edit-input');
+                $input.show();
+                $input.focus();
             }).change(function () {
 
                 $(this).append('<span class="edit-loading"></span>');
@@ -17,7 +19,7 @@ el.EditableTable = (function () {
 
                 $.ajax({
                     type:"POST",
-                    url:url + id.toString(),
+                    url: __url + id.toString(),
                     data:'name=' + $input.prop('name') + '&value=' + $input.val(),
                     cache:false,
                     success:function (data) {
@@ -35,13 +37,22 @@ el.EditableTable = (function () {
 
             });
 
-//        $('body').mouseup(function () {
-//            $('.editable-blk .edit-input').hide();
-//            $('.editable-blk .edit-loading').remove();
-//            $(".editable-blk .edit-text").show();
-//            $(".editable-blk i").show();
-//        });
     };
 
-    return {init:bind}
+    var blurEvent = function () {
+        $('.edit-input').blur(function () {
+            $('.editable-blk .edit-input').hide();
+            $('.editable-blk .edit-loading').remove();
+            $(".editable-blk .edit-text").show();
+            $(".editable-blk i").show();
+        });
+    };
+
+    var init = function (url) {
+        __url = url;
+        clickEvent();
+        blurEvent();
+    };
+
+    return {init:init}
 })();
