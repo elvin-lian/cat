@@ -3,7 +3,16 @@ class Admin::ProductsController < Admin::BaseController
   load_and_authorize_resource
 
   def index
-    @products = initialize_grid(Product, order: 'id', order_direction: 'desc')
+    if params[:category_id] and (@category = Category.find_by_id(params[:category_id]))
+      @products = initialize_grid(Product, conditions: {id: @category.products.limit(1000).pluck(:product_id)}, order: 'id', order_direction: 'desc')
+    elsif params[:suit_id] and (@suit = Suit.find_by_id(params[:suit_id]))
+      @products = initialize_grid(Product, conditions: {id: @suit.products.limit(1000).pluck(:product_id)}, order: 'id', order_direction: 'desc')
+    elsif params[:trend_courier_id] and (@trend_courier = TrendCourier.find_by_id(params[:trend_courier_id]))
+      @products = initialize_grid(Product, conditions: {trend_courier_id: @trend_courier.id}, order: 'id', order_direction: 'desc')
+    else
+      @products = initialize_grid(Product, order: 'id', order_direction: 'desc')
+    end
+    @title_prefix = "“#{@title_prefix}”的" unless @title_prefix.blank?
   end
 
   def create
@@ -29,8 +38,22 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def destroy
-    @product = Product.find_by_id(params[:id])
-    if @product.destroy
+    if (@product = Product.find_by_id(params[:id]))
+      if params[:category_id]
+        if (@category = Category.find_by_id(params[:category_id]))
+          @category.products.delete(@product)
+        end
+      elsif params[:suit_id]
+        if  (@suit = Suit.find_by_id(params[:suit_id]))
+          @suit.products.delete(@product)
+        end
+      elsif params[:trend_courier_id]
+        if (@trend_courier = TrendCourier.find_by_id(params[:trend_courier_id]))
+          @product.update_column(:trend_courier_id, nil)
+        end
+      else
+        @product.destroy
+      end
       destroy_successfully
     else
       fail_to_destroy

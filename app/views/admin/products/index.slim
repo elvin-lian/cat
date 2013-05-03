@@ -1,6 +1,22 @@
 - admin_left_menu :product
 .page-header
-  h4= title '单品管理'
+  - if @category
+    h4
+      | 品类
+      = link_to @category.name, admin_category_path(@category.id)
+      | 的单品
+  - elsif @suit
+    h4
+      | 套装
+      = link_to @suit.title, admin_suit_path(@suit.id)
+      | 的单品
+  - elsif @trend_courier
+    h4
+      | 潮流速递
+      = link_to @trend_courier.title, admin_trend_courier_path(@trend_courier.id)
+      | 的单品
+  - else
+    h4= title '单品管理'
 = render :partial => 'grid'
 .batch-opt-div
   label style="display: inline-block"
@@ -16,9 +32,10 @@
     button.btn.btn-small.btn-info.batch_unlisted title="批量下架"
       i.icon-ban-circle.icon-white
       | 下架
-    button.btn.btn-small.btn-danger.batch_destroy title="批量删除"
-      i.icon-remove.icon-white
-      | 删除
+    - unless @category or @suit or @trend_courier
+      button.btn.btn-small.btn-danger.batch_destroy title="批量删除"
+        i.icon-remove.icon-white
+        | 删除
 javascript:
   $(document).ready(function () {
       el.Product.init();

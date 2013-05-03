@@ -17,6 +17,7 @@
   end
 
   g.column do |obj|
-    actions_links(obj, 7)
+    link = link_to '<i class="icon-briefcase"></i>'.html_safe, admin_new_product_suits_path(obj), title: '套装'
+    link << actions_links(obj, 7)
   end
 end -%>

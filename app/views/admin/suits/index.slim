@@ -1,4 +1,11 @@
 - admin_left_menu :suit
 .page-header
-  h4= title '套装管理'
+  - if @new_product
+    h4
+      | 新品
+      = link_to @new_product.name, admin_new_product_path(@new_product)
+      | 的套装
+  - else
+    h4= title "套装管理"
+
 = render :partial => 'grid'

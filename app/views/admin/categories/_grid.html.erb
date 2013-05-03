@@ -17,6 +17,7 @@
   end
 
   g.column do |obj|
-    actions_links(obj, 7)
+    link = link_to '<i class="icon-th-large"></i>'.html_safe, admin_category_products_path(obj),  title: '单品'
+    link << actions_links(obj, 7)
   end
 end -%>
