@@ -2,6 +2,7 @@
 - admin_left_menu :suit
 = suit_breadcrumb @suit
 .action-buttons
+  = link_to '<i class="icon-th-large icon-white"></i>'.html_safe, admin_suit_products_path(@suit), class: 'btn btn-primary', title: '单品'
   = actions_buttons(@suit, 6)
 table class="table table-striped"
   - Suit.attribute_names.each do |attr_name|

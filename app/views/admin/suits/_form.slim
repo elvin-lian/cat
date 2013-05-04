@@ -2,7 +2,9 @@
 .page-header
   h4= title @suit.new_record? ? '添加套装' : "修改套装 #{@suit.serial_number}"
 .action-buttons
-  = actions_buttons(@suit, 5) if @suit.id
+  - if @suit.id
+    = link_to '<i class="icon-th-large icon-white"></i>'.html_safe, admin_suit_products_path(@suit), class: 'btn btn-primary', title: '单品'
+    = actions_buttons(@suit, 5)
 
 = simple_form_for @suit, :url => (@suit.new_record? ? admin_suits_path : admin_suit_path(@suit)), :html => {class: 'form-horizontal'} do |f|
   fieldset

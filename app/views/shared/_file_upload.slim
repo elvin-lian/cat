@@ -67,7 +67,7 @@
             <td class="editable-blk" iid="{%=file.id%}">
               <span class="edit-text">{%=file.rank%}</span>
               <i class="icon-pencil"></i>
-              <input type="text" name="rank" class="edit-input input-mini" value="{%=file.rank%}"/>
+              <input type="number" name="rank" class="edit-input input-mini" value="{%=file.rank%}"/>
             </td>
             <td>{%=file.created_at%}</td>
             <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>

@@ -2,6 +2,7 @@
 - admin_left_menu :trend_courier
 = trend_courier_breadcrumb @trend_courier
 .action-buttons
+  = link_to '<i class="icon-th-large icon-white"></i>'.html_safe, admin_trend_courier_products_path(@trend_courier), class: 'btn btn-primary', title: '单品'
   = actions_buttons(@trend_courier, 6)
 table class="table table-striped"
   - TrendCourier.attribute_names.each do |attr_name|

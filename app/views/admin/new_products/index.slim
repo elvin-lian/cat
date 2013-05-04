@@ -2,3 +2,8 @@
 .page-header
   h4= title '新品管理'
 = render :partial => 'grid'
+- content_for :footer do
+  javascript:
+    $(document).ready(function(){
+      el.EditableTable.init("/admin/new_products/modify/");
+    });

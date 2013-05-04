@@ -11,7 +11,7 @@ module AdminMenuHelper
         ad: [
             ['首页广告', nil],
             ['所有广告', admin_ads_path, {path: 'ads#index', cc: [:read, Ad]}],
-            ['添加', new_admin_ad_path, {path: 'ads#new', cc: [:read, Ad]}]
+            ['添加广告', new_admin_ad_path, {path: 'ads#new', cc: [:read, Ad]}]
         ],
 
         category: [
@@ -28,8 +28,8 @@ module AdminMenuHelper
 
         latest_see: [
             ['最新宾视', nil],
-            ['所有', admin_latest_sees_path, {path: 'latest_sees#index', cc: [:read, LatestSee]}],
-            ['发布新一期', new_admin_latest_see_path, {path: 'latest_sees#new', cc: [:create, LatestSee]}]
+            #['所有宾视', admin_latest_sees_path, {path: 'latest_sees#index', cc: [:read, LatestSee]}],
+            # ['发布新一期', new_admin_latest_see_path, {path: 'latest_sees#new', cc: [:create, LatestSee]}]
         ],
 
         new_product: [

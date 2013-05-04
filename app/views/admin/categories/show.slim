@@ -2,6 +2,7 @@
 - admin_left_menu :category
 = category_breadcrumb @category
 .action-buttons
+  = link_to '<i class="icon-th-large icon-white"></i>'.html_safe, admin_category_products_path(@category), class: 'btn btn-primary', title: '单品'
   = actions_buttons(@category, 6)
 table class="table table-striped"
   - Category.attribute_names.each do |attr_name|

@@ -2,6 +2,7 @@
 - admin_left_menu :new_product
 = new_product_breadcrumb @new_product
 .action-buttons
+  = link_to '<i class="icon-briefcase icon-white"></i>'.html_safe, admin_new_product_suits_path(@new_product), class: 'btn btn-primary', title: '套装'
   = actions_buttons(@new_product, 6)
 table class="table table-striped"
   - NewProduct.attribute_names.each do |attr_name|

@@ -11,8 +11,8 @@ table class="table table-striped"
     tr
       th= Product.human_attribute_name(attr_name)
       td
-        - if 'pic' == attr_name
-          = @product.pic.url.blank? ? '' : link_to(image_tag(@product.pic.thumb.url), @product.pic.url, target: '_blank')
+        - if 'color_pic' == attr_name
+          = @product.full_color_pic_url.blank? ? '' : link_to(image_tag(@product.color_pic.thumb.url), @product.full_color_pic_url, target: '_blank')
         - elsif 'trend_courier_id' == attr_name
           - if @product.trend_courier
             = link_to @product.trend_courier.title, admin_trend_courier_path(@product.trend_courier_id)

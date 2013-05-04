@@ -33,8 +33,14 @@ class Admin::SuitsController < Admin::BaseController
   end
 
   def destroy
-    @suit = Suit.find_by_id(params[:id])
-    if @suit.destroy
+    if (@suit = Suit.find_by_id(params[:id]))
+      if params[:new_product_id]
+        if (@new_product = NewProduct.find_by_id(params[:new_product_id]))
+          @new_product.suits.delete(@suit)
+        end
+      else
+        @suit.destroy
+      end
       destroy_successfully
     else
       fail_to_destroy

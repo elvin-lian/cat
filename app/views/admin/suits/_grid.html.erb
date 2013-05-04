@@ -18,6 +18,11 @@
 
   g.column do |obj|
     link = link_to '<i class="icon-th-large"></i>'.html_safe, admin_suit_products_path(obj), title: '单品'
-    link << actions_links(obj, 7)
+    if @new_product
+      link << actions_links(obj, 3)
+      link << link_to('<i class="icon-remove"></i>'.html_safe, admin_new_product_suit_path(@new_product.id, obj.id), method: :delete, data: {confirm: "确定将套装#{obj.id}从新品#{@new_product.name}中删除"}, title: "将套装#{obj.id}从新品#{@new_product.name}中删除")
+    else
+      link << actions_links(obj, 7)
+    end
   end
 end -%>

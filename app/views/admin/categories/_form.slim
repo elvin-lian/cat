@@ -2,7 +2,9 @@
 .page-header
   h4= title @category.new_record? ? '添加品类' : "修改品类 #{@category.name}"
 .action-buttons
-  = actions_buttons(@category, 5) if @category.id
+  -  if @category.id
+    = link_to '<i class="icon-th-large icon-white"></i>'.html_safe, admin_category_products_path(@category), class: 'btn btn-primary', title: '单品'
+    = actions_buttons(@category, 5)
 
 = simple_form_for @category, :url => (@category.new_record? ? admin_categories_path : admin_category_path(@category)), :html => {class: 'form-horizontal'} do |f|
   fieldset

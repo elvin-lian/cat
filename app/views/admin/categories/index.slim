@@ -2,3 +2,8 @@
 .page-header
   h4= title '品类管理'
 = render :partial => 'grid'
+- content_for :footer do
+  javascript:
+    $(document).ready(function(){
+      el.EditableTable.init("/admin/categories/modify/");
+    });

@@ -35,11 +35,11 @@
     if @category or @suit or @trend_courier
       link << actions_links(obj, 3)
       if @category
-        link << link_to('<i class="icon-remove"></i>'.html_safe, admin_category_product_path(@category.id, obj.id), method: :delete, data: {confirm: "确定将单品#{obj.id}从品类#{@category.name}中删除"})
+        link << link_to('<i class="icon-remove"></i>'.html_safe, admin_category_product_path(@category.id, obj.id), method: :delete, data: {confirm: "确定将单品#{obj.id}从品类#{@category.name}中删除"}, title: "将单品#{obj.id}从品类#{@category.name}中删除")
       elsif @suit
-        link << link_to('<i class="icon-remove"></i>'.html_safe, admin_suit_product_path(@suit.id, obj.id), method: :delete, data: {confirm: "确定将单品#{obj.id}从套装#{@suit.title}中删除？"})
+        link << link_to('<i class="icon-remove"></i>'.html_safe, admin_suit_product_path(@suit.id, obj.id), method: :delete, data: {confirm: "确定将单品#{obj.id}从套装#{@suit.title}中删除？"}, title: "将单品#{obj.id}从套装#{@suit.title}中删除")
       elsif @trend_courier
-        link << link_to('<i class="icon-remove"></i>'.html_safe, admin_trend_courier_product_path(@trend_courier.id, obj.id), method: :delete, data: {confirm: "确定将单品#{obj.id}从潮流速递#{@trend_courier.title}中删除？"})
+        link << link_to('<i class="icon-remove"></i>'.html_safe, admin_trend_courier_product_path(@trend_courier.id, obj.id), method: :delete, data: {confirm: "确定将单品#{obj.id}从潮流速递#{@trend_courier.title}中删除？"}, title: "将单品#{obj.id}从潮流速递#{@trend_courier.title}中删除")
       end
     else
       link << actions_links(obj, 7)

@@ -19,7 +19,7 @@ el.EditableTable = (function () {
 
                 $.ajax({
                     type:"POST",
-                    url: __url + id.toString(),
+                    url:__url + id.toString(),
                     data:'name=' + $input.prop('name') + '&value=' + $input.val(),
                     cache:false,
                     success:function (data) {
@@ -32,6 +32,9 @@ el.EditableTable = (function () {
                         } else {
                             alert(data.message);
                         }
+                    },
+                    complete:function () {
+                        $('.editable-blk .edit-loading').remove();
                     }
                 });
 
@@ -42,7 +45,6 @@ el.EditableTable = (function () {
     var blurEvent = function () {
         $('.edit-input').blur(function () {
             $('.editable-blk .edit-input').hide();
-            $('.editable-blk .edit-loading').remove();
             $(".editable-blk .edit-text").show();
             $(".editable-blk i").show();
         });

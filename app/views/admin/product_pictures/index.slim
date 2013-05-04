@@ -27,7 +27,7 @@ div
               span.edit-text
                 = pic[:rank]
               i.icon-pencil
-              input type="text" name="rank" class="edit-input input-mini" value="#{pic[:rank]}"
+              input type="number" name="rank" class="edit-input input-mini" value="#{pic[:rank]}"
             td.name= pic[:created_at]
             td.size= (pic[:size].to_f / 1024).round(2).to_s + 'KB'
             td colspan="2"

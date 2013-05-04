@@ -36,10 +36,13 @@ Cabbeen::Application.routes.draw do
       resources :brands
       resources :categories do
         resources :products
+        collection do
+          post 'modify/:id' => 'categories#modify'
+        end
       end
       resources :city_weeklies
       resources :dashboard, :only => :index
-      resources :latest_sees do
+      resources :latest_sees, :only => :index do
         resources :pictures, :controller => :latest_see_pictures do
           collection do
             post 'modify/:id' => 'latest_see_pictures#modify'
@@ -48,6 +51,9 @@ Cabbeen::Application.routes.draw do
       end
       resources :new_products do
         resources :suits
+        collection do
+          post 'modify/:id' => 'new_products#modify'
+        end
       end
       resources :products do
         resources :comments, :controller => :product_comments

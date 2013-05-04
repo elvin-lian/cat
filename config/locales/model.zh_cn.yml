@@ -52,7 +52,7 @@ zh_cn:
         sub_title: 英文名称
         is_top: 推荐
         status: 上架？
-        price: 价格
+        price: '价格(元)'
         design_inspiration: 设计灵感
       product_comment:
         price_score: 价钱评价
