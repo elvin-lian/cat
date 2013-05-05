@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Admin::BrandsController < Admin::BaseController
 
   load_and_authorize_resource
@@ -10,23 +11,51 @@ class Admin::BrandsController < Admin::BaseController
   def create
     @brand = Brand.new(params[:brand])
     if @brand.save
-      create_successfully
-      redirect_to action: :index
+      respond_to do |format|
+        format.html {
+          update_successfully
+          redirect_to action: :index
+        }
+        format.json {
+          render :json => {status: 1, message: '上传成功', updated_at: @brand.updated_at.localtime.strftime('%Y-%m-%d %H:%M:%S'), link: @brand.full_pdf_url}.as_json, status: :ok
+        }
+      end
     else
-      fail_to_create
-      redirect_to action: :index
+      respond_to do |format|
+        format.html {
+          fail_to_update
+          redirect_to action: :index
+        }
+        format.json {
+          render :json => {status: 0, message: '上传失败'}, :status => :ok
+        }
+      end
     end
   end
 
   def update
     @brand = Brand.find_by_id(params[:id])
     if @brand.update_attributes(params[:brand])
-      update_successfully
+      respond_to do |format|
+        format.html {
+          update_successfully
+          redirect_to action: :index
+        }
+        format.json {
+          render :json => {status: 1, message: '上传成功', updated_at: @brand.updated_at.localtime.strftime('%Y-%m-%d %H:%M:%S'), link: @brand.full_pdf_url}.as_json, status: :ok
+        }
+      end
     else
-      fail_to_update
+      respond_to do |format|
+        format.html {
+          fail_to_update
+          redirect_to action: :index
+        }
+        format.json {
+          render :json => {status: 0, message: '上传失败'}, :status => :ok
+        }
+      end
     end
-
-    redirect_to action: :index
   end
 
   def destroy
