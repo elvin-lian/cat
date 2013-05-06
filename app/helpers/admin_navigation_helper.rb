@@ -2,7 +2,7 @@
 module AdminNavigationHelper
   def admin_nav
     navigation = [
-        ['面板', admin_dashboard_index_path, nil],
+        ['首页', admin_dashboard_index_path, nil],
         ['品类', admin_categories_path, Category],
         ['新品', admin_new_products_path, NewProduct],
         ['套装', admin_suits_path, Suit],
