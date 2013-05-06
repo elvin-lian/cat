@@ -1,15 +1,89 @@
+#uploaded-message.alert style="display:none"
 .page-header
   h4 店铺信息
   - if @shop_info.new_record?
     .well 店铺信息是在一张图片里，请上传图片。
-noscript
-= simple_form_for @shop_info, :url => @shop_info.new_record? ? admin_shop_infos_path : admin_shop_info_path(@shop_info),:html => {class: 'form-horizontal', enctype: 'multipart/form-data'} do |f|
-  fieldset
-    - unless @shop_info.new_record?
-      = f.input :updated_at, input_html: {disabled: 'disabled'}, as: :string
-    = f.input :pic
-    .form-actions
-      = f.submit @shop_info.new_record? ? '上传': '保存' , class: 'btn btn-primary', disable_with: '上传中，请稍等...'
-- unless @shop_info.new_record?
-  h5 店铺信息预览:
-  p= image_tag(@shop_info.pic.url)
+
+= simple_form_for @shop_info, :url => @shop_info.new_record? ? admin_shop_infos_path : admin_shop_info_path(@shop_info),:html => {class: 'form-horizontal', enctype: 'multipart/form-data', id: "fileupload"} do |f|
+  table style="width:100%;"
+    - unless @shop_info.full_pic_url.empty?
+      tr
+        td
+          span id="pic-link"
+            = image_tag(@shop_info.pic.url)
+      tr height="40"
+        td
+          | 图片上传时间：
+          span id="last-updated-at"
+            = t2l @shop_info.updated_at
+    tr.fileupload-buttonbar
+      td colspan="2"
+        .span3
+          span.btn.btn-primary.fileinput-button
+            i class="icon-plus icon-white"
+            span 上传图片
+            | <input type="file" name="shop_info[pic]">
+        .span9.fileupload-progress.fade
+          .progress.progress-success.progress-striped.active role="progressbar" aria-valuemin="0" aria-valuemax="100"
+            .bar style="width:0%;"
+        .progress-extended &nbsp;
+        .fileupload-loading
+        .help-block 只能上传 png, jpg格式的图片； 图片大小: 2048x1496px
+= render :partial => 'shared/file_upload'
+- content_for :footer do
+  - if @shop_info.full_pic_url.empty?
+    javascript:
+      function file_uploaded_cb(data){
+        window.location.reload();
+      }
+  - else
+    javascript:
+      function file_uploaded_cb(data){
+        $('#last-updated-at').html(data.result.updated_at);
+        $('#pic-link').html('<img src="'+ data.result.link +'"/>');
+      }
+  javascript:
+    $(document).ready(function(){
+      $('#fileupload').fileupload();
+      $('#fileupload').fileupload('option', {
+        maxFileSize:20000000, // 20M
+        acceptFileTypes:/(\.|\/)(png|jpg|jpeg)$/i,
+        autoUpload: true,
+        uploadTemplate: function(o){
+          var rows = $();
+          $.each(o.files, function (index, file) {
+            rows = rows.add($('<span>' + file.error + '</span>'));
+          });
+          return rows;
+        }
+      }).bind('fileuploadadded', function(e, data){
+        var $msg = $('#uploaded-message');
+        $msg.hide();
+        if(!data.isValidated){
+          $msg.html(data.context[0].innerHTML);
+          $msg.addClass('alert-error');
+          $msg.removeClass('alert-success');
+          $msg.show('fast');
+        }
+      }).bind('fileuploaddone', function(e, data){
+        var $msg = $('#uploaded-message');
+        $msg.hide();
+        $msg.html(data.result.message);
+        $msg.addClass('alert-success');
+        $msg.removeClass('alert-error');
+        $msg.show('fast');
+        if(1 == data.result.status){
+          file_uploaded_cb(data);
+        }
+      });
+      if ($.support.cors) {
+        $.ajax({
+          maxChunkSize:20000000, // 20 MB
+          url:$('#fileupload').fileupload('option', 'url'),
+          dataType:'json',
+          context:$('#fileupload')[0]
+        }).always(function (result) {
+          $(this).removeClass('fileupload-processing');
+        });
+      }
+    });

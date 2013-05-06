@@ -1,8 +1,9 @@
+#uploaded-message.alert style="display:none"
 .page-header
   h4 品牌信息
   - if @brand.new_record?
     .well 品牌信息是在一个PDF格式文件，请上传，大小不超过20M。
-noscript
+
 = simple_form_for @brand, :url => @brand.new_record? ? admin_brands_path : admin_brand_path(@brand),:html => {class: 'form-horizontal', enctype: 'multipart/form-data', id: "fileupload"} do |f|
   table style="width:100%;"
     - unless @brand.full_pdf_url.empty?
@@ -27,6 +28,17 @@ noscript
         .fileupload-loading
 = render :partial => 'shared/file_upload'
 - content_for :footer do
+  - if @brand.full_pdf_url.empty?
+    javascript:
+      function file_uploaded_cb(data){
+        window.location.reload();
+      }
+  - else
+    javascript:
+      function file_uploaded_cb(data){
+        $('#last-updated-at').html(data.result.updated_at);
+        $('#download-link').html('<a href="'+ data.result.link +'" target="_blank">点击下载</a>');
+      }
   javascript:
     $(document).ready(function(){
       $('#fileupload').fileupload();
@@ -42,14 +54,23 @@ noscript
           return rows;
         }
       }).bind('fileuploadadded', function(e, data){
+        var $msg = $('#uploaded-message');
+        $msg.hide();
         if(!data.isValidated){
-          alert(data.context[0].innerHTML);
+          $msg.html(data.context[0].innerHTML);
+          $msg.addClass('alert-error');
+          $msg.removeClass('alert-success');
+          $msg.show('fast');
         }
       }).bind('fileuploaddone', function(e, data){
-        alert(data.result.message);
+        var $msg = $('#uploaded-message');
+        $msg.hide();
+        $msg.html(data.result.message);
+        $msg.addClass('alert-success');
+        $msg.removeClass('alert-error');
+        $msg.show('fast');
         if(1 == data.result.status){
-          $('#last-updated-at').html(data.result.updated_at);
-          $('#download-link').html('<a href="'+ data.result.link +'" target="_blank">点击下载</a>');
+          file_uploaded_cb(data);
         }
       });
       if ($.support.cors) {

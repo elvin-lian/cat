@@ -9,19 +9,15 @@ class Admin::ShopInfosController < Admin::BaseController
   end
 
   def create
-    #p_attr = {}
-    #p_attr[:pic] = params[:files].first if params[:files].class == Array
     @shop_info = ShopInfo.new(params[:shop_info])
     if @shop_info.save
       respond_to do |format|
         format.html {
-          #render :json => {files: [@shop_info.to_jq_upload]}.as_json,
-          #       :content_type => 'text/html',
-          #       :layout => false
+          create_successfully
           redirect_to action: :index
         }
         format.json {
-          render :json => {files: [@shop_info.to_jq_upload]}.as_json, status: :ok
+          render :json => {status: 1, message: '上传成功', link: @shop_info.full_pic_url}, status: :ok
         }
       end
     else
@@ -31,7 +27,7 @@ class Admin::ShopInfosController < Admin::BaseController
           redirect_to action: :index
         }
         format.json {
-          render :json => [], :status => :ok
+          render :json => {status: 0, message: '上传失败'}, :status => :ok
         }
       end
     end
@@ -40,19 +36,27 @@ class Admin::ShopInfosController < Admin::BaseController
   def update
     @shop_info = ShopInfo.find_by_id(params[:id])
     if @shop_info.update_attributes(params[:shop_info])
-      update_successfully
+      respond_to do |format|
+        format.html {
+          update_successfully
+          redirect_to action: :index
+        }
+        format.json {
+          render :json => {status: 1, message: '上传成功', link: @shop_info.full_pic_url}, status: :ok
+        }
+      end
     else
-      fail_to_update
+      respond_to do |format|
+        format.html {
+          flash[:error] = '上传失败'
+          redirect_to action: :index
+        }
+        format.json {
+          render :json => {status: 0, message: '上传失败'}, :status => :ok
+        }
+      end
     end
 
-    respond_to do |format|
-      format.html {
-        redirect_to action: :index
-      }
-      format.json {
-        render :json => [], :status => :ok
-      }
-    end
   end
 
   def destroy
