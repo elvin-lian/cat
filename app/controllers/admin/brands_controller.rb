@@ -6,11 +6,13 @@ class Admin::BrandsController < Admin::BaseController
   def index
     @brand = Brand.last
     @brand = Brand.new if @brand.nil?
+    @preview_pictures = @brand.get_pdf_png
   end
 
   def create
     @brand = Brand.new(params[:brand])
     if @brand.save
+      @brand.pdf2png
       respond_to do |format|
         format.html {
           update_successfully
@@ -36,6 +38,7 @@ class Admin::BrandsController < Admin::BaseController
   def update
     @brand = Brand.find_by_id(params[:id])
     if @brand.update_attributes(params[:brand])
+      @brand.pdf2png
       respond_to do |format|
         format.html {
           update_successfully

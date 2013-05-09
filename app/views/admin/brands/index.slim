@@ -6,15 +6,6 @@
 
 = simple_form_for @brand, :url => @brand.new_record? ? admin_brands_path : admin_brand_path(@brand),:html => {class: 'form-horizontal', enctype: 'multipart/form-data', id: "fileupload"} do |f|
   table style="width:100%;"
-    - unless @brand.full_pdf_url.empty?
-      tr
-        td
-          | 文件上传时间：
-          span id="last-updated-at"
-            = t2l @brand.updated_at
-        td
-          span id="download-link"
-            = link_to '点击下载', @brand.full_pdf_url, target: '_blank'
     tr.fileupload-buttonbar
       td.span3
         span.btn.btn-primary.fileinput-button
@@ -26,19 +17,20 @@
           .bar style="width:0%;"
         .progress-extended &nbsp;
         .fileupload-loading
+    - unless @brand.full_pdf_url.empty?
+      tr
+        td colspan="2"
+          | 文件上传时间为
+          = t2l @brand.updated_at
+          | ， 以下仅为前#{@preview_pictures.length}页的预览图， 更多请
+          = link_to '点击下载', @brand.full_pdf_url, target: '_blank'
+          .help-block 如果更新PDF后预览图没有更新，请更新浏览器的缓存(Ctrl+F5)
+      - @preview_pictures.each do |pic|
+        tr
+          td colspan="2"
+            =image_tag(pic)
 = render :partial => 'shared/file_upload'
 - content_for :footer do
-  - if @brand.full_pdf_url.empty?
-    javascript:
-      function file_uploaded_cb(data){
-        window.location.reload();
-      }
-  - else
-    javascript:
-      function file_uploaded_cb(data){
-        $('#last-updated-at').html(data.result.updated_at);
-        $('#download-link').html('<a href="'+ data.result.link +'" target="_blank">点击下载</a>');
-      }
   javascript:
     $(document).ready(function(){
       $('#fileupload').fileupload();
@@ -70,7 +62,7 @@
         $msg.removeClass('alert-error');
         $msg.show('fast');
         if(1 == data.result.status){
-          file_uploaded_cb(data);
+          window.location.reload();
         }
       });
       if ($.support.cors) {

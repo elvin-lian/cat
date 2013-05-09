@@ -29,6 +29,9 @@ gem 'cancan', '1.6.9'
 # sign in
 gem 'devise', '~> 2.2.3'
 
+# pdf
+gem 'rghost'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
