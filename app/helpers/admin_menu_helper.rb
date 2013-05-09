@@ -32,11 +32,11 @@ module AdminMenuHelper
             # ['发布新一期', new_admin_latest_see_path, {path: 'latest_sees#new', cc: [:create, LatestSee]}]
         ],
 
-        new_product: [
-            ['新品', nil],
-            ['所有新品', admin_new_products_path, {path: 'new_products#index', cc: [:read, NewProduct]}],
-            ['添加新品', new_admin_new_product_path, {path: 'new_products#new', cc: [:create, NewProduct]}]
-        ],
+        #new_product: [
+        #    ['新品', nil],
+        #    ['所有新品', admin_new_products_path, {path: 'new_products#index', cc: [:read, NewProduct]}],
+        #    ['添加新品', new_admin_new_product_path, {path: 'new_products#new', cc: [:create, NewProduct]}]
+        #],
 
         product: [
             ['单品', nil],

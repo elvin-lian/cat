@@ -37,6 +37,10 @@ Feature: Product detail API
           "proColorImageURL": "",
           "proTrendCourierID": "",
           "proTrendCourierUrl": "",
+          "proSimpleIntroduce": "",
+          "timeForSale": "",
+          "proSuitCategoryID": "",
+          "proSuitCategoryName": "",
           "proImageURLArray": [],
           "someStyleProIDList":[
             {
@@ -53,6 +57,10 @@ Feature: Product detail API
               "proColorName": "",
               "proColorImageURL": "",
               "proTrendCourierID": "",
+              "proSimpleIntroduce": "",
+              "timeForSale": "",
+              "proSuitCategoryID": "",
+              "proSuitCategoryName": "",
               "proTrendCourierUrl": "",
               "proImageURLArray": []
             }

@@ -4,7 +4,7 @@
     link_to(image_tag(obj.pic.thumb.url), obj.pic.url, target: '_blank') if obj.pic.url
   end
 
-  %w(id name).each do |attr|
+  %w(name).each do |attr|
     g.column :name => NewProduct.human_attribute_name(attr.to_sym), :attribute => attr do |obj|
       if attr.in? %w(created_at updated_at)
         t2l(obj.send(attr.to_sym))
@@ -36,6 +36,6 @@
 
   g.column do |obj|
     link = link_to '<i class="icon-briefcase"></i>'.html_safe, admin_new_product_suits_path(obj), title: '套装'
-    link << actions_links(obj, 7)
+    link << actions_links(obj, 3)
   end
 end -%>

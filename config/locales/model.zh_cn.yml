@@ -32,12 +32,14 @@ zh_cn:
         updated_at: 上传时间
       category:
         name: 品类名称
+        parent_category: 分类
         pic: 按钮图标
         rank: 排序
       new_product:
-        name: 新品分类名称
+        name: 新品名称
         pic: 按钮图标
         rank: 排序
+        status: 上架？
       product:
         serial_number: 编号
         title: 名称
@@ -54,6 +56,9 @@ zh_cn:
         status: 上架？
         price: '价格(元)'
         design_inspiration: 设计灵感
+        time_for_sale: 上市时间
+        summary: 产品简介
+        suit_category: 分类
       product_comment:
         price_score: 价钱评价
         design_score: 设计评价

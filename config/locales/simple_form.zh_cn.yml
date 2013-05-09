@@ -29,7 +29,7 @@ zh_cn:
       brand:
         pdf: 请上传一个pdf格式的文件
       category:
-        pic: '图片大小：900x100px'
+        pic: '图片大小: 900x100px'
       city_weekly:
         pic: '图片大小: 700x525px'
       defaults:
@@ -78,16 +78,16 @@ zh_cn:
         l_right_arrow_btn: '图片大小: 60x130px'
         tool_bg_image: '图片大小: 2048x110px'
         l_tool_bg_image: '图片大小: 2048x110px'
-        brand_info_btn: '图片大小: 60x200px'
-        l_brand_info_btn: '图片大小: 60x200px'
-        pro_show_btn: '图片大小: 60x200px'
-        l_pro_show_btn: '图片大小: 60x200px'
-        city_week_btn: '图片大小: 60x200px'
-        l_city_week_btn: '图片大小: 60x200px'
-        lastest_see_btn: '图片大小: 60x200px'
-        l_lastest_see_btn: '图片大小: 60x200px'
-        shop_info_btn: '图片大小: 60x200px'
-        l_shop_info_btn: '图片大小: 60x200px'
+        brand_info_btn: '图片大小: 200x60px'
+        l_brand_info_btn: '图片大小: 200x60px'
+        pro_show_btn: '图片大小: 200x60px'
+        l_pro_show_btn: '图片大小: 200x60px'
+        city_week_btn: '图片大小: 200x60px'
+        l_city_week_btn: '图片大小: 200x60px'
+        lastest_see_btn: '图片大小: 200x60px'
+        l_lastest_see_btn: '图片大小: 200x60px'
+        shop_info_btn: '图片大小: 200x60px'
+        l_shop_info_btn: '图片大小: 200x60px'
         back_btn: '图片大小: 60x60px'
         l_back_btn: '图片大小: 60x60px'
         trend_courier_btn: '图片大小: 200x60px'

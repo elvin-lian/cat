@@ -18,5 +18,7 @@ table class="table table-striped"
             = link_to @product.trend_courier.title, admin_trend_courier_path(@product.trend_courier_id)
         - elsif attr_name.in?(%w(created_at updated_at))
           = t2l(@product.send(attr_name.to_sym))
+        - elsif attr_name == 'suit_category'
+          = @product.suit_category_name
         - else
           = @product.send(attr_name.to_sym)

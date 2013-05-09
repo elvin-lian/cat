@@ -51,6 +51,8 @@ Feature: Launch API
             {
               "categoryProductID": "#{@category.id}",
               "categoryProductName": "foo category",
+              "categoryParentProductID": "0",
+              "categoryParentProductName": "",
               "categoryProductURL":""
             }
           ]

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130501082129) do
+ActiveRecord::Schema.define(:version => 20130509125847) do
 
   create_table "admins", :force => true do |t|
     t.string   "name",                :default => "", :null => false
@@ -49,10 +49,11 @@ ActiveRecord::Schema.define(:version => 20130501082129) do
   create_table "categories", :force => true do |t|
     t.string   "name"
     t.string   "pic"
-    t.integer  "rank",       :default => 0
-    t.boolean  "status",     :default => true
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
+    t.integer  "rank",                         :default => 0
+    t.boolean  "status",                       :default => true
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
+    t.integer  "parent_category", :limit => 1, :default => 0
   end
 
   add_index "categories", ["rank"], :name => "index_categories_on_rank"
@@ -169,6 +170,9 @@ ActiveRecord::Schema.define(:version => 20130501082129) do
     t.string   "price"
     t.text     "design_inspiration"
     t.string   "color_pic"
+    t.text     "summary"
+    t.integer  "suit_category",      :limit => 1
+    t.string   "time_for_sale"
   end
 
   add_index "products", ["is_top"], :name => "index_products_on_is_top"
