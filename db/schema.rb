@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130509125847) do
+ActiveRecord::Schema.define(:version => 20130510123922) do
 
   create_table "admins", :force => true do |t|
     t.string   "name",                :default => "", :null => false
@@ -159,8 +159,6 @@ ActiveRecord::Schema.define(:version => 20130509125847) do
     t.string   "serial_number",      :limit => 100
     t.string   "title",              :limit => 100
     t.text     "description"
-    t.string   "color_name",         :limit => 32
-    t.string   "color_rgb",          :limit => 32
     t.boolean  "status",                            :default => true
     t.integer  "trend_courier_id"
     t.datetime "created_at",                                          :null => false

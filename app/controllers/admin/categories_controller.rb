@@ -3,7 +3,7 @@ class Admin::CategoriesController < Admin::BaseController
   load_and_authorize_resource
 
   def index
-    @categories = initialize_grid(Category, order: 'id', order_direction: 'desc', :per_page => 30)
+    @categories = initialize_grid(Category, order: 'rank', order_direction: 'ASC', :per_page => 30)
   end
 
   def create
@@ -21,7 +21,7 @@ class Admin::CategoriesController < Admin::BaseController
     @category = Category.find_by_id(params[:id])
     if @category.update_attributes(params[:category])
       update_successfully
-      redirect_to action: :edit
+      redirect_to action: :show
     else
       fail_to_update
       render action: :edit

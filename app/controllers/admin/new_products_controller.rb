@@ -2,7 +2,7 @@ class Admin::NewProductsController < Admin::BaseController
   load_and_authorize_resource
 
   def index
-    @new_products = initialize_grid(NewProduct, order: 'rank', order_direction: 'desc', :per_page => 30)
+    @new_products = initialize_grid(NewProduct, order: 'rank', order_direction: 'asc', :per_page => 30)
   end
 
   def create
@@ -20,7 +20,7 @@ class Admin::NewProductsController < Admin::BaseController
     @new_product = NewProduct.find_by_id(params[:id])
     if @new_product.update_attributes(params[:new_product])
       update_successfully
-      redirect_to action: :edit
+      redirect_to action: :show
     else
       fail_to_update
       render action: :edit

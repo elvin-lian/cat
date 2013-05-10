@@ -25,7 +25,7 @@ class Admin::SuitsController < Admin::BaseController
     @suit = Suit.find_by_id(params[:id])
     if @suit.update_attributes(params[:suit])
       update_successfully
-      redirect_to action: :edit
+      redirect_to action: :show
     else
       fail_to_update
       render action: :edit

@@ -48,7 +48,7 @@ module Logic
 
       def new_product_json
         res = []
-        new_products = NewProduct.where('status = 1').order('rank DESC, id DESC').limit(100)
+        new_products = NewProduct.where('status = 1').order('rank ASC, id ASC').limit(100)
         unless new_products.empty?
           new_products.each { |product| res << product.simple_json }
         end
@@ -57,7 +57,7 @@ module Logic
 
       def category_json
         res = []
-        categories = Category.where('status = 1').order('rank DESC, id DESC').limit(100)
+        categories = Category.where('status = 1').order('rank ASC, id ASC').limit(100)
         unless categories.empty?
           categories.each { |cat| res << cat.simple_json }
         end

@@ -15,3 +15,9 @@ table class="table table-striped"
           = t2l(@suit.send(attr_name.to_sym))
         - else
           = @suit.send(attr_name.to_sym)
+  tr
+    th 新品
+    td
+      - @suit.new_products.each do |np|
+        p
+          = link_to np.name, admin_new_product_path(np.id)

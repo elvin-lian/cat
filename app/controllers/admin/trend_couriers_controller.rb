@@ -20,7 +20,7 @@ class Admin::TrendCouriersController < Admin::BaseController
     @trend_courier = TrendCourier.find_by_id(params[:id])
     if @trend_courier.update_attributes(params[:trend_courier])
       update_successfully
-      redirect_to action: :edit
+      redirect_to action: :show
     else
       fail_to_update
       render action: :edit

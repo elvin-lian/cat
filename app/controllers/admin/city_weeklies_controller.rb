@@ -21,7 +21,7 @@ class Admin::CityWeekliesController < Admin::BaseController
     @city_weekly = CityWeekly.find_by_id(params[:id])
     if @city_weekly.update_attributes(params[:city_weekly])
       update_successfully
-      redirect_to action: :edit
+      redirect_to action: :show
     else
       fail_to_update
       render action: :edit

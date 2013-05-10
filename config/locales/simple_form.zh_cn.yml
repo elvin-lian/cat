@@ -34,7 +34,7 @@ zh_cn:
         pic: '图片大小: 700x525px'
       defaults:
         status: '选中状态，表示审核通过'
-        rank: '请输入整数，数字大的在前面'
+        rank: '请输入整数，数字小的在前面'
       new_product:
         pic: '图片大小：150x150px'
       product:

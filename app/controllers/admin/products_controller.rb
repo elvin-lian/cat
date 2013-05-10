@@ -30,7 +30,7 @@ class Admin::ProductsController < Admin::BaseController
     @product = Product.find_by_id(params[:id])
     if @product.update_attributes(params[:product])
       update_successfully
-      redirect_to action: :edit
+      redirect_to action: :show
     else
       fail_to_update
       render action: :edit

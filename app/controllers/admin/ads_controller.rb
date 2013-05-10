@@ -22,7 +22,7 @@ class Admin::AdsController < Admin::BaseController
     @ad = Ad.find_by_id(params[:id])
     if @ad.update_attributes(params[:ad])
       update_successfully
-      redirect_to action: :edit
+      redirect_to action: :show
     else
       fail_to_update
       render action: :edit
