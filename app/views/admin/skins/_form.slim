@@ -1,20 +1,90 @@
 - admin_left_menu :skin
 .page-header
-  h4= title @skin.new_record? ? '添加皮肤' : "修改皮肤 #{@skin.title}"
+  h4= title "上传皮肤 #{@skin.title}"
 .action-buttons
   = actions_buttons(@skin, 5) if @skin.id
 
-= simple_form_for @skin, :url => (@skin.new_record? ? admin_skins_path : admin_skin_path(@skin)), :html => {class: 'form-horizontal skin-form'} do |f|
-  fieldset
-    = f.input :title
-    = f.input :status
-    - Skin.attribute_names.each do |attr_name|
-      - unless attr_name.in?(Skin.non_pic_fields)
-        = f.input attr_name
-        - unless @skin.new_record? or @skin.fill_thumb_pic_url(attr_name).blank?
-          .control-group
-            .control-label &nbsp;
-            .controls
-              = link_to image_tag(@skin.fill_thumb_pic_url(attr_name)), @skin.fill_pic_url(attr_name)
-    .form-actions
-      = f.submit (@skin.new_record? ? '保存' : '修改') , class: 'btn btn-primary', disable_with: '上传中，请稍等...'
+.div
+  ul class="nav nav-tabs"
+    - i = 0
+    - Skin.pic_attr.map do |k, fields|
+      - i += 1
+      li class="#{1 == i ? 'active' : ''}"
+        a href="#pictures_#{i}" data-toggle="tab"
+          = k
+    li
+      a href="#base-info" data-toggle="tab" 基本信息
+  .tab-content style="margin-top: 50px;"
+    - i = 0
+    - Skin.pic_attr.map do |k, fields|
+      - i += 1
+      .tab-pane id="pictures_#{i}" class="#{1 == i ? 'active' : ''}"
+        - fields.each do |attr_name|
+          = simple_form_for @skin, :url => (@skin.new_record? ? admin_skins_path : admin_skin_path(@skin)), :html => {class: 'fileupload form-horizontal skin-form'} do |f|
+            fieldset
+              - unless attr_name.in?(Skin.non_pic_fields)
+                = f.input attr_name
+                .control-group
+                  .control-label &nbsp;
+                  .controls
+                    .span2.thumb
+                      - unless @skin.new_record? or @skin.fill_thumb_pic_url(attr_name).blank?
+                        = link_to image_tag(@skin.fill_thumb_pic_url(attr_name)), @skin.fill_pic_url(attr_name)
+                    .span10.fileupload-progress.fade
+                      .progress.progress-success.progress-striped.active role="progressbar" aria-valuemin="0" aria-valuemax="100" style="margin-bottom: 5px"
+                        .bar style="width:0%;"
+                      .progress-extended &nbsp;
+          = simple_form_for @skin, :url => (@skin.new_record? ? admin_skins_path : admin_skin_path(@skin)), :html => {class: 'fileupload form-horizontal skin-form'} do |f|
+            fieldset
+              - attr_name = 'l_' + attr_name
+              - unless attr_name.in?(Skin.non_pic_fields)
+                = f.input "#{attr_name}"
+                .control-group
+                  .control-label &nbsp;
+                  .controls
+                    .span2.thumb
+                      - unless @skin.new_record? or @skin.fill_thumb_pic_url(attr_name).blank?
+                        = link_to image_tag(@skin.fill_thumb_pic_url(attr_name)), @skin.fill_pic_url(attr_name)
+                    .span10.fileupload-progress.fade
+                      .progress.progress-success.progress-striped.active role="progressbar" aria-valuemin="0" aria-valuemax="100" style="margin-bottom: 5px"
+                        .bar style="width:0%;"
+                      .progress-extended &nbsp;
+    #base-info.tab-pane
+      = simple_form_for @skin, :url => (@skin.new_record? ? admin_skins_path : admin_skin_path(@skin)), :html => {class: 'form-horizontal skin-form'} do |f|
+        fieldset
+          = f.input :title
+          = f.input :status
+          .form-actions
+            = f.submit '保存' , class: 'btn btn-primary', disable_with: '保存中，请稍等...'
+= render :partial => 'shared/file_upload'
+- content_for :footer do
+  javascript:
+    $(document).ready(function(){
+      $('.fileupload').fileupload();
+      $('.fileupload').fileupload('option', {
+        maxFileSize:5000000, // 5M
+        acceptFileTypes:/(\.|\/)(jpe?g|png)$/i,
+        autoUpload: true,
+        uploadTemplate: function(o){
+          var rows = $();
+          $.each(o.files, function (index, file) {
+            rows = rows.add($('<span>' + file.error + '</span>'));
+          });
+          return rows;
+        }
+      }).bind('fileuploaddone', function(e, data){
+        if(1 == data.result.status){
+          $('.thumb', this).html('<a href="'+ data.result.link +'" target="_blank"><img src="' + data.result.thumb_link + '"/></a>');
+        }
+      });
+      if ($.support.cors) {
+        $.ajax({
+          maxChunkSize:5000000, // 5 MB
+          url:$('.fileupload').fileupload('option', 'url'),
+          dataType:'json',
+          context:$('.fileupload')[0]
+        }).always(function (result) {
+          $(this).removeClass('fileupload-processing');
+        });
+      }
+    });

@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Skin < ActiveRecord::Base
   attr_accessible :back_btn, :brand_info_btn, :category_pro_bg, :city_week_btn, :close_btn, :close_to_home_btn,
                   :lastest_see_btn, :left_arrow_btn, :other_bg, :pro_bg, :pro_evaluate_btn, :pro_list_bg, :pro_show_btn,
@@ -62,6 +63,17 @@ class Skin < ActiveRecord::Base
 
   def self.non_pic_fields
     %w(id created_at updated_at status title)
+  end
+
+  def self.pic_attr
+    {
+        '首页' => %w(tool_bg_image brand_info_btn pro_show_btn city_week_btn lastest_see_btn shop_info_btn tool_show_hide_btn),
+        '背景图' => %w(category_pro_bg suits_list_bg pro_list_bg suit_bg pro_bg other_bg),
+        '都市周报' => %w(tool_home_btn close_btn),
+        '搭配浏览' => %w(search_btn close_to_home_btn back_btn),
+        '品牌咨询' => %w(left_arrow_btn right_arrow_btn),
+        '单品展示' => %w(trend_courier_btn pro_to_suit_btn pro_evaluate_btn pro_text_bg)
+    }
   end
 
   def simple_json
