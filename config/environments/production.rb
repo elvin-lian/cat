@@ -44,8 +44,8 @@ Cabbeen::Application.configure do
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
-  config.action_controller.asset_host = "http://173.224.215.222:3000"
-  config.api_url_prefix = "http://173.224.215.222:3000/v1"
+  config.action_controller.asset_host = "http://210.5.31.9"
+  config.api_url_prefix = "http://210.5.31.9/v1"
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   config.assets.precompile += %w(admin.js file_upload.js admin.css file_upload.css)
