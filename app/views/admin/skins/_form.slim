@@ -34,21 +34,21 @@
                       .progress.progress-success.progress-striped.active role="progressbar" aria-valuemin="0" aria-valuemax="100" style="margin-bottom: 5px"
                         .bar style="width:0%;"
                       .progress-extended &nbsp;
-          = simple_form_for @skin, :url => (@skin.new_record? ? admin_skins_path : admin_skin_path(@skin)), :html => {class: 'fileupload form-horizontal skin-form'} do |f|
-            fieldset
-              - attr_name = 'l_' + attr_name
-              - unless attr_name.in?(Skin.non_pic_fields)
-                = f.input "#{attr_name}"
-                .control-group
-                  .control-label &nbsp;
-                  .controls
-                    .span2.thumb
-                      - unless @skin.new_record? or @skin.fill_thumb_pic_url(attr_name).blank?
-                        = link_to image_tag(@skin.fill_thumb_pic_url(attr_name)), @skin.fill_pic_url(attr_name)
-                    .span10.fileupload-progress.fade
-                      .progress.progress-success.progress-striped.active role="progressbar" aria-valuemin="0" aria-valuemax="100" style="margin-bottom: 5px"
-                        .bar style="width:0%;"
-                      .progress-extended &nbsp;
+          /= simple_form_for @skin, :url => (@skin.new_record? ? admin_skins_path : admin_skin_path(@skin)), :html => {class: 'fileupload form-horizontal skin-form'} do |f|
+          /  fieldset
+          /    - attr_name = 'l_' + attr_name
+          /    - unless attr_name.in?(Skin.non_pic_fields)
+          /      = f.input "#{attr_name}"
+          /      .control-group
+          /        .control-label &nbsp;
+          /        .controls
+          /          .span2.thumb
+          /            - unless @skin.new_record? or @skin.fill_thumb_pic_url(attr_name).blank?
+          /              = link_to image_tag(@skin.fill_thumb_pic_url(attr_name)), @skin.fill_pic_url(attr_name)
+          /          .span10.fileupload-progress.fade
+          /            .progress.progress-success.progress-striped.active role="progressbar" aria-valuemin="0" aria-valuemax="100" style="margin-bottom: 5px"
+          /              .bar style="width:0%;"
+          /            .progress-extended &nbsp;
     #base-info.tab-pane
       = simple_form_for @skin, :url => (@skin.new_record? ? admin_skins_path : admin_skin_path(@skin)), :html => {class: 'form-horizontal skin-form'} do |f|
         fieldset

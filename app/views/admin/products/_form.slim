@@ -9,7 +9,7 @@
     = actions_buttons(@product, 5)
 = simple_form_for @product, :url => (@product.new_record? ? admin_products_path : admin_product_path(@product)), :html => {class: 'form-horizontal'} do |f|
   fieldset
-    = f.input :serial_number, input_html: {class: 'input-xlarge'}
+    = f.input :serial_number, input_html: {class: 'input-xlarge', autocomplete: 'off'}
     = f.input :title, input_html: {class: 'input-xxlarge'}
     = f.input :sub_title, input_html: {class: 'input-xxlarge'}
     = f.input :suit_category, collection: Product.suit_categories, input_html: {class: 'input-small'}

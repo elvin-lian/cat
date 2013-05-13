@@ -15,6 +15,14 @@ class ProductPicture < ActiveRecord::Base
     end
   end
 
+  def thumb_full_pic_url
+    if self.pic and self.pic.url
+      Rails.application.config.action_controller.asset_host + self.pic.thumb.url
+    else
+      ''
+    end
+  end
+
   def to_jq_upload
     {
         id: self.id,

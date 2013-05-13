@@ -9,7 +9,7 @@ class Admin::ProductSameSectionsController < Admin::BaseController
   end
 
   def create
-    Logic::ProductTool.batch_set_same_section({ids: @product.id.to_s + ',' + params[:product_same_section][:p_id]}.as_json)
+    Logic::ProductTool.batch_set_same_section_by_serial_number({id: @product.id.to_s, serial_number: params[:product_same_section][:p_id]}.as_json)
     create_successfully
     redirect_to action: :index
   end

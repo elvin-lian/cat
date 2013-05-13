@@ -42,7 +42,7 @@ zh_cn:
         status: 选中表示上架
         color_pic: '图片大小: 100x140px'
       product_same_section:
-        p_id: 请输入单品的ID，多个ID之间，以英文逗号(,)分隔。如 11,12
+        p_id: 请输入单品的编号; <br/>可一行一个地输入多个单品编号(每行一个编号)。 如 <br/>xxx01<br/>xxx02
       suit:
         pic: '图片大小: 670x1300px'
       shop_info:

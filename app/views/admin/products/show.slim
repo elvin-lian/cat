@@ -22,3 +22,9 @@ table class="table table-striped"
           = @product.suit_category_name
         - else
           = @product.send(attr_name.to_sym)
+  tr
+    th 图片缩略图
+    td
+      - @product.product_pictures.each do | pic |
+        - if '' != pic.thumb_full_pic_url
+          p= link_to(image_tag(pic.thumb_full_pic_url), pic.full_pic_url, target: '_blank')

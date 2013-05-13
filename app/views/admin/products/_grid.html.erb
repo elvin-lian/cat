@@ -4,18 +4,24 @@
     "<input type='checkbox' name='ids[]' value='#{obj.id}'/>".html_safe
   end
 
+  g.column do |obj|
+    if obj.product_pictures.count > 0 and '' != obj.product_pictures.first.thumb_full_pic_url
+      link_to(image_tag(obj.product_pictures.first.thumb_full_pic_url), obj.product_pictures.first.full_pic_url, target: '_blank')
+    end
+  end
 
-  %w(id serial_number title is_top price status created_at).each do |attr|
+  %w(id serial_number title price is_top status created_at).each do |attr|
     g.column :name => Product.human_attribute_name(attr.to_sym), :attribute => attr do |obj|
       if attr.in? %w(created_at updated_at)
         t2l(obj.send(attr.to_sym))
       elsif attr == 'status'
         status_icon(obj.status)
       elsif attr == 'is_top'
-        str = '<a href="javascript:;" title="'+ (obj.is_top ? '取消推荐' : '推荐') + '">'
-        str += (obj.is_top ? '是' : '否')
-        str += '<a>'
-        str.html_safe
+        #str = '<a href="javascript:;" title="'+ (obj.is_top ? '取消推荐' : '推荐') + '">'
+        #str += (obj.is_top ? '是' : '否')
+        #str += '<a>'
+        #str.html_safe
+        obj.is_top ? '是' : '否'
       elsif attr == 'trend_courier_id'
         obj.trend_courier.title if obj.trend_courier
       else

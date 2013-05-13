@@ -34,6 +34,12 @@ module Logic
         {status: 1, message: I18n.t('admin.mess.update_successfully')}
       end
 
+      def batch_set_same_section_by_serial_number params
+        sn = params['serial_number'].split("\r\n")
+        ids = Product.where(:serial_number => sn).pluck(:id)
+        batch_set_same_section({ids: params['id'].to_s + ',' + ids.join(',')}.as_json)
+      end
+
       def products_json params
         category = Category.find_by_id(params['categoryID'])
 
