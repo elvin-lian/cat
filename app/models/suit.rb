@@ -40,6 +40,8 @@ class Suit < ActiveRecord::Base
 
       res << {
           productID: product.id.to_s,
+          proSuitCategoryID: product.suit_category.to_s,
+          proSuitCategoryName: product.suit_category_name,
           categoryProID: cat_id
       }
     end

@@ -39,6 +39,8 @@ Feature: Suit list API
               "subProList":[
                 {
                   "categoryProID": "#{@category.id}",
+                  "proSuitCategoryID": "",
+                  "proSuitCategoryName": "",
                   "productID": "#{@product.id}"
                 }
               ]
@@ -68,7 +70,9 @@ Feature: Suit list API
               "subProList":[
                 {
                   "categoryProID": "#{@category.id}",
-                  "productID": "#{@product.id}"
+                  "productID": "#{@product.id}",
+                  "proSuitCategoryID": "",
+                  "proSuitCategoryName": ""
                 }
               ]
             }
