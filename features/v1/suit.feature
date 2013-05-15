@@ -52,8 +52,8 @@ Feature: Suit list API
 
   Scenario: get suits successfully by product id
     When I send a GET request to "/v1/suits.json" with following data
-      | userID              | productID      | orderStyle | startPos | length |
-      | foo-example-user-id | #{@product.id} | 2          | 1        | 10     |
+      | userID              | productID                 | orderStyle | startPos | length |
+      | foo-example-user-id | #{@product.serial_number} | 2          | 1        | 10     |
     Then I should receive the JSON response data
     """
       {

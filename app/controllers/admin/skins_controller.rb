@@ -28,6 +28,9 @@ class Admin::SkinsController < Admin::BaseController
   def update
     @skin = Skin.find_by_id(params[:id])
     if @skin.update_attributes(params[:skin])
+      if @skin.status?
+        Skin.update_all('status = 0', "id != #{@skin.id}")
+      end
       name, _ = params[:skin].first
       respond_to do |format|
         format.html {

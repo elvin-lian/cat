@@ -18,7 +18,7 @@ class V1::SuitsController < V1::BaseController
         @suits = new_product.suits
       end
     elsif product_id
-      product = Product.find_by_id(product_id)
+      product = Product.find_by_serial_number(product_id)
       if product and product.suits
         @suits = product.suits
       end
@@ -51,11 +51,11 @@ class V1::SuitsController < V1::BaseController
     end
 
     res = {
-              statusCode: 1,
-              response: {
-                  suitArray: suits_arr
-              }
-          }
+        statusCode: 1,
+        response: {
+            suitArray: suits_arr
+        }
+    }
 
     render json: res, :status => :ok
 
