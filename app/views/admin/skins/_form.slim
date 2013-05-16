@@ -62,7 +62,7 @@
     $(document).ready(function(){
       $('.fileupload').fileupload();
       $('.fileupload').fileupload('option', {
-        maxFileSize:5000000, // 5M
+        maxFileSize:10000000, // 10M
         acceptFileTypes:/(\.|\/)(jpe?g|png)$/i,
         autoUpload: true,
         uploadTemplate: function(o){
@@ -79,7 +79,7 @@
       });
       if ($.support.cors) {
         $.ajax({
-          maxChunkSize:5000000, // 5 MB
+          maxChunkSize:10000000, // 10 MB
           url:$('.fileupload').fileupload('option', 'url'),
           dataType:'json',
           context:$('.fileupload')[0]

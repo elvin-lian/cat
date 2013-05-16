@@ -22,6 +22,15 @@ class Brand < ActiveRecord::Base
 
   def pdf2png
     return pictures unless pdf_hard_path and File.exist?(pdf_hard_path)
+    (1..3).each do |i|
+      if File.exist?("#{png_save_path}#{self.id}_000#{i}.png")
+        File.delete("#{png_save_path}#{self.id}_000#{i}.png")
+        Rails.logger.debug('xxxxxxxx')
+      else
+        Rails.logger.debug('aaa')
+      end
+    end
+
 
     Dir.mkdir(png_save_path) unless Dir.exist?(png_save_path)
     RGhost::Convert.new(pdf_hard_path).to :png, :multipage => true, :filename => "#{png_save_path}#{self.id}.png", :range => 1..3
