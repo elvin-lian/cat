@@ -20,7 +20,8 @@ Feature: City Weekly API
             {
               "contentTitle": "foo",
               "contentURL": "",
-              "contentText": "foo desc"
+              "contentText": "foo desc",
+              "contentUpdateTime": "#{@city_weekly.updated_at.to_s}"
             }
           ]
         }

@@ -16,7 +16,8 @@ class CityWeekly < ActiveRecord::Base
     {
         contentTitle: Cat::Tool.nil2n(self.title),
         contentURL: full_pic_url,
-        contentText: Cat::Tool.nil2n(self.description)
+        contentText: Cat::Tool.nil2n(self.description),
+        contentUpdateTime: self.updated_at.to_s
     }
   end
 
