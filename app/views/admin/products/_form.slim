@@ -15,7 +15,7 @@
     = f.input :suit_category, collection: Product.suit_categories, input_html: {class: 'input-small'}
     = f.association :trend_courier
     = f.association :categories, as: :check_boxes, item_wrapper_class: 'inline span2'
-    = f.association :suits, as: :check_boxes, item_wrapper_class: 'inline span2'
+    = f.association :suits, collection: Suit.order('id DESC').limit(10000), input_html: {class: 'span7', style: "height: 150px;"}
     = f.input :price, input_html: {class: 'input-small'}
     = f.input :is_top
     = f.input :time_for_sale
@@ -30,3 +30,11 @@
     = f.input :status
     .form-actions
       = f.submit (@product.new_record? ? '下一步，上传图片' : '修改') , class: 'btn btn-primary', disable_with: '保存中，请稍等...'
+
+- content_for :footer do
+  = javascript_include_tag 'multiselect'
+  javascript:
+    $(document).ready(function(){
+      $('#product_time_for_sale').datepicker({dateFormat: 'yy-mm-dd'});
+      $('#product_suit_ids').multiselect({locale: 'zh','searchField': true});
+    });

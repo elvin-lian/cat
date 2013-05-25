@@ -44,7 +44,7 @@ zh_cn:
       product_same_section:
         p_id: 请输入单品的编号; <br/>可一行一个地输入多个单品编号(每行一个编号)。 如 <br/>xxx01<br/>xxx02
       suit:
-        pic: '图片大小: 670x1300px'
+        pic: '图片大小: 1496x2048px'
       shop_info:
         pic: '图片大小: 2048x1496px'
       trend_courier:

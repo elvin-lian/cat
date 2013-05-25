@@ -23,8 +23,21 @@ table class="table table-striped"
         - else
           = @product.send(attr_name.to_sym)
   tr
+    th 品类
+    td
+      - @product.categories.each do |category|
+        = link_to category.name, admin_category_path(category.id), target: '_blank'
+        | &nbsp;&nbsp;
+  tr
+    th 套装
+    td
+      - @product.suits.each do |suit|
+        = link_to suit.title, admin_suit_path(suit.id), target: '_blank'
+        | &nbsp;&nbsp;
+  tr
     th 图片缩略图
     td
       - @product.product_pictures.each do | pic |
         - if '' != pic.thumb_full_pic_url
-          p= link_to(image_tag(pic.thumb_full_pic_url), pic.full_pic_url, target: '_blank')
+          = link_to(image_tag(pic.thumb_full_pic_url), pic.full_pic_url, target: '_blank')
+          | &nbsp; &nbsp;
