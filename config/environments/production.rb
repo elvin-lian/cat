@@ -48,7 +48,7 @@ Cabbeen::Application.configure do
   config.api_url_prefix = "http://210.5.31.9/v1"
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  config.assets.precompile += %w(admin.js file_upload.js admin.css file_upload.css mulitselect.js)
+  config.assets.precompile += %w(admin.js file_upload.js admin.css file_upload.css multiselect.js)
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
