@@ -61,4 +61,8 @@ class V1::SuitsController < V1::BaseController
 
   end
 
+  def search
+    render json: Logic::SuitTool.search(params), status: :ok
+  end
+
 end

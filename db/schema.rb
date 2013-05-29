@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130510123922) do
+ActiveRecord::Schema.define(:version => 20130529121656) do
 
   create_table "admins", :force => true do |t|
     t.string   "name",                :default => "", :null => false
@@ -171,6 +171,7 @@ ActiveRecord::Schema.define(:version => 20130510123922) do
     t.text     "summary"
     t.integer  "suit_category",      :limit => 1
     t.string   "time_for_sale"
+    t.string   "color_name"
   end
 
   add_index "products", ["is_top"], :name => "index_products_on_is_top"

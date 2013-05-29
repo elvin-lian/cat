@@ -38,10 +38,13 @@ Feature: Suit list API
               "suitImageURL": "",
               "subProList":[
                 {
-                  "categoryProID": "#{@category.id}",
                   "proSuitCategoryID": "",
                   "proSuitCategoryName": "",
-                  "productID": "#{@product.id}"
+                  "productID": "#{@product.id}",
+                  "categoryProID": "#{@category.id}",
+                  "categoryProductURL": "",
+                  "categoryProductName": "foo category",
+                  "categoryParentProductName": ""
                 }
               ]
             }
@@ -69,10 +72,13 @@ Feature: Suit list API
               "suitImageURL": "",
               "subProList":[
                 {
-                  "categoryProID": "#{@category.id}",
                   "productID": "#{@product.id}",
                   "proSuitCategoryID": "",
-                  "proSuitCategoryName": ""
+                  "proSuitCategoryName": "",
+                  "categoryProID": "#{@category.id}",
+                  "categoryProductURL": "",
+                  "categoryProductName": "foo category",
+                  "categoryParentProductName": ""
                 }
               ]
             }

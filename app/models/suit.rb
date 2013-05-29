@@ -30,20 +30,27 @@ class Suit < ActiveRecord::Base
   end
 
   def sub_products
-    products = self.products.where('status = 1').order('is_top DESC, id DESC').includes(:categories)
+    products = self.products.where('status = 1').order('is_top DESC, id DESC').limit(20).includes(:categories)
     res = []
     products.each do |product|
-      cat_id = ''
-      if( cat = product.categories.first)
-        cat_id = cat.id.to_s
-      end
-
-      res << {
+      tmp = {
           productID: product.id.to_s,
           proSuitCategoryID: product.suit_category.to_s,
           proSuitCategoryName: product.suit_category_name,
-          categoryProID: cat_id
+          categoryProID: '',
+          categoryProductURL: '',
+          categoryProductName: '',
+          categoryParentProductName: ''
       }
+
+      if (cat = product.categories.first)
+          tmp[:categoryProID] = cat.id.to_s
+          tmp[:categoryProductURL] = cat.full_pic_url
+          tmp[:categoryProductName] = Cat::Tool.nil2n(cat.name)
+          tmp[:categoryParentProductName] = cat.parent_category_name
+      end
+
+      res << tmp
     end
     res
   end

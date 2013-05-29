@@ -11,9 +11,14 @@ Cabbeen::Application.routes.draw do
       resources :products, :only => [:index, :show]
       resources :product_comments, :only => :create
       resources :shop_info, :only => :index
-      resources :suits, :only => :index
+      resources :suits, :only => :index do
+        collection do
+          get 'search'
+        end
+      end
       resources :trend_couriers, :only => [:index, :show]
       resources :skins, :only => [:show, :index]
+      resources :names, :only => [:index]
     end
   end
 
