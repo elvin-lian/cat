@@ -35,7 +35,7 @@ module Logic
               order = 'suits.id DESC'
           end
 
-          Suit.includes(:products).where('products.id' => product_ids).order(order).limit(limit).offset(offset).each do |suit|
+          Suit.includes(:products).where('suits.status' => 1, 'products.id' => product_ids).order(order).limit(limit).offset(offset).each do |suit|
             suit_arr << suit.simple_json
           end
         end
