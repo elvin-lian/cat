@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130529121656) do
+ActiveRecord::Schema.define(:version => 20130603142547) do
 
   create_table "admins", :force => true do |t|
     t.string   "name",                :default => "", :null => false
@@ -172,9 +172,11 @@ ActiveRecord::Schema.define(:version => 20130529121656) do
     t.integer  "suit_category",      :limit => 1
     t.string   "time_for_sale"
     t.string   "color_name"
+    t.integer  "rank",                              :default => 0
   end
 
   add_index "products", ["is_top"], :name => "index_products_on_is_top"
+  add_index "products", ["rank"], :name => "index_products_on_rank"
   add_index "products", ["status"], :name => "index_products_on_status"
 
   create_table "products_suits", :force => true do |t|
@@ -253,8 +255,10 @@ ActiveRecord::Schema.define(:version => 20130529121656) do
     t.boolean  "status",                       :default => true
     t.datetime "created_at",                                     :null => false
     t.datetime "updated_at",                                     :null => false
+    t.integer  "rank",                         :default => 0
   end
 
+  add_index "suits", ["rank"], :name => "index_suits_on_rank"
   add_index "suits", ["status"], :name => "index_suits_on_status"
 
   create_table "trend_couriers", :force => true do |t|

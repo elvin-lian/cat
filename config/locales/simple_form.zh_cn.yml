@@ -38,13 +38,14 @@ zh_cn:
       new_product:
         pic: '图片大小：150x150px'
       product:
-        is_top: 推荐的会排在前面
+        rank: 请输入整数，从大到小排序，数字大的显示在前面
         status: 选中表示上架
         color_pic: '图片大小: 100x140px'
       product_same_section:
         p_id: 请输入单品的编号; <br/>可一行一个地输入多个单品编号(每行一个编号)。 如 <br/>xxx01<br/>xxx02
       suit:
         pic: '图片大小: 1496x2048px'
+        rank: 请输入整数，从大到小排序，数字大的显示在前面
       shop_info:
         pic: '图片大小: 2048x1496px'
       trend_courier:

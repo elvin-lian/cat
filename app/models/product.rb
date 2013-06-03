@@ -2,7 +2,7 @@
 class Product < ActiveRecord::Base
   attr_accessible :description, :serial_number, :trend_courier_id, :status, :title,
                   :category_ids, :suit_ids, :sub_title, :is_top, :price, :design_inspiration, :color_pic, :summary,
-                  :suit_category, :time_for_sale, :color_name
+                  :suit_category, :time_for_sale, :color_name, :rank
 
   mount_uploader :color_pic, PictureUploader
 
@@ -47,7 +47,7 @@ class Product < ActiveRecord::Base
         proSerialNumber: self.serial_number,
         proTitle: Cat::Tool.nil2n(self.title),
         proSubTitle: Cat::Tool.nil2n(self.sub_title),
-        proIsTop: self.is_top? ? 1 : 0,
+        proRank: self.rank.to_i,
         proPrice: Cat::Tool.nil2n(self.price),
         createTime: self.created_at.to_s,
         updateTime: self.updated_at.to_s,

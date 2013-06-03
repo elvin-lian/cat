@@ -9,3 +9,7 @@
     h4= title "套装管理"
 
 = render :partial => 'grid'
+javascript:
+  $(document).ready(function () {
+    el.EditableTable.init("/admin/suits/modify/");
+  });

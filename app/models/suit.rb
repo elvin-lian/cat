@@ -1,5 +1,5 @@
 class Suit < ActiveRecord::Base
-  attr_accessible :pic, :serial_number, :status, :title, :new_product_ids
+  attr_accessible :pic, :serial_number, :status, :title, :new_product_ids, :rank
 
   validates_presence_of :serial_number
   validates_uniqueness_of :serial_number
@@ -22,6 +22,7 @@ class Suit < ActiveRecord::Base
         suitID: self.id.to_s,
         suitTitle: self.title.nil? ? '' : self.title,
         suitSerialNumber: self.serial_number,
+        suitRank: self.rank.to_i,
         createTime: self.created_at.to_s,
         updateTime: self.updated_at.to_s,
         suitImageURL: full_pic_url,

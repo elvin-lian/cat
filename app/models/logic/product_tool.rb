@@ -59,22 +59,23 @@ module Logic
         limit = params['length'] ? params['length'].to_i : 10
         products = category.products.where(status: 1)
 
-        case params['orderStyle'].to_i
-          when 2
-            order = 'id ASC'
-          when 3
-            order = 'updated_at DESC'
-          when 4
-            order = 'updated_at ASC'
-          when 5
-            order = 'serial_number DESC'
-          when 6
-            order = 'serial_number ASC'
-          else
-            order = 'id DESC'
-        end
+        #case params['orderStyle'].to_i
+        #  when 2
+        #    order = 'id ASC'
+        #  when 3
+        #    order = 'updated_at DESC'
+        #  when 4
+        #    order = 'updated_at ASC'
+        #  when 5
+        #    order = 'serial_number DESC'
+        #  when 6
+        #    order = 'serial_number ASC'
+        #  else
+        #    order = 'id DESC'
+        #end
 
-        products = products.order('is_top DESC,' + order).limit(limit).offset(offset)
+        order = 'rank DESC, id DESC'
+        products = products.order(order).limit(limit).offset(offset)
 
         data = []
         products.each do |product|

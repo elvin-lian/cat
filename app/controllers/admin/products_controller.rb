@@ -15,6 +15,15 @@ class Admin::ProductsController < Admin::BaseController
     @title_prefix = "“#{@title_prefix}”的" unless @title_prefix.blank?
   end
 
+  def new
+    if (pro = Product.last)
+      rank = pro.id.to_i + 1
+    else
+      rank = 1
+    end
+    @product = Product.new(rank: rank)
+  end
+
   def create
     @product = Product.new(params[:product])
     if @product.save
@@ -75,6 +84,21 @@ class Admin::ProductsController < Admin::BaseController
 
   def batch_same_section
     render json: Logic::ProductTool.batch_set_same_section(params), status: :ok
+  end
+
+  def modify
+    authorize! :update, Product
+    if request.xml_http_request?
+      res = false
+      if (product = Product.find_by_id(params[:id])) and product.respond_to?(params[:name])
+        val = params[:value]
+        val = val.to_i if 'rank' == params[:name]
+        res = product.update_column(params[:name], val)
+      end
+      render json: {res: res, message: res ? t('admin.mess.update_successfully') : t('admin.mess.fail_to_update')}
+    else
+      raise ActionController::RoutingError.new('Not Found')
+    end
   end
 
 end

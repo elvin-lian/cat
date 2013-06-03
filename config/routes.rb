@@ -74,6 +74,7 @@ Cabbeen::Application.routes.draw do
           post 'batch_unlisted'
           post 'batch_destroy'
           post 'batch_same_section'
+          post 'modify/:id' => 'products#modify'
         end
 
       end
@@ -81,6 +82,9 @@ Cabbeen::Application.routes.draw do
 
       resources :shop_infos
       resources :suits do
+        collection do
+          post 'modify/:id' => 'suits#modify'
+        end
         resources :products
       end
 

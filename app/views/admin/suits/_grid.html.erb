@@ -4,7 +4,18 @@
     link_to(image_tag(obj.pic.thumb.url), obj.pic.url, target: '_blank') if obj.pic.url
   end
 
-  %w(id serial_number title status created_at updated_at).each do |attr|
+  %w(id serial_number title).each do |attr|
+    g.column :name => Suit.human_attribute_name(attr.to_sym), :attribute => attr do |obj|
+      obj.send(attr.to_sym)
+    end
+  end
+
+  g.column :name => '排序', :attribute => 'rank' do |obj|
+    text = '<span class="edit-text">' + obj.rank.to_s + '</span><i class="icon-pencil"></i><input class="edit-input input-mini" name="rank" type="number" value="' + obj.rank.to_s + '">'
+    [text.html_safe, {iid: obj.id, class: 'editable-blk'}]
+  end
+
+  %w(status created_at).each do |attr|
     g.column :name => Suit.human_attribute_name(attr.to_sym), :attribute => attr do |obj|
       if attr.in? %w(created_at updated_at)
         t2l(obj.send(attr.to_sym))

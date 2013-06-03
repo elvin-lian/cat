@@ -53,6 +53,7 @@ zh_cn:
         suits: 套装
         sub_title: 英文名称
         is_top: 推荐
+        rank: 排序
         status: 上架？
         price: '价格(元)'
         design_inspiration: 设计灵感
@@ -73,6 +74,7 @@ zh_cn:
         title: 名称
         serial_number: 编号
         new_products: 新品
+        rank: 排序
       trend_courier:
         title: 标题
       skin:

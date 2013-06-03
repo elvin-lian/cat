@@ -8,6 +8,7 @@
   = actions_buttons(@product, 6)
 table class="table table-striped"
   - Product.attribute_names.each do |attr_name|
+    - next if attr_name == 'is_top'
     tr
       th= Product.human_attribute_name(attr_name)
       td

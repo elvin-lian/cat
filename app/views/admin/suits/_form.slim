@@ -12,6 +12,7 @@
     = f.input :serial_number
     = f.association :new_products, as: :check_boxes, item_wrapper_class: 'inline span2'
     = f.input :pic
+    = f.input :rank
     = f.input :status
     .form-actions
       = f.submit (@suit.new_record? ? '保存' : '修改') , class: 'btn btn-primary', disable_with: '上传中，请稍等...'

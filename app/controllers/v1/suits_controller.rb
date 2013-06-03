@@ -28,21 +28,21 @@ class V1::SuitsController < V1::BaseController
 
     unless @suits.nil? or @suits.empty?
 
-      case params[:orderStyle].to_i
-        when 2
-          order = 'suits.id ASC'
-        when 3
-          order = 'suits.updated_at DESC'
-        when 4
-          order = 'suits.updated_at ASC'
-        when 5
-          order = 'suits.serial_number DESC'
-        when 6
-          order = 'suits.serial_number ASC'
-        else
-          order = 'suits.id DESC'
-      end
-
+      #case params[:orderStyle].to_i
+      #  when 2
+      #    order = 'suits.id ASC'
+      #  when 3
+      #    order = 'suits.updated_at DESC'
+      #  when 4
+      #    order = 'suits.updated_at ASC'
+      #  when 5
+      #    order = 'suits.serial_number DESC'
+      #  when 6
+      #    order = 'suits.serial_number ASC'
+      #  else
+      #    order = 'suits.id DESC'
+      #end
+      order = 'suits.rank DESC, suits.id DESC'
       @suits = @suits.where('suits.status = 1').order(order).limit(length).offset(start_pos)
 
       @suits.each do |suit|

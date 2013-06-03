@@ -10,6 +10,15 @@ class Admin::SuitsController < Admin::BaseController
     end
   end
 
+  def new
+    if (suit = Suit.last)
+      rank = suit.id.to_i + 1
+    else
+      rank = 1
+    end
+    @suit = Suit.new(rank: rank)
+  end
+
   def create
     @suit = Suit.new(params[:suit])
     if @suit.save
@@ -47,4 +56,20 @@ class Admin::SuitsController < Admin::BaseController
     end
     redirect_to action: :index
   end
+
+  def modify
+    authorize! :update, Suit
+    if request.xml_http_request?
+      res = false
+      if (suit = Suit.find_by_id(params[:id])) and suit.respond_to?(params[:name])
+        val = params[:value]
+        val = val.to_i if 'rank' == params[:name]
+        res = suit.update_column(params[:name], val)
+      end
+      render json: {res: res, message: res ? t('admin.mess.update_successfully') : t('admin.mess.fail_to_update')}
+    else
+      raise ActionController::RoutingError.new('Not Found')
+    end
+  end
+
 end

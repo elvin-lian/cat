@@ -20,21 +20,21 @@ module Logic
 
         suit_arr = []
         unless product_ids.empty?
-          case params[:orderStyle].to_i
-            when 2
-              order = 'suits.id ASC'
-            when 3
-              order = 'suits.updated_at DESC'
-            when 4
-              order = 'suits.updated_at ASC'
-            when 5
-              order = 'suits.serial_number DESC'
-            when 6
-              order = 'suits.serial_number ASC'
-            else
-              order = 'suits.id DESC'
-          end
-
+          #case params[:orderStyle].to_i
+          #  when 2
+          #    order = 'suits.id ASC'
+          #  when 3
+          #    order = 'suits.updated_at DESC'
+          #  when 4
+          #    order = 'suits.updated_at ASC'
+          #  when 5
+          #    order = 'suits.serial_number DESC'
+          #  when 6
+          #    order = 'suits.serial_number ASC'
+          #  else
+          #    order = 'suits.id DESC'
+          #end
+          order = 'suits.rank DESC, suits.id DESC'
           Suit.includes(:products).where('suits.status' => 1, 'products.id' => product_ids).order(order).limit(limit).offset(offset).each do |suit|
             suit_arr << suit.simple_json
           end
