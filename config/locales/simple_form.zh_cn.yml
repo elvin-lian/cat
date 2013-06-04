@@ -31,7 +31,7 @@ zh_cn:
       category:
         pic: '图片大小: 900x100px'
       city_weekly:
-        pic: '图片大小: 700x525px'
+        pic: '图片大小: 1400x1050'
       defaults:
         status: '选中状态，表示审核通过'
         rank: '请输入整数，数字小的在前面'

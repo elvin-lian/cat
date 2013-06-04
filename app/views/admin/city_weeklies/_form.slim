@@ -12,6 +12,6 @@
     = f.input :status
     .form-actions
       = f.submit (@city_weekly.new_record? ? '保存' : '修改') , class: 'btn btn-primary', disable_with: '上传中，请稍等...'
-- unless @city_weekly.new_record?
+- unless @city_weekly.full_pic_url.blank?
   h5 预览:
   p= image_tag(@city_weekly.pic.url)
