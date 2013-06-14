@@ -70,6 +70,7 @@ Cabbeen::Application.routes.draw do
         resources :same_sections, :controller => :product_same_sections
 
         collection do
+          get 'export'
           post 'batch_listed'
           post 'batch_unlisted'
           post 'batch_destroy'

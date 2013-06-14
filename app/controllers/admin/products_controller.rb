@@ -15,6 +15,18 @@ class Admin::ProductsController < Admin::BaseController
     @title_prefix = "“#{@title_prefix}”的" unless @title_prefix.blank?
   end
 
+  def export
+    respond_to do |format|
+      format.html {
+
+      }
+      format.xlsx {
+        @products = Product.all
+        render layout: false
+      }
+    end
+  end
+
   def new
     if (pro = Product.last)
       rank = pro.id.to_i + 1

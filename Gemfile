@@ -32,6 +32,9 @@ gem 'devise', '~> 2.2.3'
 # pdf
 gem 'rghost'
 
+gem 'axlsx'
+gem 'axlsx_rails'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
