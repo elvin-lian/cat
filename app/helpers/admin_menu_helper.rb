@@ -29,7 +29,7 @@ module AdminMenuHelper
         latest_see: [
             ['最新宾视', nil],
             #['所有宾视', admin_latest_sees_path, {path: 'latest_sees#index', cc: [:read, LatestSee]}],
-            # ['发布新一期', new_admin_latest_see_path, {path: 'latest_sees#new', cc: [:create, LatestSee]}]
+            #['发布新一期', new_admin_latest_see_path, {path: 'latest_sees#new', cc: [:create, LatestSee]}]
         ],
 
         #new_product: [
@@ -43,7 +43,9 @@ module AdminMenuHelper
             ['所有单品', admin_products_path, {path: 'products#index', cc: [:read, Product]}],
             ['添加单品', new_admin_product_path, {path: 'products#new', cc: [:create, Product]}],
             ['评价', nil],
-            ['所有评价', admin_products_comments_path, {path: 'product_comments#index', cc: [:read, ProductComment]}]
+            ['所有评价', admin_products_comments_path, {path: 'product_comments#index', cc: [:read, ProductComment]}],
+            ['导出数据', nil],
+            ['导出单品', export_admin_products_path, {path: 'products#export'}]
         ],
 
         skin: [

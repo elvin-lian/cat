@@ -1,0 +1,34 @@
+- admin_left_menu :product
+.page-header
+  h4 导出单品数据
+
+div
+  form action="#{export_admin_products_path('xlsx')}" method="get" class="form-inline"
+    p 根据单品创建的时间来导出数据。请选择创建时间：
+    p
+      | 从：
+      input type="text" class="input-small" name="from" id="from"
+      | &nbsp;&nbsp;到：
+      input type="text" class="input-small" name="to" id="to"
+      | &nbsp;&nbsp;&nbsp;&nbsp;
+      button type="submit" class="btn btn-primary" 导出
+- content_for :footer do
+  javascript:
+    $(function() {
+      $( "#from" ).datepicker({
+        dateFormat: "yy-mm-dd",
+        defaultDate: "-1m",
+        numberOfMonths: 2,
+        onClose: function( selectedDate ) {
+          $( "#to" ).datepicker( "option", "minDate", selectedDate );
+        }
+      });
+      $( "#to" ).datepicker({
+        dateFormat: "yy-mm-dd",
+        defaultDate: "-1d",
+        numberOfMonths: 1,
+        onClose: function( selectedDate ) {
+          $( "#from" ).datepicker( "option", "maxDate", selectedDate );
+        }
+      });
+    });
