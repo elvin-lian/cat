@@ -23,7 +23,9 @@ module AdminMenuHelper
         city_weekly: [
             ['都市周报', nil],
             ['所有周报', admin_city_weeklies_path, {path: 'city_weeklies#index', cc: [:read, CityWeekly]}],
-            ['添加周报', new_admin_city_weekly_path, {path: 'city_weeklies#new', cc: [:create, CityWeekly]}]
+            ['添加周报', new_admin_city_weekly_path, {path: 'city_weeklies#new', cc: [:create, CityWeekly]}],
+            ['导出数据', nil],
+            ['导出周报', export_admin_city_weeklies_path, {path: 'city_weeklies#export'}]
         ],
 
         latest_see: [
@@ -58,7 +60,7 @@ module AdminMenuHelper
         ],
 
         suit: [
-            ['单品', nil],
+            ['套装', nil],
             ['所有套装', admin_suits_path, {path: 'suits#index', cc: [:read, Suit]}],
             ['添加套装', new_admin_suit_path, {path: 'suits#new', cc: [:create, Suit]}],
             ['导出数据', nil],

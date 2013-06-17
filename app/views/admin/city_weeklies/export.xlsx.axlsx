@@ -1,0 +1,29 @@
+wb = xlsx_package.workbook
+t_title = %w(图片 ID 标题 状态 创建时间 修改时间)
+sty = wb.styles.add_style(alignment: {vertical: :center})
+sty_title = wb.styles.add_style(alignment: {vertical: :center}, b: true, sz: t_title.size)
+wb.add_worksheet(name: "周报") do |sheet|
+  sheet.merge_cells('A1:F1')
+  sheet.add_row [" 共导出#{@city_weeklies.count}条周报数据，创建时间从#{@created_from}到#{@created_to}。 #{t2l(Time.now)}"], style: sty, height: 40
+  sheet.add_row t_title, style: sty_title, height: 30
+  row_index = 0
+  col_index = 1
+  @city_weeklies.each do |city_weekly|
+    status = city_weekly.status? ? '是' : '否'
+
+    sheet.add_row ['', city_weekly.id.to_s, city_weekly.title, status,
+                   t2l(city_weekly.created_at), t2l(city_weekly.updated_at)], style: sty, height: 24
+
+    col_index+=1
+    if city_weekly.pic and city_weekly.pic.thumb.url
+      img = Rails.root.to_s + '/public' + city_weekly.pic.thumb.url
+      sheet.add_image(:image_src => img, :noSelect => true, :noMove => true) do |image|
+        image.width = 24
+        image.height = 24
+        image.start_at row_index, col_index
+      end
+    end
+  end
+end
+wb.use_shared_strings = true
+wb.use_autowidth = true

@@ -45,7 +45,11 @@ Cabbeen::Application.routes.draw do
           post 'modify/:id' => 'categories#modify'
         end
       end
-      resources :city_weeklies
+      resources :city_weeklies do
+        collection do
+          get 'export'
+        end
+      end
       resources :dashboard, :only => :index
       resources :latest_sees, :only => :index do
         resources :pictures, :controller => :latest_see_pictures do
