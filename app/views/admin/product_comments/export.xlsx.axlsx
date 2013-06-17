@@ -1,0 +1,25 @@
+wb = xlsx_package.workbook
+t_title = %w(ID 单品编号 单品标题 设计评价 面料评价 价钱评价 状态 创建时间 修改时间)
+sty = wb.styles.add_style(alignment: {vertical: :center})
+sty_title = wb.styles.add_style(alignment: {vertical: :center}, b: true, sz: t_title.size)
+wb.add_worksheet(name: "单品评价") do |sheet|
+  sheet.merge_cells('A1:I1')
+  sheet.add_row [" 共导出#{@product_comments.count}条单品评价数据，创建时间从#{@created_from}到#{@created_to}。 #{t2l(Time.now)}"], style: sty, height: 40
+  sheet.add_row t_title, style: sty_title, height: 30
+
+  @product_comments.each do |comment|
+    status = comment.status? ? '是' : '否'
+
+    product_serial_number = ''
+    product_title = ''
+    if comment.product
+      product_serial_number = comment.product.serial_number
+      product_title = comment.product.title
+    end
+    sheet.add_row [comment.id.to_s, product_serial_number, product_title, comment.design_score, comment.fabric_score, comment.price_score, status,
+                   t2l(comment.created_at), t2l(comment.updated_at)], style: sty, height: 24
+
+  end
+end
+wb.use_shared_strings = true
+wb.use_autowidth = true

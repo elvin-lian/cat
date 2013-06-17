@@ -1,0 +1,35 @@
+wb = xlsx_package.workbook
+t_title = %w(图片 ID 编号 名称 排序 状态 所属单品 创建时间 修改时间)
+sty = wb.styles.add_style(alignment: {vertical: :center})
+sty_title = wb.styles.add_style(alignment: {vertical: :center}, b: true, sz: t_title.size)
+wb.add_worksheet(name: "套装") do |sheet|
+  sheet.add_row [" 共导出#{@suits.count}条套装数据，创建时间从#{@created_from}到#{@created_to}。 #{t2l(Time.now)}"], style: sty, height: 40
+  sheet.merge_cells('A1:I1')
+  sheet.add_row t_title, style: sty_title, height: 30
+  row_index = 0
+  col_index = 1
+  @suits.each do |suit|
+    status = suit.status? ? '是' : '否'
+
+    new_products = []
+    suit.new_products.each do |new_product|
+      new_products << new_product.name
+    end
+    new_products = new_products.join(', ')
+
+    sheet.add_row ['', suit.id.to_s, suit.serial_number, suit.title, suit.rank.to_s, status, new_products,
+                   t2l(suit.created_at), t2l(suit.updated_at)], style: sty, height: 24
+
+    col_index+=1
+    if suit.pic and suit.pic.thumb.url
+      img = Rails.root.to_s + '/public' + suit.pic.thumb.url
+      sheet.add_image(:image_src => img, :noSelect => true, :noMove => true) do |image|
+        image.width = 24
+        image.height = 24
+        image.start_at row_index, col_index
+      end
+    end
+  end
+end
+wb.use_shared_strings = true
+wb.use_autowidth = true

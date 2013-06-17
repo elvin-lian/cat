@@ -28,15 +28,17 @@ module AdminMenuHelper
 
         latest_see: [
             ['最新宾视', nil],
-            #['所有宾视', admin_latest_sees_path, {path: 'latest_sees#index', cc: [:read, LatestSee]}],
-            #['发布新一期', new_admin_latest_see_path, {path: 'latest_sees#new', cc: [:create, LatestSee]}]
+        #['所有宾视', admin_latest_sees_path, {path: 'latest_sees#index', cc: [:read, LatestSee]}],
+        #['发布新一期', new_admin_latest_see_path, {path: 'latest_sees#new', cc: [:create, LatestSee]}]
         ],
 
-        #new_product: [
-        #    ['新品', nil],
-        #    ['所有新品', admin_new_products_path, {path: 'new_products#index', cc: [:read, NewProduct]}],
-        #    ['添加新品', new_admin_new_product_path, {path: 'new_products#new', cc: [:create, NewProduct]}]
-        #],
+        new_product: [
+            ['新品', nil],
+            ['所有新品', admin_new_products_path, {path: 'new_products#index', cc: [:read, NewProduct]}],
+            #['添加新品', new_admin_new_product_path, {path: 'new_products#new', cc: [:create, NewProduct]}]
+            ['导出数据', nil],
+            ['导出新品', export_admin_new_products_path, {path: 'new_products#export'}]
+        ],
 
         product: [
             ['单品', nil],
@@ -45,7 +47,8 @@ module AdminMenuHelper
             ['评价', nil],
             ['所有评价', admin_products_comments_path, {path: 'product_comments#index', cc: [:read, ProductComment]}],
             ['导出数据', nil],
-            ['导出单品', export_admin_products_path, {path: 'products#export'}]
+            ['导出单品', export_admin_products_path, {path: 'products#export'}],
+            ['导出评价', export_comment_admin_products_path, {path: 'product_comments#export'}]
         ],
 
         skin: [
@@ -57,13 +60,17 @@ module AdminMenuHelper
         suit: [
             ['单品', nil],
             ['所有套装', admin_suits_path, {path: 'suits#index', cc: [:read, Suit]}],
-            ['添加套装', new_admin_suit_path, {path: 'suits#new', cc: [:create, Suit]}]
+            ['添加套装', new_admin_suit_path, {path: 'suits#new', cc: [:create, Suit]}],
+            ['导出数据', nil],
+            ['导出套装', export_admin_suits_path, {path: 'suits#export'}]
         ],
 
         trend_courier: [
-            ['单品', nil],
-            ['潮流速递', admin_trend_couriers_path, {path: 'suits#index', cc: [:read, TrendCourier]}],
-            ['添加潮流速递', new_admin_trend_courier_path, {path: 'suits#new', cc: [:create, TrendCourier]}]
+            ['潮流速递', nil],
+            ['潮流速递', admin_trend_couriers_path, {path: 'trend_couriers#index', cc: [:read, TrendCourier]}],
+            ['添加潮流速递', new_admin_trend_courier_path, {path: 'trend_couriers#new', cc: [:create, TrendCourier]}],
+            ['导出数据', nil],
+            ['导出潮流速递', export_admin_trend_couriers_path, {path: 'trend_couriers#export'}]
         ],
     }
 

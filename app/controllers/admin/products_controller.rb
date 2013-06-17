@@ -16,6 +16,7 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def export
+    authorize! :update, Product
     respond_to do |format|
       format.html {
 

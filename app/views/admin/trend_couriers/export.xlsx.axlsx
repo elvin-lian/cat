@@ -1,0 +1,29 @@
+wb = xlsx_package.workbook
+t_title = %w(图片 ID 标题 状态 创建时间 修改时间)
+sty = wb.styles.add_style(alignment: {vertical: :center})
+sty_title = wb.styles.add_style(alignment: {vertical: :center}, b: true, sz: t_title.size)
+wb.add_worksheet(name: "潮流速递") do |sheet|
+  sheet.merge_cells('A1:F1')
+  sheet.add_row [" 共导出#{@trend_couriers.count}条潮流速递数据，创建时间从#{@created_from}到#{@created_to}。 #{t2l(Time.now)}"], style: sty, height: 40
+  sheet.add_row t_title, style: sty_title, height: 30
+  row_index = 0
+  col_index = 1
+  @trend_couriers.each do |trend_courier|
+    status = trend_courier.status? ? '是' : '否'
+
+    sheet.add_row ['', trend_courier.id.to_s, trend_courier.title, status,
+                   t2l(trend_courier.created_at), t2l(trend_courier.updated_at)], style: sty, height: 24
+
+    col_index+=1
+    if trend_courier.pic and trend_courier.pic.thumb.url
+      img = Rails.root.to_s + '/public' + trend_courier.pic.thumb.url
+      sheet.add_image(:image_src => img, :noSelect => true, :noMove => true) do |image|
+        image.width = 24
+        image.height = 24
+        image.start_at row_index, col_index
+      end
+    end
+  end
+end
+wb.use_shared_strings = true
+wb.use_autowidth = true

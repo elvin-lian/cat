@@ -2,7 +2,7 @@ class Admin::ProductCommentsController < Admin::BaseController
 
   load_and_authorize_resource
 
-  before_filter :set_product, :except => [:index, :destroy]
+  before_filter :set_product, :except => [:index, :destroy, :export]
 
   def index
     if params[:product_id] and (@product = Product.find_by_id(params[:product_id]))
@@ -31,6 +31,22 @@ class Admin::ProductCommentsController < Admin::BaseController
       fail_to_destroy
     end
     redirect_to action: :index
+  end
+
+  def export
+    authorize! :update, ProductComment
+    respond_to do |format|
+      format.html {
+
+      }
+      format.xlsx {
+        @created_from = Cat::Tool.to_date(params[:from])
+        @created_from = Date.today - 30.days if @created_from.nil?
+        @created_to = Cat::Tool.to_date(params[:to], true)
+        @suits = ProductComment.where('created_at >= ? and created_at < ?', @created_from.to_time.utc, @created_to.to_time.utc).order('id desc').all
+        render xlsx: 'export', disposition: "attachment", layout: false, filename: "comment_#{@created_from}_#{@created_to}"
+      }
+    end
   end
 
   private

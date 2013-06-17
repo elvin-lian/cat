@@ -1,0 +1,30 @@
+wb = xlsx_package.workbook
+t_title = %w(图片 新品名称 排序 上架状态 创建时间 修改时间)
+sty = wb.styles.add_style(alignment: {vertical: :center})
+sty_title = wb.styles.add_style(alignment: {vertical: :center}, b: true, sz: t_title.size)
+wb.add_worksheet(name: "新品") do |sheet|
+  sheet.add_row [" 共导出#{@new_products.count}条新品数据，创建时间从#{@created_from}到#{@created_to}。 #{t2l(Time.now)}"], style: sty, height: 40
+  sheet.merge_cells('A1:F1')
+  sheet.add_row t_title, style: sty_title, height: 30
+  row_index = 0
+  col_index = 1
+  @new_products.each do |new_product|
+    status = new_product.status? ? '上架' : '下架'
+
+
+    sheet.add_row ['', new_product.name, new_product.rank, status,
+                   t2l(new_product.created_at), t2l(new_product.updated_at)], style: sty, height: 24
+
+    col_index+=1
+    if new_product.pic and new_product.pic.thumb.url
+      img = Rails.root.to_s + '/public' + new_product.pic.thumb.url
+      sheet.add_image(:image_src => img, :noSelect => true, :noMove => true) do |image|
+        image.width = 24
+        image.height = 24
+        image.start_at row_index, col_index
+      end
+    end
+  end
+end
+wb.use_shared_strings = true
+wb.use_autowidth = true

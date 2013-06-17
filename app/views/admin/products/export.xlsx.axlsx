@@ -2,7 +2,7 @@ wb = xlsx_package.workbook
 sty = wb.styles.add_style(alignment: {vertical: :center})
 sty_title = wb.styles.add_style(alignment: {vertical: :center}, b: true, sz: 12)
 wb.add_worksheet(name: "单品") do |sheet|
-  sheet.add_row [" 共#{@products.count}条单品数据，创建时间从#{@created_from}到#{@created_to}"], style: sty, height: 40
+  sheet.add_row [" 共导出#{@products.count}条单品数据，创建时间从#{@created_from}到#{@created_to}。 #{t2l(Time.now)}"], style: sty, height: 40
   sheet.merge_cells('A1:R1')
   sheet.add_row %w(图片 ID 编号 名称 英文名称 价格(元) 上架与否 所属品类 所属分类 上市时间 颜色 设计师灵感 产品简介 产品描述 套装 潮流速递标题 创建时间 修改时间), style: sty_title, height: 30
   row_index = 0
@@ -30,11 +30,10 @@ wb.add_worksheet(name: "单品") do |sheet|
 
     col_index+=1
     if (picture = product.product_pictures.first)
-      img = Rails.root.to_s + '/public' + picture.pic.url
-      sheet.add_image(:image_src => img, :noSelect => true, :noMove => true, :hyperlink => picture.full_pic_url) do |image|
+      img = Rails.root.to_s + '/public' + picture.pic.thumb.url
+      sheet.add_image(:image_src => img, :noSelect => true, :noMove => true) do |image|
         image.width = 24
         image.height = 24
-        image.hyperlink.tooltip = product.title
         image.start_at row_index, col_index
       end
     end

@@ -1,10 +1,10 @@
-- admin_left_menu :product
+- admin_left_menu :suit
 .page-header
-  h4 导出单品数据
+  h4 导出套装数据
 
 div
-  form action="#{export_admin_products_path('xlsx')}" method="get" class="form-inline"
-    p 根据单品创建的时间来导出数据。请选择创建时间：
+  form action="#{export_admin_suits_path('xlsx')}" method="get" class="form-inline"
+    p 根据套装创建的时间来导出数据。请选择创建时间：
     p
       | 从：
       input type="text" class="input-small" name="from" id="from"

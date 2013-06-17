@@ -58,6 +58,7 @@ Cabbeen::Application.routes.draw do
         resources :suits
         collection do
           post 'modify/:id' => 'new_products#modify'
+          get 'export'
         end
       end
       resources :products do
@@ -71,6 +72,7 @@ Cabbeen::Application.routes.draw do
 
         collection do
           get 'export'
+          get 'export_comment' => 'product_comments#export'
           post 'batch_listed'
           post 'batch_unlisted'
           post 'batch_destroy'
@@ -85,6 +87,7 @@ Cabbeen::Application.routes.draw do
       resources :suits do
         collection do
           post 'modify/:id' => 'suits#modify'
+          get 'export'
         end
         resources :products
       end
@@ -92,6 +95,9 @@ Cabbeen::Application.routes.draw do
       resources :skins
       resources :trend_couriers do
         resources :products
+        collection do
+          get 'export'
+        end
       end
     end
   end

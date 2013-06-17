@@ -1,10 +1,10 @@
-- admin_left_menu :product
+- admin_left_menu :trend_courier
 .page-header
-  h4 导出单品数据
+  h4 导出潮流速递数据
 
 div
-  form action="#{export_admin_products_path('xlsx')}" method="get" class="form-inline"
-    p 根据单品创建的时间来导出数据。请选择创建时间：
+  form action="#{export_admin_trend_couriers_path('xlsx')}" method="get" class="form-inline"
+    p 根据潮流速递创建的时间来导出数据。请选择创建时间：
     p
       | 从：
       input type="text" class="input-small" name="from" id="from"
