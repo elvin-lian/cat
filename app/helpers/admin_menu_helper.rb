@@ -30,8 +30,10 @@ module AdminMenuHelper
 
         latest_see: [
             ['最新宾视', nil],
-        #['所有宾视', admin_latest_sees_path, {path: 'latest_sees#index', cc: [:read, LatestSee]}],
-        #['发布新一期', new_admin_latest_see_path, {path: 'latest_sees#new', cc: [:create, LatestSee]}]
+            ['所有宾视', admin_latest_sees_path, {path: 'latest_sees#index', cc: [:read, LatestSee]}],
+            ['发布新一期', new_admin_latest_see_path, {path: 'latest_sees#new', cc: [:create, LatestSee]}],
+            ['导出数据', nil],
+            ['导出宾视', export_admin_latest_sees_path, {path: 'latest_sees#export'}]
         ],
 
         new_product: [

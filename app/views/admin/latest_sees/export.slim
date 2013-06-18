@@ -1,0 +1,17 @@
+- admin_left_menu :latest_see
+.page-header
+  h4 导出最新宾视数据
+
+div
+  form action="#{export_admin_latest_sees_path('xlsx')}" method="get" class="form-inline"
+    p 根据最新宾视创建的时间来导出数据。请选择创建时间：
+    p
+      | 从：
+      input type="text" class="input-small" name="from" id="from"
+      | &nbsp;&nbsp;到：
+      input type="text" class="input-small" name="to" id="to"
+      | &nbsp;&nbsp;&nbsp;&nbsp;
+      button type="submit" class="btn btn-primary" 导出
+- content_for :footer do
+  javascript:
+    $(document).ready(function(){el.Tool.datePicker();});

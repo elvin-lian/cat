@@ -82,7 +82,7 @@ class Admin::SuitsController < Admin::BaseController
         @created_from = Cat::Tool.to_date(params[:from])
         @created_from = Date.today - 30.days if @created_from.nil?
         @created_to = Cat::Tool.to_date(params[:to], true)
-        @suits = Suit.where('created_at >= ? and created_at < ?', @created_from.to_time.utc, @created_to.to_time.utc).order('id desc').all
+        @suits = Suit.where('created_at >= ? and created_at < ?', @created_from.to_time.utc, (@created_to + 1.day).to_time.utc).order('id desc').all
         render xlsx: 'export', disposition: "attachment", layout: false, filename: "suit_#{@created_from}_#{@created_to}"
       }
     end

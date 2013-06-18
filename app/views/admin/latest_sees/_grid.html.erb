@@ -1,6 +1,6 @@
 <%= grid(@latest_sees, :show_filters => :when_filtered, :allow_showing_all_records => false, class: 'table-img') do |g|
 
-  %w(id created_at updated_at).each do |attr|
+  %w(id title status created_at updated_at).each do |attr|
     g.column :name => LatestSeePicture.human_attribute_name(attr.to_sym), :attribute => attr do |obj|
       if attr.in? %w(created_at updated_at)
         t2l(obj.send(attr.to_sym))
@@ -14,7 +14,7 @@
 
   g.column do |obj|
     link = link_to('<i class="icon-picture" title="图片"></i>'.html_safe, admin_latest_see_pictures_path(obj.id))
-    link << actions_links(obj, 7)
+    link << actions_links(obj, 6)
     link.html_safe
   end
 end -%>

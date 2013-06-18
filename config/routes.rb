@@ -51,11 +51,14 @@ Cabbeen::Application.routes.draw do
         end
       end
       resources :dashboard, :only => :index
-      resources :latest_sees, :only => :index do
+      resources :latest_sees do
         resources :pictures, :controller => :latest_see_pictures do
           collection do
             post 'modify/:id' => 'latest_see_pictures#modify'
           end
+        end
+        collection do
+          get 'export'
         end
       end
       resources :new_products do

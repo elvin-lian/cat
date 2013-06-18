@@ -35,6 +35,8 @@ zh_cn:
         parent_category: 分类
         pic: 按钮图标
         rank: 排序
+      latest_see:
+        title: 期号
       new_product:
         name: 新品名称
         pic: 按钮图标
