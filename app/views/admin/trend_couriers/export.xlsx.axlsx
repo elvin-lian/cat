@@ -1,9 +1,9 @@
 wb = xlsx_package.workbook
-t_title = %w(图片 ID 标题 状态 创建时间 修改时间)
+t_title = %w(图片 ID 潮流速递标题 潮流速递状态 潮流速递创建时间 潮流速递修改时间 单品编号 单品标题)
 sty = wb.styles.add_style(alignment: {vertical: :center})
 sty_title = wb.styles.add_style(alignment: {vertical: :center}, b: true, sz: t_title.size)
 wb.add_worksheet(name: "潮流速递") do |sheet|
-  sheet.merge_cells('A1:F1')
+  sheet.merge_cells('A1:H1')
   sheet.add_row [" 共导出#{@trend_couriers.count}条潮流速递数据，创建时间从#{@created_from}到#{@created_to}。 #{t2l(Time.now)}"], style: sty, height: 40
   sheet.add_row t_title, style: sty_title, height: 30
   row_index = 0
@@ -12,7 +12,7 @@ wb.add_worksheet(name: "潮流速递") do |sheet|
     status = trend_courier.status? ? '是' : '否'
 
     sheet.add_row ['', trend_courier.id.to_s, trend_courier.title, status,
-                   t2l(trend_courier.created_at), t2l(trend_courier.updated_at)], style: sty, height: 24
+                   t2l(trend_courier.created_at), t2l(trend_courier.updated_at), '', ''], style: sty, height: 24
 
     col_index+=1
     if trend_courier.pic and trend_courier.pic.thumb.url
@@ -23,6 +23,11 @@ wb.add_worksheet(name: "潮流速递") do |sheet|
         image.start_at row_index, col_index
       end
     end
+
+    trend_courier.products.each do |product|
+      sheet.add_row ['', '', '', '', '', '', product.serial_number, product.title], style: sty, height: 24
+    end
+
   end
 end
 wb.use_shared_strings = true

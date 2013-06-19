@@ -1,24 +1,25 @@
 wb = xlsx_package.workbook
-t_title = %w(ID 期刊号 状态 图片 创建时间 修改时间)
+t_title = %w(ID 期刊号 状态 页码 图片 创建时间 修改时间)
 sty = wb.styles.add_style(alignment: {vertical: :center})
 sty_title = wb.styles.add_style(alignment: {vertical: :center}, b: true, sz: t_title.size)
 wb.add_worksheet(name: "最新宾视") do |sheet|
   sheet.add_row [" 共导出#{@latest_sees.count}条最新宾视数据，创建时间从#{@created_from}到#{@created_to}。 #{t2l(Time.now)}"], style: sty, height: 40
-  sheet.merge_cells('A1:F1')
+  sheet.merge_cells('A1:G1')
   sheet.add_row t_title, style: sty_title, height: 30
-  row_index = 3
+  row_index = 4
   col_index = 1
   @latest_sees.each do |see|
     status = see.status? ? '是' : '否'
 
-    sheet.add_row [see.id.to_s, see.title, status, '',
+    sheet.add_row [see.id.to_s, see.title, status, '', '',
                    t2l(see.created_at), t2l(see.updated_at)], style: sty, height: 24
 
     col_index+=1
     if (pictures = see.latest_see_pictures.order('rank asc'))
+      page = 0;
       pictures.each do |picture|
-
-        sheet.add_row ['', '', '', '',
+        page += 1
+        sheet.add_row ['', '', '', page.to_s, '',
                        t2l(picture.created_at), t2l(picture.updated_at)], style: sty, height: 24
 
         col_index+=1
@@ -30,6 +31,9 @@ wb.add_worksheet(name: "最新宾视") do |sheet|
         end
       end
     end
+
+    sheet.add_row([''])
+    col_index+=1
 
   end
 end

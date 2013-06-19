@@ -1,5 +1,5 @@
 wb = xlsx_package.workbook
-t_title = %w(图片 ID 编号 名称 排序 状态 所属单品 创建时间 修改时间)
+t_title = %w(图片 ID 编号 名称 排序 状态 所属新品 创建时间 修改时间)
 sty = wb.styles.add_style(alignment: {vertical: :center})
 sty_title = wb.styles.add_style(alignment: {vertical: :center}, b: true, sz: t_title.size)
 wb.add_worksheet(name: "套装") do |sheet|
