@@ -15,7 +15,7 @@
     = f.input :suit_category, collection: Product.suit_categories, input_html: {class: 'input-small'}
     = f.association :trend_courier
     = f.association :categories, collection: Category.order('id DESC').limit(5000), input_html: {class: 'span7', style: "height: 150px;"}
-    = f.association :suits, collection: Suit.order('id DESC').limit(10000), input_html: {class: 'span7', style: "height: 150px;"}
+    = f.association :suits, collection: Suit.select('id, serial_number').order('id DESC').limit(10000), input_html: {class: 'span7', style: "height: 150px;"}, label_method: :serial_number, value_method: :id
     = f.input :price, input_html: {class: 'input-small'}
     = f.input :rank
     = f.input :time_for_sale
