@@ -11,7 +11,7 @@
   fieldset
     = f.input :serial_number, input_html: {class: 'input-xlarge', autocomplete: 'off'}
     = f.input :title, input_html: {class: 'input-xxlarge'}
-    = f.input :sub_title, input_html: {class: 'input-xxlarge'}
+    = f.input :sub_title, input_html: {class: 'input-xxlarge', autocomplete: 'off', "data-provide" => "typeahead", "data-source"=>'["SHIRT","T-SHIRT","KNITWEAR","SWEATER","BLAZER","DOWN COAT","PADDED COAT","LEATHER JACKET","JACKET","COAT","VEST","DOWN VEST","PANT","TROUSER","CASUAL PANT","CASUAL TROUSER","JEANS","SHORT","SUITS","SUIT JACKET","SUIT PANT","SUIT TROUSER","SHOES","LEATHER SHOES","CASUAL SHOES","BAG","BELT","TIE","UNDERWEAR","SOCKS","SCARF"]'}
     = f.input :suit_category, collection: Product.suit_categories, input_html: {class: 'input-small'}
     = f.association :trend_courier
     = f.association :categories, collection: Category.order('id DESC').limit(5000), input_html: {class: 'span7', style: "height: 150px;"}
